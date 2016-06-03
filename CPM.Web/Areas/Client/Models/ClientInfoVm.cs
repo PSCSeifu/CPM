@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPM.Web.Areas.Client.Models
 {
-    public class ClientInfoVm
+    public class ClientInfoVM
     {
 
     }

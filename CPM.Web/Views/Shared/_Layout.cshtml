@@ -2,27 +2,76 @@
 
 <html>
 <head>
-    <title>@ViewBag.Title</title>
     <meta charset="utf-8" name="viewport" content="width=device-width" />
-  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/bootswatch/spacelab/bootstrap.min.css"/>
+    <title>@ViewBag.Title</title>
+    @*<environment names="Devlopment">*@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootswatch/spacelab/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    @*</environment>*@
+
+    <environment names="Devlopment">
+        @*Bundlded and minified versions *@
+    </environment>
 </head>
 <body>
-    <div id="wrapper">
-        <nav class="navbar navbar-default">
-            <ul class=""
-        </nav>
-        @*Navigation bar*@
-        <h4>Layout from -  Views/Shared/_Layout.cshtml</h4>
 
-        <div id="main" class="container">
-            @RenderBody()
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="nav navbar-header">
+                <a asp-route-area="Global" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                  <span class="glyphicon glyphicon-home"></span>
+                </a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+            <div class="navbar navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav ">
+                    @* @Component.Invoke("NavbarMenu") *@
+                    <li>
+                        <a asp-route-area="Currency" asp-controller="Home" asp-action="Index" class="navbar-brand">CURRENCY</a>
+                    </li>
+                    <li>
+                          <a asp-route-area="Offer" asp-controller="Home" asp-action="Index" class="navbar-brand">OFFERS</a>
+                    </li>
+                    <li>
+                         <a asp-route-area="Transaction" asp-controller="Home" asp-action="Index" class="navbar-brand">TRANSACTION</a>
+                    </li>
+                    <li>
+                        <a asp-route-area="Wallet" asp-controller="Home" asp-action="Index" class="navbar-brand">WALLETS</a>
+                    </li>
+                    <li>
+                        <a asp-route-area="FiatAccount" asp-controller="Home" asp-action="Index" class="navbar-brand">FIAT</a>   
+                    </li>
+                </ul>
+                
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a href="#">Help</a> </li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Logout</a></li>
+<span id="LoggedUsername">@User.FindFirst("username").Value</span>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Register</a></li>
+
+
+                </ul>
+            </div>
+
         </div>
-        <footer>
-            <h6>&copy; CPM 2016-2019</h6>
-        </footer>
+    </nav>
+    @*Navigation bar*@
+    <h4>Layout from -  Views/Shared/_Layout.cshtml</h4>
+
+    <div id="main" class="container">
+        @RenderBody()
     </div>
+    @RenderSection("Scripts", false)
+
+
 </body>
 </html>

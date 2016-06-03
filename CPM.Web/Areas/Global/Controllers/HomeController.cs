@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CPM.Web.Areas.Global
 {
-    [Area ("Global")]
+    [Area("Global")]
     public class HomeController : Controller
     {
         // GET: /<controller>/

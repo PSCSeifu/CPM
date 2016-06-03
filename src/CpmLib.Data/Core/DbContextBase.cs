@@ -1,7 +1,9 @@
-﻿using System;
+﻿using CpmLib.Data.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace CpmLib.Data.Core
 {
@@ -10,7 +12,8 @@ namespace CpmLib.Data.Core
         int SaveChanges();
     }
 
-    //public abstract class DbContextBase : DbContext, IDbContextBase
-    //{
-    //}
+    public abstract class DbContextBase : DbContext, IDbContextBase
+    {
+
+    }
 }

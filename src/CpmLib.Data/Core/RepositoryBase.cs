@@ -5,7 +5,12 @@ using System.Threading.Tasks;
 
 namespace CpmLib.Data.Core
 {
-    public class RepositoryBase
+    public interface IRepositoryBase
     {
     }
+
+    public class RepositoryBase : IRepositoryBase
+    {
+    }
+    
 }

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CPM.Web.Areas.Client.Models
+namespace CPM.Business.Wallet
 {
-    public class ClientListVM
+    public class WalletBM
     {
+
     }
 }
