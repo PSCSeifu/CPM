@@ -15,7 +15,7 @@ namespace CPM.Web.Areas.Global
         public IActionResult Index()
         {
             return View();
-            //return RedirectToAction("Index", "Home", new { Area = "Global" });
+          //return RedirectToAction("Index", "Home", new { Area = "Global" });
         }
     }
 }

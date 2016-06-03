@@ -54,7 +54,9 @@ namespace CPM.Web
                routes.MapRoute(
                name: "default",
                template: "{area}/{controller}/{action}/{id?}",
-               defaults: new { area = "Global", controller = "Home", action = "Index", startIndex = 0, pagesize = 0 }
+               defaults: new { area = "Global", controller = "Home",action = "Index"
+                   //, startIndex = 0, pagesize = 0
+               }
                );
            });
         }
