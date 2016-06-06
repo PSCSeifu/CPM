@@ -3,13 +3,21 @@
 @*@model List<CPM.Business.Wallet.WalletBM>*@
 
 @{ Layout = "/Views/Shared/Wallet/_WalletLayout.cshtml";}
+@{ ViewBag.Title = "Wallets";}
 
-
-<div>
-    @{ ViewBag.Title = "Wallets";}
-    Wallet list
+<div class="col-sm-4c col-sm-offset-2">
+        <div class="form-group">
+            <span class="input-icon" >
+                <input id="SearchBox" type="text" placeholder="Search by Wallet Name e.g MyWallet" />
+                <a  class="btn btn-default" asp-controller="Wallet" asp-action="Filter" data-val="">
+                    <i class="ace-icon fa fa-search"></i>
+                </a>
+            </span>
+        </div>
 </div>
 <div>
+
+
     <div>
         @if (!String.IsNullOrWhiteSpace(Model.SearchTerm))
         {
