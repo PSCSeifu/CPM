@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CPM.Web;
+using AutoMapper;
+using CPM.Business.Wallet;
+using CPM.Web.Areas.Wallet.Models;
 
 namespace CPM.Web
 {
@@ -19,46 +23,84 @@ namespace CPM.Web
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-
-            if (env.IsDevelopment())
-            {
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                //builder.AddUserSecrets();
-            }
-
-            builder.AddEnvironmentVariables();
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+            
             Configuration = builder.Build();
+
+            Data.ModelMappings.Configure();
+            Business.ModelMappings.Configure();
+            Web.ModelMappings.Configure();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddIdentity<ApplicationUser, IdentityRole>()
-            //     .AddEntityFrameworkStores<ApplicationDbContext>()
-            //     .AddDefaultTokenProviders();
-
+            //AddIdentity();
             services.AddMvc();
+            AddBusiness(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
-        {
-            app.UseStaticFiles(); //First check for static files.
-           // app.UseIdentity(); //Identity before the MVC to ensure cookies,401 errors are processed.
-           // app.UseSession(); //Session before MVC
-
-            app.UseMvc(routes =>
-           {
-               routes.MapRoute(
-               name: "default",
-               template: "{area}/{controller}/{action}/{id?}",
-               defaults: new { area = "Global", controller = "Home",action = "Index"
-                   //, startIndex = 0, pagesize = 0
-               }
-               );
-           });
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {            
+            //First check for static files.
+              // app.UseIdentity(); //Identity before the MVC to ensure cookies,401 errors are processed.
+              // app.UseSession(); //Session before MVC
+            UsePlatform(app, env);
+            UseMvc(app);            
         }
+
+        #region " Add Service "
+
+        private void AddMvc(IServiceCollection services)
+        {
+            services.AddMvc();
+            services.AddOptions();
+        }
+
+        private void AddIdentity(IServiceCollection services)
+        {
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //     .AddEntityFrameworkStores<ApplicationDbContext>()
+            //     .AddDefaultTokenProviders();
+        }
+
+        private void AddBusiness(IServiceCollection services)
+        {
+            DependecyInjection.Configure(services);
+        }
+
+        #endregion
+
+        #region " Use Services "
+
+        private void UsePlatform(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error"); //Home>Controller Error>Action
+            }
+
+            app.UseStaticFiles();
+        }
+
+        private void UseMvc(IApplicationBuilder app)
+        {
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                name: "default",
+                template: "{area=Global}/{controller=Home}/{action=Index}/");
+        });
+
+        }
+
+        #endregion
     }
 }

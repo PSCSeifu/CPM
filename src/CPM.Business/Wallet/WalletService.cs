@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace CPM.Business.Wallet
 {
-    public interface IWalletService
+    public interface IWalletService :IServiceBase
     {
         WalletBM GetWallet(string clientId, int walletId);
         GetListResult<WalletBM> GetListById(string clientId);
     }
 
-    public class WalletService
+    public class WalletService :ServiceBase, IWalletService
     {
         private  IWalletRepository _repository;
 
@@ -29,11 +29,11 @@ namespace CPM.Business.Wallet
             _repository = repository;
         }
 
-        public GetListResult<WalletBM> GetListById(string clientId, int walletId)
+        public GetListResult<WalletBM> GetListById(string clientId)
         {
             try
             {
-                var result = Mapper.Map<List<WalletBM>>(_repository.GetWalletByClientIdAndWalletId(clientId, walletId));
+                var result = Mapper.Map<List<WalletBM>>(_repository.GetWalletsByClientId(clientId));
                 return ServiceResultsHelper.FillGetListResult<WalletBM>(result);
             }
             catch (Exception ex)

@@ -9,5 +9,6 @@ namespace CPM.Web.Areas.Wallet.Models
     public class WalletListVM
     {
         public List<WalletInfoVM> Wallets { get; set; }
+        public string SearchTerm { get; set; }        
     }
 }

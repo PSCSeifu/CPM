@@ -1,5 +1,7 @@
 using AutoMapper;
 using CPM.Business.Wallet;
+using CPM.Data.Entities;
+using CPM.Data.Wallet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,12 @@ namespace CPM.Business
     {
         public static void Configure()
         {
-         //   Mapper.CreateMap<WalletEntity, WalletBM>();
+            Mapper.Initialize(config =>
+           {
+               config.CreateMap<WalletEntity, WalletDM>();
+               config.CreateMap<WalletDM, WalletBM>();
+           });
+       
         }
     }
 }

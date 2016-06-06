@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using CPM.Business.Wallet;
+using CPM.Web.Areas.Wallet.Models;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,15 +13,20 @@ namespace CPM.Web.Areas.Wallet.Controllers
     [Area("Wallet")]
     public class WalletController : Controller
     {
-        //public WalletController(IWalletService service)
-        //{
-        //    _service = service;
-        //}
+        private IWalletService _service;
+
+        public WalletController(IWalletService service)
+        {
+            _service = service;
+        }
 
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View();
+            var viewmodel = new WalletListVM();
+            var list = _service.GetListById("ab");
+            viewmodel = AutoMapper.Mapper.Map<WalletListVM>(list);
+            return View(viewmodel);
         }
     }
 }

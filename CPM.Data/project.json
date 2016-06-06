@@ -2,7 +2,8 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "CpmLib.Data": "1.0.0-*" 
+    "CpmLib.Data": "1.0.0-*",
+    "AutoMapper": "4.2.1"
   },
 
   "frameworks": {
