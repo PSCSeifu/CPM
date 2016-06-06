@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CPM.Business.Wallet;
 using CPM.Web.Areas.Wallet.Models;
+using AutoMapper;
+using CpmLib.Business.Core.Service;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,10 +25,28 @@ namespace CPM.Web.Areas.Wallet.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var viewmodel = new WalletListVM();
-            var list = _service.GetListById("ab");
-            viewmodel = AutoMapper.Mapper.Map<WalletListVM>(list);
-            return View(viewmodel);
+            //Mapper.Initialize(config =>
+            //{
+            //    #region " Wallets "
+            //    config.CreateMap<WalletBM, WalletInfoVM>();
+            //    config.CreateMap<List<WalletBM>, List<WalletInfoVM>>();
+            //    #endregion
+            //});
+
+            var viewModel = new WalletListVM();
+
+            var result = _service.GetListById("abc");
+
+            if (result.Result == GetResultEnum.Success)
+            {
+                //viewModel.Wallets = Mapper.Map<List<WalletInfoVM>>(result.List);
+                //return View(viewModel);
+                return View(result.List);
+            }
+            else
+            {
+                return RedirectToAction("Error", "Home", new { Area = "Global" });
+            }          
         }
     }
 }

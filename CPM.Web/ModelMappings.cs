@@ -17,8 +17,9 @@ namespace CPM.Web
           {
                 #region " Wallets "
                 config.CreateMap<WalletBM, WalletInfoVM>();
-                #endregion
-            });
+                config.CreateMap<List<WalletBM>, List<WalletInfoVM>>();
+              #endregion
+          });
         }
     }
 }

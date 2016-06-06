@@ -36,7 +36,7 @@ namespace CPM.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
-        {
+        {            
             //AddIdentity();
             services.AddMvc();
             AddBusiness(services);
@@ -49,7 +49,8 @@ namespace CPM.Web
               // app.UseIdentity(); //Identity before the MVC to ensure cookies,401 errors are processed.
               // app.UseSession(); //Session before MVC
             UsePlatform(app, env);
-            UseMvc(app);            
+            UseMvc(app);
+            UseMappings();
         }
 
         #region " Add Service "
@@ -99,6 +100,13 @@ namespace CPM.Web
                 template: "{area=Global}/{controller=Home}/{action=Index}/");
         });
 
+        }
+
+        private void UseMappings()
+        {
+            Data.ModelMappings.Configure();
+            Business.ModelMappings.Configure();
+            Web.ModelMappings.Configure();
         }
 
         #endregion

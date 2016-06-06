@@ -31,6 +31,11 @@ namespace CPM.Business.Wallet
 
         public GetListResult<WalletBM> GetListById(string clientId)
         {
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<WalletDM, WalletBM>();
+            });
+
             try
             {
                 var result = Mapper.Map<List<WalletBM>>(_repository.GetWalletsByClientId(clientId));

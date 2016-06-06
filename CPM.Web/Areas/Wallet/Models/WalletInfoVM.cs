@@ -18,6 +18,6 @@ namespace CPM.Web.Areas.Wallet.Models
         public WalletType Type { get; set; }
         public WalletSettings WalletSettings { get; set; }
 
-        
+
     }
 }

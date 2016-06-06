@@ -1,4 +1,6 @@
-﻿@model CPM.Web.Areas.Wallet.Models.WalletListVM
+﻿@*@model List<CPM.Web.Areas.Wallet.Models.WalletInfoVM>*@
+@*@model CPM.Web.Areas.Wallet.Models.WalletListVM*@
+@model List<CPM.Business.Wallet.WalletBM>
 @{ Layout = "/Views/Shared/Wallet/_WalletLayout.cshtml";}
 
 
@@ -10,19 +12,19 @@
 
     <table class="table table-responsive table-striped">
          
-        @foreach (var wallet in Model.Wallets)
+        @foreach (var wallet in Model)
         {
         <tr>
             <td>@wallet.Id</td>
             <td>@wallet.ClientId</td>
             <td>@wallet.Name</td>
-            <td>@wallet.Type.Name</td>
-            <td>@wallet.Type.Description</td>
+            @*<td>@wallet.Type.Name</td>
+            <td>@wallet.Type.Description</td>*@
             <td>@wallet.IsLocked</td>
             <td>@wallet.Balance</td>
-            <td>@wallet.WalletSettings.SpendLimit</td>
+            @*<td>@wallet.WalletSettings.SpendLimit</td>
             <td>@wallet.WalletSettings.NotificationLimit</td>
-            <td>@wallet.WalletSettings.WithdrawLimit</td>
+            <td>@wallet.WalletSettings.WithdrawLimit</td>*@
             <td>@wallet.Id</td>
         </tr>
         }
