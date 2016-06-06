@@ -11,6 +11,11 @@ namespace CPM.Web.Areas.Wallet.Controllers
     [Area("Wallet")]
     public class WalletController : Controller
     {
+        //public WalletController(IWalletService service)
+        //{
+        //    _service = service;
+        //}
+
         // GET: /<controller>/
         public IActionResult Index()
         {
