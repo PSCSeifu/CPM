@@ -56,5 +56,26 @@ namespace CPM.Web.Areas.Wallet.Controllers
                 return RedirectToAction("Error", "Home", new { Area = "Global" });
             }
         }
+
+        public IActionResult Filter(string clientId, string searchString)
+        {
+            searchString = "Stash";
+            clientId = "abc";
+            var viewModel = new WalletListVM();
+
+            var result = _service.GetListBySearchTerm(clientId, searchString);
+            viewModel.SearchTerm = searchString;
+
+            if(result.Result == GetResultEnum.Success)
+            {
+                ModelMappings.Configure();
+                viewModel.Wallets = Mapper.Map<List<WalletInfoVM>>(result.List);
+                return View("Filter",viewModel);
+            }
+            else
+            {
+                return RedirectToAction("Error", "Home", new { Area = "Global" });
+            }
+        }
     }
 }

@@ -1,9 +1,12 @@
 ﻿@model CPM.Web.Areas.Wallet.Models.WalletInfoVM
-
+@{ Layout = "/Views/Shared/Wallet/_WalletLayout.cshtml";}
+@{ ViewBag.Title = Model.Name;}
 <div>
-    @ViewBag.Title = "Wallet Detail";
-
+   
     <div>
-        @Model.Name
+        <div>Wallet Name: @Model.Name</div>
+        <div>ClientID: @Model.ClientId</div>
+        <div>Balance : [@Model.Balance]</div>
+        <div>IsLocked : @Model.IsLocked</div>
     </div>
 </div>

@@ -12,6 +12,7 @@ namespace CPM.Business.Wallet
     public interface IWalletService :IServiceBase
     {
         GetItemResult<WalletBM> GetWallet(string clientId, int walletId);
+        GetListResult<WalletBM> GetListBySearchTerm(string clientId, string searchTerm);
         GetListResult<WalletBM> GetListById(string clientId);
     }
 
@@ -43,6 +44,19 @@ namespace CPM.Business.Wallet
             }
         }
 
+        public GetListResult<WalletBM> GetListBySearchTerm(string clientId, string searchTerm)
+        {
+            ModelMappings.Configure();
+            try
+            {
+                var result = Mapper.Map<List<WalletBM>>(_repository.GetWalletsBySearchTerm(clientId,searchTerm));
+                return ServiceResultsHelper.FillGetListResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ServiceResultsHelper.FillGetListResultForError<WalletBM>(ex);
+            }
+        }
         public GetItemResult<WalletBM> GetWallet(string clientId, int walletId)
         {
             ModelMappings.Configure();

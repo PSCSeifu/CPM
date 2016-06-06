@@ -29,42 +29,24 @@ namespace CPM.Web
             
             Configuration = builder.Build();
 
-            Data.ModelMappings.Configure();
-            Business.ModelMappings.Configure();
-            Web.ModelMappings.Configure();
+            //Data.ModelMappings.Configure();
+           // Business.ModelMappings.Configure();
+            //Web.ModelMappings.Configure();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
-        {            
-            //AddIdentity();
+        {    
             services.AddMvc();
             AddBusiness(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            
-
-            //First check for static files.
-            // app.UseIdentity(); //Identity before the MVC to ensure cookies,401 errors are processed.
-            // app.UseSession(); //Session before MVC
-            UsePlatform(app, env);
-
-            Mapper.Initialize(config =>
-            {
-                #region " Wallets "
-                config.CreateMap<WalletBM, WalletInfoVM>();
-                config.CreateMap<WalletInfoVM, WalletBM>();
-                config.CreateMap<WalletDM, WalletBM>();
-                #endregion
-            });
-
+        {             
+            UsePlatform(app, env);            
             UseMvc(app);
-           
-            // UseMappings();
         }
 
         #region " Add Service "
@@ -90,7 +72,9 @@ namespace CPM.Web
         #endregion
 
         #region " Use Services "
-
+        //First check for static files.
+        // app.UseIdentity(); //Identity before the MVC to ensure cookies,401 errors are processed.
+        // app.UseSession(); //Session before MVC
         private void UsePlatform(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

@@ -11,6 +11,7 @@ namespace CPM.Data.Wallet
     {
         WalletDM GetWalletByClientIdAndWalletId(string clientId, int walletId);
         List<WalletDM> GetWalletsByClientId(string clientId);
+        object GetWalletsBySearchTerm(string clientId, string searchTerm);
     }
 
     public class WalletRepository: RepositoryBase , IWalletRepository
@@ -34,6 +35,15 @@ namespace CPM.Data.Wallet
             return wallets.Where(w => w.ClientId == clientId).ToList();
         }
 
+        public object GetWalletsBySearchTerm(string clientId, string searchTerm)
+        {
+            List<WalletDM> wallets = MockPopulateWalletRepository();
+
+            return wallets.Where(w => w.ClientId == clientId 
+                            && w.Name.ToLower().Contains(searchTerm.ToLower()) )                            
+                            .ToList();
+        }
+
         public WalletDM GetWalletByClientIdAndWalletId(string clientId, int walletId)
         {
             List<WalletDM> wallets = MockPopulateWalletRepository();
@@ -54,5 +64,7 @@ namespace CPM.Data.Wallet
 
             return walletList;
         }
+
+       
     }
 }

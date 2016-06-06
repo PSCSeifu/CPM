@@ -1,10 +1,5 @@
-﻿@*@model List<CPM.Web.Areas.Wallet.Models.WalletInfoVM>*@
-@model CPM.Web.Areas.Wallet.Models.WalletListVM
-@*@model List<CPM.Business.Wallet.WalletBM>*@
-
+﻿@model CPM.Web.Areas.Wallet.Models.WalletListVM
 @{ Layout = "/Views/Shared/Wallet/_WalletLayout.cshtml";}
-
-
 <div>
     @{ ViewBag.Title = "Wallets";}
     Wallet list
@@ -13,7 +8,7 @@
     <div>
         @if (!String.IsNullOrWhiteSpace(Model.SearchTerm))
         {
-            <div class="label label-default">Model.SearchTerm</div>
+            <div class="label label-default">Model.SearchTerm.ToStirng()</div>
         }
 
         <button class="btn btn-default fa-search"></button>
@@ -37,5 +32,5 @@
             </tr>
         }
     </table>
+   </div>
 
-</div>
