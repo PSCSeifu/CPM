@@ -9,7 +9,7 @@ namespace CPM.Data.Wallet
 {
     public interface IWalletRepository :IRepositoryBase
     {
-        List<WalletDM> GetWalletByClientIdAndWalletId(string clientId, int walletId);
+        WalletDM GetWalletByClientIdAndWalletId(string clientId, int walletId);
         List<WalletDM> GetWalletsByClientId(string clientId);
     }
 
@@ -34,11 +34,11 @@ namespace CPM.Data.Wallet
             return wallets.Where(w => w.ClientId == clientId).ToList();
         }
 
-        public List<WalletDM> GetWalletByClientIdAndWalletId(string clientId, int walletId)
+        public WalletDM GetWalletByClientIdAndWalletId(string clientId, int walletId)
         {
             List<WalletDM> wallets = MockPopulateWalletRepository();
 
-            return wallets.Where(w => w.ClientId == clientId && w.Id == walletId).ToList(); 
+            return wallets.Where(w => w.ClientId == clientId && w.Id == walletId).SingleOrDefault(); 
         }
 
         private List<WalletDM> MockPopulateWalletRepository()

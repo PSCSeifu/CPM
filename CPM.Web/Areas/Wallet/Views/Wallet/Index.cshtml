@@ -1,6 +1,7 @@
 ﻿@*@model List<CPM.Web.Areas.Wallet.Models.WalletInfoVM>*@
-@*@model CPM.Web.Areas.Wallet.Models.WalletListVM*@
-@model List<CPM.Business.Wallet.WalletBM>
+@model CPM.Web.Areas.Wallet.Models.WalletListVM
+@*@model List<CPM.Business.Wallet.WalletBM>*@
+
 @{ Layout = "/Views/Shared/Wallet/_WalletLayout.cshtml";}
 
 
@@ -12,7 +13,7 @@
 
     <table class="table table-responsive table-striped">
          
-        @foreach (var wallet in Model)
+        @foreach (var wallet in Model.Wallets)
         {
         <tr>
             <td>@wallet.Id</td>

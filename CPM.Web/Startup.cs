@@ -11,6 +11,7 @@ using CPM.Web;
 using AutoMapper;
 using CPM.Business.Wallet;
 using CPM.Web.Areas.Wallet.Models;
+using CPM.Data.Wallet;
 
 namespace CPM.Web
 {
@@ -44,13 +45,26 @@ namespace CPM.Web
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {            
+        {
+            
+
             //First check for static files.
-              // app.UseIdentity(); //Identity before the MVC to ensure cookies,401 errors are processed.
-              // app.UseSession(); //Session before MVC
+            // app.UseIdentity(); //Identity before the MVC to ensure cookies,401 errors are processed.
+            // app.UseSession(); //Session before MVC
             UsePlatform(app, env);
+
+            Mapper.Initialize(config =>
+            {
+                #region " Wallets "
+                config.CreateMap<WalletBM, WalletInfoVM>();
+                config.CreateMap<WalletInfoVM, WalletBM>();
+                config.CreateMap<WalletDM, WalletBM>();
+                #endregion
+            });
+
             UseMvc(app);
-            UseMappings();
+           
+            // UseMappings();
         }
 
         #region " Add Service "

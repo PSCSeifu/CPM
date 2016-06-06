@@ -16,7 +16,6 @@ namespace CPM.Business
         {
             Mapper.Initialize(config =>
            {
-               config.CreateMap<WalletEntity, WalletDM>();
                config.CreateMap<WalletDM, WalletBM>();
            });
        

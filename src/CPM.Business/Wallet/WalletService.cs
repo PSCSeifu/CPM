@@ -11,7 +11,7 @@ namespace CPM.Business.Wallet
 {
     public interface IWalletService :IServiceBase
     {
-        WalletBM GetWallet(string clientId, int walletId);
+        GetItemResult<WalletBM> GetWallet(string clientId, int walletId);
         GetListResult<WalletBM> GetListById(string clientId);
     }
 
@@ -30,16 +30,12 @@ namespace CPM.Business.Wallet
         }
 
         public GetListResult<WalletBM> GetListById(string clientId)
-        {
-            Mapper.Initialize(config =>
-            {
-                config.CreateMap<WalletDM, WalletBM>();
-            });
-
+        {            
+            ModelMappings.Configure();
             try
             {
                 var result = Mapper.Map<List<WalletBM>>(_repository.GetWalletsByClientId(clientId));
-                return ServiceResultsHelper.FillGetListResult<WalletBM>(result);
+                return ServiceResultsHelper.FillGetListResult(result);
             }
             catch (Exception ex)
             {
@@ -47,11 +43,18 @@ namespace CPM.Business.Wallet
             }
         }
 
-        public WalletBM GetWallet(string clientId, int walletId)
+        public GetItemResult<WalletBM> GetWallet(string clientId, int walletId)
         {
-            //GetItemResult<WalletBM>
-            //void to PscLib.Business.Core.Service.GetListResult<
-            throw new NotImplementedException();
+            ModelMappings.Configure();
+            try
+            {
+                var result = Mapper.Map<WalletBM>(_repository.GetWalletByClientIdAndWalletId(clientId,walletId));
+                return ServiceResultsHelper.FillGetItemResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ServiceResultsHelper.FillGetItemResultForError<WalletBM>(ex);
+            }           
         }
     }
 }
