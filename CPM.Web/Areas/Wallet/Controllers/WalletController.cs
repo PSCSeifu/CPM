@@ -24,7 +24,7 @@ namespace CPM.Web.Areas.Wallet.Controllers
 
         // GET: /<controller>/
         public IActionResult Index()
-        {  
+        {
             var viewModel = new WalletListVM();
             var result = _service.GetListById("abc");
 
@@ -38,13 +38,16 @@ namespace CPM.Web.Areas.Wallet.Controllers
             else
             {
                 return RedirectToAction("Error", "Home", new { Area = "Global" });
-            }          
+            }
         }
+
+
+
 
         public IActionResult Detail(string clientId,int walletId)
         {
             var viewModel = new WalletInfoVM();
-            var result = _service.GetWallet("abc", 4);
+            var result = _service.GetWallet("abc", 5);
             
             if(result.Result == GetResultEnum.Success)
             {
@@ -57,14 +60,18 @@ namespace CPM.Web.Areas.Wallet.Controllers
             }
         }
 
-        public IActionResult Filter(string clientId, string searchString)
+        public IActionResult Filter(string clientId, string searchTerm)
         {
-            searchString = "Stash";
+            if (String.IsNullOrWhiteSpace(searchTerm))
+            {
+                return RedirectToAction("Index");
+            }
+
             clientId = "abc";
             var viewModel = new WalletListVM();
 
-            var result = _service.GetListBySearchTerm(clientId, searchString);
-            viewModel.SearchTerm = searchString;
+            var result = _service.GetListBySearchTerm(clientId, searchTerm);
+            viewModel.SearchTerm = searchTerm;
 
             if(result.Result == GetResultEnum.Success)
             {
@@ -77,5 +84,6 @@ namespace CPM.Web.Areas.Wallet.Controllers
                 return RedirectToAction("Error", "Home", new { Area = "Global" });
             }
         }
+                
     }
 }

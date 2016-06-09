@@ -8,7 +8,7 @@ namespace CPM.Web.Areas.Wallet.Models
 {
     public class WalletListVM
     {
-        public List<WalletInfoVM> Wallets { get; set; }
-        public string SearchTerm { get; set; }        
+        public List<WalletInfoVM> Wallets { get; set; } = new List<WalletInfoVM>();
+        public string SearchTerm { get; set; } = "";       
     }
 }

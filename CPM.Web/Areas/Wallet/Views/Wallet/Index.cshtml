@@ -5,19 +5,9 @@
 @{ Layout = "/Views/Shared/Wallet/_WalletLayout.cshtml";}
 @{ ViewBag.Title = "Wallets";}
 
-<div class="col-sm-4c col-sm-offset-2">
-        <div class="form-group">
-            <span class="input-icon" >
-                <input id="SearchBox" type="text" placeholder="Search by Wallet Name e.g MyWallet" />
-                <a  class="btn btn-default" asp-controller="Wallet" asp-action="Filter" data-val="">
-                    <i class="ace-icon fa fa-search"></i>
-                </a>
-            </span>
-        </div>
-</div>
+
 <div>
-
-
+   
     <div>
         @if (!String.IsNullOrWhiteSpace(Model.SearchTerm))
         {
@@ -26,11 +16,21 @@
 
         <button class="btn btn-default fa-search"></button>
     </div>
-    <table class="table table-responsive table-striped">
-
+    <table class="table table-condensed table-striped col-sm-5">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>CustomerId</td>
+                <td>Name</td>
+                <td>Locked</td>
+                <td>Locked</td>
+                <td>Balance</td>
+            </tr>
+        </thead>
         @foreach (var wallet in Model.Wallets)
         {
             <tr>
+                <td><button class="btn btn-danger btn-xs"> <i class="fa fa-remove"></i></button></td>
                 <td>@wallet.Id</td>
                 <td>@wallet.ClientId</td>
                 <td>@wallet.Name</td>
@@ -41,7 +41,8 @@
                 @*<td>@wallet.WalletSettings.SpendLimit</td>
                     <td>@wallet.WalletSettings.NotificationLimit</td>
                     <td>@wallet.WalletSettings.WithdrawLimit</td>*@
-                <td>@wallet.Id</td>
+                <td><button class="btn btn-info btn-success btn-xs"> <i class="fa fa-plus"></i></button></td>
+                <td><button class="btn btn-info bg-primary btn-xs"> <i class="fa fa-edit"></i></button></td>
             </tr>
         }
     </table>

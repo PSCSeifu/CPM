@@ -15,6 +15,7 @@ namespace CPM.Business.Wallet
         public string ImageUrl { get; set; }
         public decimal Balance { get; set; }
         public bool IsLocked { get; set; }
+        public string Currency { get; set; }
         public WalletType Type { get; set; }
         public WalletSettings WalletSettings { get; set; }
     }

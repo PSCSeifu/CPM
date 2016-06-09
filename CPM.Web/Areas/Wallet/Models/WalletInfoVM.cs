@@ -9,14 +9,15 @@ namespace CPM.Web.Areas.Wallet.Models
 {
     public class WalletInfoVM
     {
-        public int Id { get; set; }
-        public string ClientId { get; set; }
-        public string Name { get; set; }
-        public string ImageUrl { get; set; }
-        public decimal Balance { get; set; }
-        public bool IsLocked { get; set; }
-        public WalletType Type { get; set; }
-        public WalletSettings WalletSettings { get; set; }
+        public int Id { get; set; } = 0;
+        public string ClientId { get; set; } = "";
+        public string Name { get; set; } = "";
+        public string ImageUrl { get; set; } = "";
+        public string Currency { get; set; } = "";
+        public decimal Balance { get; set; } = 0;
+        public bool IsLocked { get; set; } = false;
+        public WalletType Type { get; set; } = new WalletType();
+        public WalletSettings WalletSettings { get; set; } = new WalletSettings();
 
 
     }
