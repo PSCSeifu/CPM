@@ -3,7 +3,9 @@
 
   "dependencies": {
     "CpmLib.Data": "1.0.0-*",
-    "AutoMapper": "4.2.1"
+    "AutoMapper": "4.2.1",
+    "Newtonsoft.Json": "8.0.3",
+    "Microsoft.EntityFrameworkCore": "1.0.0-rc2-final"
   },
 
   "frameworks": {

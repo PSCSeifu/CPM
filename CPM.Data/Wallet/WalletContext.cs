@@ -11,12 +11,16 @@ namespace CPM.Data.Wallet
 {
     public interface IWalletContext : IDbContextBase
     {
-        DbSet<WalletEntity> Wallet { get; set; }
-    } 
+        DbSet<WalletEntity> Wallets { get; set; }
+    }
 
 
     public class WalletContext : DbContextBase, IWalletContext
     {
-        public DbSet<WalletEntity> Wallet { get; set; }
+        public WalletContext()
+        {
+            Database.EnsureCreated();
+        }
+        public DbSet<WalletEntity> Wallets { get; set; }
     }
 }

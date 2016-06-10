@@ -1,6 +1,9 @@
+using CPM.Data.Entities;
 using CpmLib.Data.Core;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +15,7 @@ namespace CPM.Data.Wallet
         WalletDM GetWalletByClientIdAndWalletId(string clientId, int walletId);
         List<WalletDM> GetWalletsByClientId(string clientId);
         object GetWalletsBySearchTerm(string clientId, string searchTerm);
+        void EnsureSeedWalletData(string filePath);
     }
 
     public class WalletRepository: RepositoryBase , IWalletRepository
@@ -63,6 +67,31 @@ namespace CPM.Data.Wallet
             walletList.Add(new WalletDM { Id = 6, ClientId = "abc", Name = "MyStash", Balance = 142.5m, IsLocked = false });
 
             return walletList;
+        }
+
+        public  void EnsureSeedWalletData(string filePath)
+        {
+            if (!_context.Wallets.Any())
+            {
+                //Read seed json file
+                JArray jarray = JArray.Parse(File.ReadAllText(filePath)) as JArray;
+                dynamic jsonData = jarray;
+                foreach (dynamic d in jsonData)
+                {
+                    _context.Wallets.Add(new WalletEntity()
+                    {
+                        ClientId = d.ClientId,
+                        Name = d.Name,
+                        Balance = d.Balance,
+                        IsLocked = d.IsLocked,
+                        Currency = d.Currency,
+                        DateCreated = d.DateCreated,
+                        DateModified = d.DateModified
+                    });
+                }
+                _context.SaveChanges();
+            }
+
         }
 
        

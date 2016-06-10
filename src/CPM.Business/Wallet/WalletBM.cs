@@ -1,4 +1,5 @@
 using CPM.Data.Entities;
+using CPM.Data.Wallet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace CPM.Business.Wallet
         public decimal Balance { get; set; }
         public bool IsLocked { get; set; }
         public string Currency { get; set; }
-        public WalletType Type { get; set; }
-        public WalletSettings WalletSettings { get; set; }
+        public WalletTypeEntity Type { get; set; }
+        public WalletSetting WalletSettings { get; set; }
     }
 }

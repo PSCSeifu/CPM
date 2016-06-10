@@ -1,0 +1,6 @@
+{
+  "Data": {
+    "CPMConnection": "Server=(localdb)\\ProjectsV13;Database=CPM;Trusted_Connection=true;MultipleActiveResultSets=true;" 
+  } 
+  
+}
