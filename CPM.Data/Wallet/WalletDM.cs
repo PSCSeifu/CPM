@@ -31,7 +31,21 @@ namespace CPM.Data.Wallet
         public decimal WithdrawLimit { get; set; }
     }
 
-
+    public class WalletInfoDM
+    {
+        public decimal Balance { get; set; }
+        public string ClientId { get; set; }
+        public string Currency { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateModified { get; set; }
+        public DateTime? DeleteDate { get; set; }
+        public int Id { get; set; }
+        public int ImageID { get; set; }
+        public bool? IsDeleted { get; set; }
+        public bool IsLocked { get; set; }
+        public string Name { get; set; }
+        
+    }
    
 
   

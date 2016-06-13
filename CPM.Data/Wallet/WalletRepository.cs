@@ -18,7 +18,7 @@ namespace CPM.Data.Wallet
         void EnsureSeedWalletData(string filePath);
     }
 
-    public class WalletRepository: RepositoryBase , IWalletRepository
+    public class WalletRepository: CrudRepositoryBase<WalletInfoDM,WalletDM> , IWalletRepository
     {
         private readonly IWalletContext _context;
 
@@ -30,6 +30,26 @@ namespace CPM.Data.Wallet
         public WalletRepository(IWalletContext context)
         {
             _context = context;
+        }
+
+        public override List<WalletInfoDM> GetList(int key)
+        {
+            var entity = from wallet in _context.Wallets
+                         where wallet.ClientId == Convert.ToString(key)
+                         orderby wallet.DateModified descending
+                         select new WalletInfoDM
+                         {
+                             Id = wallet.Id,
+                             Balance = wallet.Balance,
+                             Currency = wallet.Currency,
+                             DateModified = wallet.DateModified,
+                             Name = wallet.Name,
+                             IsLocked = wallet.IsLocked,
+                             IsDeleted = wallet.IsDeleted ?? false,
+                             ImageID = wallet.ImageID
+                         };
+
+            return entity.ToList();
         }
 
         public List<WalletDM> GetWalletsByClientId(string clientId)
