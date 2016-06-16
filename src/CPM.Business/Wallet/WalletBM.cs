@@ -17,7 +17,6 @@ namespace CPM.Business.Wallet
         public decimal Balance { get; set; }
         public bool IsLocked { get; set; }
         public string Currency { get; set; }
-        public WalletTypeEntity Type { get; set; }
-        public WalletSetting WalletSettings { get; set; }
+        public WalletTypeEntity Type { get; set; }      
     }
 }

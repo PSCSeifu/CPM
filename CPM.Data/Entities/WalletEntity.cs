@@ -7,13 +7,13 @@ namespace CPM.Data.Entities
     public class WalletEntity
     {
         public decimal Balance { get; set; }
-        public string ClientId { get; set; }
+        public int ClientId { get; set; }
         public string Currency { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
         public decimal WithdrawLimit { get; set; }
         public int Id { get; set; }
-        public int ImageID { get; set; }
+        public int ImageId { get; set; }
         public bool IsLocked { get; set; }
         public bool LockOnNotificationLimit { get; set; }
         public bool LockOnSpendLimit { get; set; }

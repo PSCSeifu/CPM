@@ -1,5 +1,6 @@
 using CPM.Data.Entities;
 using CpmLib.Data.Core;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,11 @@ namespace CPM.Data.Client
     public class ClientRepository : IClientRepository
     {
         private readonly IClientContext _context;
+        private readonly UserManager<ClientEntity> _userManager;
 
         public ClientRepository()
         {
-            _context = new ClientContext();
+            _context = new ClientContext();          
         }
 
         public ClientRepository(IClientContext context)
@@ -62,5 +64,7 @@ namespace CPM.Data.Client
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

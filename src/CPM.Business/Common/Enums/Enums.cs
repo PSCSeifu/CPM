@@ -44,4 +44,10 @@ namespace CPM.Business.Common.Enums
 
     }
 
+    public enum WalletType
+    {
+        Transaction,
+        Escrow
+    }
+
 }

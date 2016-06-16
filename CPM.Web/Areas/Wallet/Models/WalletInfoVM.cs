@@ -18,8 +18,6 @@ namespace CPM.Web.Areas.Wallet.Models
         public decimal Balance { get; set; } = 0;
         public bool IsLocked { get; set; } = false;
         public WalletTypeEntity Type { get; set; } = new WalletTypeEntity();
-        public WalletSetting WalletSettings { get; set; } = new WalletSetting();
-
 
     }
 }

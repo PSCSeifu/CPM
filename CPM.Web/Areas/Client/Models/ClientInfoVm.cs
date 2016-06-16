@@ -8,6 +8,6 @@ namespace CPM.Web.Areas.Client.Models
 {
     public class ClientInfoVM
     {
-
+        
     }
 }

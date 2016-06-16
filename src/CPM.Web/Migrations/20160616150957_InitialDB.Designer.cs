@@ -8,7 +8,7 @@ using CPM.Web.Data;
 namespace CPM.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160610113802_InitialDB")]
+    [Migration("20160616150957_InitialDB")]
     partial class InitialDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

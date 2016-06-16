@@ -30,28 +30,29 @@
                 </button>
             </div>
             <div class="navbar navbar-collapse" id="navbar-collapse">
+                <div class="nav navbar-brand">CPM</div>
                 <ul class="nav navbar-nav ">
                     @* @Component.Invoke("NavbarMenu") *@
                     <li>
-                        <a asp-route-area="Currency" asp-controller="Currency" asp-action="Index" class="navbar-brand">CURRENCY</a>
+                        <a asp-route-area="Currency" asp-controller="Currency" asp-action="Index" >CURRENCY</a>
                     </li>
                     <li>
-                          <a asp-route-area="Offer" asp-controller="Offer" asp-action="Index" class="navbar-brand">OFFERS</a>
+                          <a asp-route-area="Offer" asp-controller="Offer" asp-action="Index" >OFFERS</a>
                     </li>
                     <li>
-                         <a asp-route-area="Transaction" asp-controller="Transaction" asp-action="Index" class="navbar-brand">TRANSACTION</a>
+                         <a asp-route-area="Transaction" asp-controller="Transaction" asp-action="Index" >TRANSACTION</a>
                     </li>
                     <li>
-                        <a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Index" class="navbar-brand">WALLETS</a>
+                        <a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Index" >WALLETS</a>
                     </li>
                     <li>
-                        <a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Filter" class="navbar-brand">WALLETS_Filter</a>
+                        <a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Filter">WALLETS_Filter</a>
                     </li>
                     <li>
-                        <a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Detail" class="navbar-brand">WALLET_Detail</a>
+                        <a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Detail">WALLET_Detail</a>
                     </li>
                     <li>
-                        <a asp-route-area="FiatAccount" asp-controller="FiatAccount" asp-action="Index" class="navbar-brand">FIAT</a>   
+                        <a asp-route-area="FiatAccount" asp-controller="FiatAccount" asp-action="Index">FIAT</a>   
                     </li>
                 </ul>
                 
@@ -63,6 +64,7 @@
 @*<span id="LoggedUsername">@User.FindFirst("username").Value</span>*@
                     <li><a href="#">Login</a></li>
                     <li><a href="#">Register</a></li>
+                    <li><a asp-route-area ="Global" asp-controller="Account" asp-action="Register">Register</a></li>
 
 
                 </ul>

@@ -12,6 +12,7 @@ namespace CPM.Data.Wallet
     public interface IWalletContext : IDbContextBase
     {
         DbSet<WalletEntity> Wallets { get; set; }
+        DbSet<WalletTypeEntity> WalletTypes { get; set; }
     }
 
 
@@ -22,5 +23,6 @@ namespace CPM.Data.Wallet
             Database.EnsureCreated();
         }
         public DbSet<WalletEntity> Wallets { get; set; }
+        public DbSet<WalletTypeEntity> WalletTypes { get; set; }
     }
 }

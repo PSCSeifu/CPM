@@ -15,12 +15,17 @@ using CPM.Data.Wallet;
 using CPM.Data;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
+using CPM.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using CPM.Data.Client;
+using Microsoft.AspNetCore.Identity;
 
 namespace CPM.Web
 {
     public class Startup
     {
         public IConfigurationRoot Configuration { get; }
+        private UserManager<ClientEntity> _userManager;
 
         public Startup(IHostingEnvironment env)
         {
@@ -40,7 +45,8 @@ namespace CPM.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
-        {    
+        {
+            AddIdentity(services);
             AddMvc(services);
             AddBusiness(services);
             AddEntityFramework(services);
@@ -49,9 +55,10 @@ namespace CPM.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {             
-            UsePlatform(app, env);            
+            UsePlatform(app, env);
+            UseIdentity(app);
             UseMvc(app);
-            UseSeedDataWriter(@"C:\Projects\CPM\CPM.Data\Resources");
+            //UseSeedDataWriter(@"C:\Projects\CPM\CPM.Data\Resources");
             UseSeedData(@"C:\Projects\CPM\CPM.Data\Resources");
         }
 
@@ -71,9 +78,9 @@ namespace CPM.Web
 
         private void AddIdentity(IServiceCollection services)
         {
-            //services.AddIdentity<ApplicationUser, IdentityRole>()
-            //     .AddEntityFrameworkStores<ApplicationDbContext>()
-            //     .AddDefaultTokenProviders();
+            services.AddIdentity<ClientEntity, IdentityRole>()
+                        .AddEntityFrameworkStores<ClientContext>()
+                        .AddDefaultTokenProviders();
         }
 
         private void AddBusiness(IServiceCollection services)
@@ -81,6 +88,7 @@ namespace CPM.Web
             DependecyInjection.Configure(services);
         }
 
+        
         #endregion
 
         #region " Use Services "
@@ -101,6 +109,11 @@ namespace CPM.Web
             app.UseStaticFiles();
         }
 
+        private void UseIdentity(IApplicationBuilder app)
+        {
+            app.UseIdentity();
+        }
+
         private void UseMvc(IApplicationBuilder app)
         {
             app.UseMvc(routes =>
@@ -118,8 +131,7 @@ namespace CPM.Web
             Business.ModelMappings.Configure();
             Web.ModelMappings.Configure();
         }
-
-
+        
         private void UseSeedDataWriter(string folderPath)
         {
             if (!string.IsNullOrWhiteSpace(folderPath) && Directory.Exists(folderPath))
@@ -129,12 +141,13 @@ namespace CPM.Web
             }
         }
 
-        private void UseSeedData(string folderPath)
+        private async void UseSeedData(string folderPath)
         {
             if (!string.IsNullOrWhiteSpace(folderPath) && Directory.Exists(folderPath))
             {
-                WalletRepository walletRepo = new WalletRepository();
-                walletRepo.EnsureSeedWalletData(Path.Combine(folderPath,"wallets.json"));
+                EnsureSeedData seeder = new EnsureSeedData(_userManager);
+                await seeder.EnsureClientSeedDataAsync(Path.Combine(folderPath, "clients.json"));
+                seeder.EnsureSeedWalletData(Path.Combine(folderPath, "wallets.json"));
             }
         }
 

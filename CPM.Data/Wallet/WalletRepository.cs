@@ -12,10 +12,10 @@ namespace CPM.Data.Wallet
 {
     public interface IWalletRepository :IRepositoryBase
     {
-        WalletDM GetWalletByClientIdAndWalletId(string clientId, int walletId);
-        List<WalletDM> GetWalletsByClientId(string clientId);
-        object GetWalletsBySearchTerm(string clientId, string searchTerm);
-        void EnsureSeedWalletData(string filePath);
+        WalletDM GetWalletByClientIdAndWalletId(int clientId, int walletId);
+        List<WalletDM> GetWalletsByClientId(int clientId);
+        List<WalletDM> GetWalletsBySearchTerm(int clientId, string searchTerm);
+       // void EnsureSeedWalletData(string filePath);
     }
 
     public class WalletRepository: CrudRepositoryBase<WalletInfoDM,WalletDM> , IWalletRepository
@@ -35,7 +35,7 @@ namespace CPM.Data.Wallet
         public override List<WalletInfoDM> GetList(int key)
         {
             var entity = from wallet in _context.Wallets
-                         where wallet.ClientId == Convert.ToString(key)
+                         where wallet.ClientId == key
                          orderby wallet.DateModified descending
                          select new WalletInfoDM
                          {
@@ -46,20 +46,20 @@ namespace CPM.Data.Wallet
                              Name = wallet.Name,
                              IsLocked = wallet.IsLocked,
                              IsDeleted = wallet.IsDeleted ?? false,
-                             ImageID = wallet.ImageID
+                             ImageId = wallet.ImageId
                          };
 
             return entity.ToList();
         }
 
-        public List<WalletDM> GetWalletsByClientId(string clientId)
+        public List<WalletDM> GetWalletsByClientId(int clientId)
         {
             List<WalletDM> wallets = MockPopulateWalletRepository();
 
             return wallets.Where(w => w.ClientId == clientId).ToList();
         }
 
-        public object GetWalletsBySearchTerm(string clientId, string searchTerm)
+        public List<WalletDM> GetWalletsBySearchTerm(int clientId, string searchTerm)
         {
             List<WalletDM> wallets = MockPopulateWalletRepository();
 
@@ -68,7 +68,7 @@ namespace CPM.Data.Wallet
                             .ToList();
         }
 
-        public WalletDM GetWalletByClientIdAndWalletId(string clientId, int walletId)
+        public WalletDM GetWalletByClientIdAndWalletId(int clientId, int walletId)
         {
             List<WalletDM> wallets = MockPopulateWalletRepository();
 
@@ -79,40 +79,16 @@ namespace CPM.Data.Wallet
         {
             //Mock
             List<WalletDM> walletList = new List<WalletDM>();
-            walletList.Add(new WalletDM { Id = 1, ClientId = "ab", Name = "MyPurse", Balance = 523.5m, IsLocked = false });
-            walletList.Add(new WalletDM { Id = 2, ClientId = "ab", Name = "MyPocket", Balance = 1023, IsLocked = false });
-            walletList.Add(new WalletDM { Id = 3, ClientId = "abc", Name = "MyFancyWallet", Balance = 2.5m, IsLocked = true });
-            walletList.Add(new WalletDM { Id = 4, ClientId = "abc", Name = "MyOtherPocket", Balance = 142.5m, IsLocked = false });
-            walletList.Add(new WalletDM { Id = 5, ClientId = "abc", Name = "MyMattress", Balance = 852m, IsLocked = false });
-            walletList.Add(new WalletDM { Id = 6, ClientId = "abc", Name = "MyStash", Balance = 142.5m, IsLocked = false });
+            walletList.Add(new WalletDM { Id = 1, ClientId = 1, Name = "MyPurse", Balance = 523.5m, IsLocked = false });
+            walletList.Add(new WalletDM { Id = 2, ClientId = 1, Name = "MyPocket", Balance = 1023, IsLocked = false });
+            walletList.Add(new WalletDM { Id = 3, ClientId = 2, Name = "MyFancyWallet", Balance = 2.5m, IsLocked = true });
+            walletList.Add(new WalletDM { Id = 4, ClientId = 2, Name = "MyOtherPocket", Balance = 142.5m, IsLocked = false });
+            walletList.Add(new WalletDM { Id = 5, ClientId = 2, Name = "MyMattress", Balance = 852m, IsLocked = false });
+            walletList.Add(new WalletDM { Id = 6, ClientId = 2, Name = "MyStash", Balance = 142.5m, IsLocked = false });
 
             return walletList;
         }
 
-        public  void EnsureSeedWalletData(string filePath)
-        {
-            if (!_context.Wallets.Any())
-            {
-                //Read seed json file
-                JArray jarray = JArray.Parse(File.ReadAllText(filePath)) as JArray;
-                dynamic jsonData = jarray;
-                foreach (dynamic d in jsonData)
-                {
-                    _context.Wallets.Add(new WalletEntity()
-                    {
-                        ClientId = d.ClientId,
-                        Name = d.Name,
-                        Balance = d.Balance,
-                        IsLocked = d.IsLocked,
-                        Currency = d.Currency,
-                        DateCreated = d.DateCreated,
-                        DateModified = d.DateModified
-                    });
-                }
-                _context.SaveChanges();
-            }
-
-        }
 
        
     }

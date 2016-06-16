@@ -28,7 +28,7 @@ namespace CPM.Data
             walletTypes.Add(new WalletTypeEntity()
             {
                 Name = "Shopping",
-                Category = "Transaction",
+                Category = 1,
                 Description = "Used for Buying, Selling"
             });
         }
@@ -38,9 +38,9 @@ namespace CPM.Data
             List<WalletEntity> wallets = new List<WalletEntity>();
             wallets.Add(new WalletEntity()
             {
-                ClientId = "ab",
+                ClientId = 1,
                 Name = "MyPurse",
-                ImageUrl ="",
+                ImageId =1,
                 Balance = 523.5m,
                 IsLocked = false,
                 Currency = "ETH",

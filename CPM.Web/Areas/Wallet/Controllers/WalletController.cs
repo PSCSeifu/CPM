@@ -26,7 +26,7 @@ namespace CPM.Web.Areas.Wallet.Controllers
         public IActionResult Index()
         {
             var viewModel = new WalletListVM();
-            var result = _service.GetListById("abc");
+            var result = _service.GetListById(2);
 
             if (result.Result == GetResultEnum.Success)
             {
@@ -44,10 +44,10 @@ namespace CPM.Web.Areas.Wallet.Controllers
 
 
 
-        public IActionResult Detail(string clientId,int walletId)
+        public IActionResult Detail(int clientId,int walletId)
         {
             var viewModel = new WalletInfoVM();
-            var result = _service.GetWallet("abc", 5);
+            var result = _service.GetWallet(2, 5);
             
             if(result.Result == GetResultEnum.Success)
             {
@@ -60,14 +60,14 @@ namespace CPM.Web.Areas.Wallet.Controllers
             }
         }
 
-        public IActionResult Filter(string clientId, string searchTerm)
+        public IActionResult Filter(int clientId, string searchTerm)
         {
             if (String.IsNullOrWhiteSpace(searchTerm))
             {
                 return RedirectToAction("Index");
             }
 
-            clientId = "abc";
+            clientId = 2;
             var viewModel = new WalletListVM();
 
             var result = _service.GetListBySearchTerm(clientId, searchTerm);
