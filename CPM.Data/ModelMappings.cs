@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CPM.Data.Entities;
+using CPM.Data.Offer;
 using CPM.Data.Wallet;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace CPM.Data
             Mapper.Initialize(Configure =>
            {
                Configure.CreateMap<WalletEntity, WalletDM>();
+               Configure.CreateMap<OfferEntity, OfferDM>();
            });
         }
     }
