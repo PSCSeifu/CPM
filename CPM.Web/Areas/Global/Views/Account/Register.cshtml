@@ -1,0 +1,43 @@
+﻿@model CPM.Web.Areas.Global.Models.Account.RegisterVM
+@{Layout = "/Views/Shared/_Layout.cshtml";}
+
+<div>
+    <div class="col-sm-4 col-xs-12">
+        <form asp-route-area="Global" asp-controler="Account" asp-action="Register" asp-route-returnurl="@ViewBag.ReturnUrl" method="post" role="form">
+
+            <div class="form-group">
+                <span class="input-icon" style="width:100%;">
+                    <input asp-for="Email" class="form-control" placeholder="Email" />
+                    <i class="ace-icon fa fa-at"></i>
+                </span>
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group">
+                <span class="input-icon" style="width:100%;">
+                    <input asp-for="Username" class="form-control" placeholder="Username" />
+                    <i class="ace-icon fa fa-user"></i>
+                </span>
+                <span asp-validation-for="Username"></span>
+            </div>
+            <div class="form-group">
+                <span class="input-icon" style="width:100%;">
+                    <input type="password" asp-for="Password" class="form-control" placeholder="Password" />
+                    <i class="ace-icon fa fa-key"></i>
+                </span>
+                <span asp-for="Password"></span>
+            </div>
+
+            <div class="form-group">
+                <span class="input-icon" style="width:100%;">
+                    <input type="password" asp-for="ConfirmPassword" class="form-control" placeholder="Password" />
+                    <i class="ace-icon fa fa-key"></i>
+                </span>
+                <span asp-for="ConfirmPassword"></span>
+            </div><div class="form-group">
+                <div>
+                    <input type="submit" value="Register" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -9,9 +9,11 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace CPM.Data.Entities
 {
     [Table("Client")]
-    public class ClientEntity : IdentityUser
+    public class ClientEntity 
     {
-        public int ClientId { get; set; }       
+        //public override string Id { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
 
         public int? WebUserType { get; set; }
         public int? WebSubscriptionType { get; set; }

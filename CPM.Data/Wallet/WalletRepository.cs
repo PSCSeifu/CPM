@@ -15,6 +15,7 @@ namespace CPM.Data.Wallet
         WalletDM GetWalletByClientIdAndWalletId(int clientId, int walletId);
         List<WalletDM> GetWalletsByClientId(int clientId);
         List<WalletDM> GetWalletsBySearchTerm(int clientId, string searchTerm);
+        WalletDM GetWalletByWalletId(int walletId);
        // void EnsureSeedWalletData(string filePath);
     }
 
@@ -73,6 +74,13 @@ namespace CPM.Data.Wallet
             List<WalletDM> wallets = MockPopulateWalletRepository();
 
             return wallets.Where(w => w.ClientId == clientId && w.Id == walletId).SingleOrDefault(); 
+        }
+
+        public WalletDM GetWalletByWalletId(int walletId)
+        {
+            List<WalletDM> wallets = MockPopulateWalletRepository();
+
+            return wallets.Where(w => w.Id == walletId).SingleOrDefault();
         }
 
         private List<WalletDM> MockPopulateWalletRepository()

@@ -34,15 +34,12 @@
                 <td>@wallet.Id</td>
                 <td>@wallet.ClientId</td>
                 <td>@wallet.Name</td>
-                @*<td>@wallet.Type.Name</td>
-                    <td>@wallet.Type.Description</td>*@
+            
                 <td>@wallet.IsLocked</td>
                 <td>@wallet.Balance</td>
-                @*<td>@wallet.WalletSettings.SpendLimit</td>
-                    <td>@wallet.WalletSettings.NotificationLimit</td>
-                    <td>@wallet.WalletSettings.WithdrawLimit</td>*@
-                <td><button class="btn btn-info btn-success btn-xs"> <i class="fa fa-plus"></i></button></td>
-                <td><button class="btn btn-info bg-primary btn-xs"> <i class="fa fa-edit"></i></button></td>
+               
+                <td><button class="btn btn-info btn-success btn-xs"><i class="fa fa-plus"></i></button></td>               
+                <td><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Detail" asp-route-id="@wallet.Id"><i class="fa fa-edit"></i></a></td>               
             </tr>
         }
     </table>

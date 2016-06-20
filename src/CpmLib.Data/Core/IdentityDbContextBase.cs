@@ -12,10 +12,10 @@ namespace CpmLib.Data.Core
 {
     public interface IIdentityDBContextBase<T>
     {
-        
+        void SetModified(object entity);
     }
 
-    public abstract class IdentityDbContextBase <T>: IdentityDbContext, IIdentityDBContextBase<T>
+    public abstract class IdentityDbContextBase<T>: IdentityDbContext, IIdentityDBContextBase<T>
     {
         IConfigurationRoot Configuration { get; set; }
 
@@ -35,9 +35,22 @@ namespace CpmLib.Data.Core
             base.OnConfiguring(optionsBuilder);
         }
 
+
         public void SetModified(object entity)
         {
             Entry(entity).State = EntityState.Modified;
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            //    builder.Entity<IdentityUser>().HasKey(i => i.Id);
+
+            //    builder.Entity<IdentityUser>().Property(i => i.Id).ValueGeneratedOnAdd();
+         
+            //builder.Entity<IdentityUser>().Property(i => i.Id).IsRequired(true);
+
+
+            base.OnModelCreating(builder);
         }
 
     }

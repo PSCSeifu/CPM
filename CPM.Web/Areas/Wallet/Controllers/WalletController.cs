@@ -44,10 +44,10 @@ namespace CPM.Web.Areas.Wallet.Controllers
 
 
 
-        public IActionResult Detail(int clientId,int walletId)
+        public IActionResult Detail(int id)
         {
             var viewModel = new WalletInfoVM();
-            var result = _service.GetWallet(2, 5);
+            var result = _service.GetWalletById(id);
             
             if(result.Result == GetResultEnum.Success)
             {

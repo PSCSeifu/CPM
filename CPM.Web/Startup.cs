@@ -19,6 +19,7 @@ using CPM.Data.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using CPM.Data.Client;
 using Microsoft.AspNetCore.Identity;
+using CPM.Data.Global.Account;
 
 namespace CPM.Web
 {
@@ -58,7 +59,7 @@ namespace CPM.Web
             UsePlatform(app, env);
             UseIdentity(app);
             UseMvc(app);
-            //UseSeedDataWriter(@"C:\Projects\CPM\CPM.Data\Resources");
+           // UseSeedDataWriter(@"C:\Projects\CPM\CPM.Data\Resources");
             UseSeedData(@"C:\Projects\CPM\CPM.Data\Resources");
         }
 
@@ -74,12 +75,16 @@ namespace CPM.Web
         {
             services.AddDbContext<WalletContext>(options => 
                      options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<ClientContext>(options =>
+                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<CPMUserContext>(options =>
+                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
         }
 
         private void AddIdentity(IServiceCollection services)
         {
-            services.AddIdentity<ClientEntity, IdentityRole>()
-                        .AddEntityFrameworkStores<ClientContext>()
+            services.AddIdentity<CPMUserEntity, IdentityRole>()
+                        .AddEntityFrameworkStores<CPMUserContext>()
                         .AddDefaultTokenProviders();
         }
 
@@ -120,7 +125,7 @@ namespace CPM.Web
             {
                 routes.MapRoute(
                 name: "default",
-                template: "{area=Global}/{controller=Home}/{action=Index}/");
+                template: "{area=Wallet}/{controller=Wallet}/{action=Index}/");
         });
 
         }
@@ -146,7 +151,7 @@ namespace CPM.Web
             if (!string.IsNullOrWhiteSpace(folderPath) && Directory.Exists(folderPath))
             {
                 EnsureSeedData seeder = new EnsureSeedData(_userManager);
-                await seeder.EnsureClientSeedDataAsync(Path.Combine(folderPath, "clients.json"));
+               // await seeder.EnsureClientSeedDataAsync(Path.Combine(folderPath, "clients.json"));
                 seeder.EnsureSeedWalletData(Path.Combine(folderPath, "wallets.json"));
             }
         }

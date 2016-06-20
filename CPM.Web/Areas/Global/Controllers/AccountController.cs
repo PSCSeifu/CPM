@@ -18,10 +18,10 @@ namespace CPM.Web.Areas.Global
     [Area("Global")]
     public class AccountController : Controller
     {
-        private readonly SignInManager<ClientEntity> _signInManager;
-        private readonly UserManager<ClientEntity> _userManager;
+        private readonly SignInManager<CPMUserEntity> _signInManager;
+        private readonly UserManager<CPMUserEntity> _userManager;
 
-        public AccountController(UserManager<ClientEntity> userManager, SignInManager<ClientEntity> signInManager)
+        public AccountController(UserManager<CPMUserEntity> userManager, SignInManager<CPMUserEntity> signInManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -41,19 +41,19 @@ namespace CPM.Web.Areas.Global
             if (ModelState.IsValid)
             {
                 //Set user ceredentails
-                var client = new ClientEntity { UserName = model.Username, Email = model.Email };
-
+                var cpmUser = new CPMUserEntity { UserName = model.Username, Email = model.Email };
+               
                 //Create the user
-                var result = await _userManager.CreateAsync(client, model.Password);
-
+                var result = await _userManager.CreateAsync(cpmUser, model.Password);
+              
                 //Get the role from vm, add to user role
                 var userRole = model.WebUserType.ToString();
-                await _userManager.AddToRoleAsync(client, userRole);
+                await _userManager.AddToRoleAsync(cpmUser, userRole);
 
                 //SignIn
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(client, isPersistent: false);
+                    await _signInManager.SignInAsync(cpmUser, isPersistent: false);
                     return RedirectToAction(nameof(HomeController.Index), "Home");
                 }
                 else

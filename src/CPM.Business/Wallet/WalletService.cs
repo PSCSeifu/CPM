@@ -14,6 +14,7 @@ namespace CPM.Business.Wallet
         GetItemResult<WalletBM> GetWallet(int clientId, int walletId);
         GetListResult<WalletBM> GetListBySearchTerm(int clientId, string searchTerm);
         GetListResult<WalletBM> GetListById(int clientId);
+        GetItemResult<WalletBM> GetWalletById(int walletId);
     }
 
     public class WalletService :ServiceBase, IWalletService
@@ -57,6 +58,7 @@ namespace CPM.Business.Wallet
                 return ServiceResultsHelper.FillGetListResultForError<WalletBM>(ex);
             }
         }
+
         public GetItemResult<WalletBM> GetWallet(int clientId, int walletId)
         {
             ModelMappings.Configure();
@@ -69,6 +71,20 @@ namespace CPM.Business.Wallet
             {
                 return ServiceResultsHelper.FillGetItemResultForError<WalletBM>(ex);
             }           
+        }
+
+        public GetItemResult<WalletBM> GetWalletById( int walletId)
+        {
+            ModelMappings.Configure();
+            try
+            {
+                var result = Mapper.Map<WalletBM>(_repository.GetWalletByWalletId( walletId));
+                return ServiceResultsHelper.FillGetItemResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ServiceResultsHelper.FillGetItemResultForError<WalletBM>(ex);
+            }
         }
     }
 }

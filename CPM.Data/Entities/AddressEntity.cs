@@ -11,9 +11,9 @@ namespace CPM.Data.Entities
     public class AddressEntity
     {
         public int Id { get; set; }
-        public string AddressName { get; set; } //user provided
+        public string AddressName { get; set; } //user provided- 
         public bool? IsPrimary { get; set; }
-
+        //adrress type enum, business,home, delivery,billing ...
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public string Address3 { get; set; }
