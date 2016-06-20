@@ -51,13 +51,13 @@ namespace CPM.Data.Offer
             return entity.ToList();
         }
 
-        public  List<OfferInfoDM> GetListBySearch(int key,string searchTerm)
+        public  List<OfferInfoDM> GetListBySearch(int clientId,string searchTerm)
         {
             var entity = from offer in _context.Offers
                          join client in _context.Clients on offer.ClientId equals client.Id
                          join wallet in _context.Wallets on offer.WalletId equals wallet.Id
                          join currency in _context.Currencies on offer.DefaultCurrencyId equals currency.Id
-                         where offer.Id == key && offer.Name.ToLower().Contains(searchTerm.ToLower())
+                         where offer.ClientId == clientId && offer.Name.ToLower().Contains(searchTerm.ToLower())
                          orderby offer.DateCreated
                          select new OfferInfoDM
                          {

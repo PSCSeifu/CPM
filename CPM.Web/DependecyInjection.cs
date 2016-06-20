@@ -1,4 +1,5 @@
-﻿using CPM.Business.Wallet;
+﻿using CPM.Business.Offer;
+using CPM.Business.Wallet;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace CPM.Web
 
             #region Wallet
             services.AddScoped<IWalletService, WalletService>();
+            services.AddScoped<IOfferService, OfferService>();
             #endregion
         }
     }

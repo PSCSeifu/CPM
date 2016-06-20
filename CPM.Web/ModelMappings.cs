@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using CPM.Business.Offer;
 using CPM.Business.Wallet;
 using CPM.Data.Wallet;
+using CPM.Web.Areas.Offer.Models;
 using CPM.Web.Areas.Wallet.Models;
 using System;
 using System.Collections.Generic;
@@ -17,7 +19,8 @@ namespace CPM.Web
           {
                 #region " Wallets "
                 config.CreateMap<WalletBM, WalletInfoVM>().ReverseMap();
-                //config.CreateMap<List<WalletBM>, WalletListVM>();
+              config.CreateMap<OfferBM, OfferInfoVM>().ReverseMap();
+              //config.CreateMap<List<WalletBM>, WalletListVM>();
               #endregion
           });
         }

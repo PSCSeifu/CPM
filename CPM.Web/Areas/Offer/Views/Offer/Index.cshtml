@@ -1,0 +1,32 @@
+﻿@model CPM.Web.Areas.Offer.Models.OfferListVM
+@{ Layout = "/Views/Shared/Offer/_OfferLayout.cshtml";}
+@{ ViewBag.Title = "Offers";}
+
+
+<div>
+    <table  class="table table-condensed table-responsive">
+        <thead>
+            <tr>
+                <td>Offerer</td>
+                <td>OffererWallet</td>
+                <td>Offer</td>
+                <td>Description</td>
+            </tr>
+        </thead>
+        @foreach (var offer in Model.Offers)
+        {
+            <tr>
+                <td><a href="#"> <i class="fa fa-remove"></i></a></td>
+
+                <td>@offer.ClientName</td>
+                <td>@offer.WalletName</td>
+                <td>@offer.Name</td>
+                <td>@offer.Detail</td>
+
+                <td><a asp-route-area="Offer" asp-controller="Offer" asp-action="Detail" asp-route-id="@offer.Id"><i class="fa fa-plus"></i></a></td>
+                <td><a asp-route-area ="Offer" asp-controller="Offer" asp-action="Detail" asp-route-id="@offer.Id"><i class="fa fa-edit"></i></a></td>                
+            </tr>
+        }
+
+    </table>
+</div>

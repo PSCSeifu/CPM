@@ -1,6 +1,8 @@
 using AutoMapper;
+using CPM.Business.Offer;
 using CPM.Business.Wallet;
 using CPM.Data.Entities;
+using CPM.Data.Offer;
 using CPM.Data.Wallet;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,7 @@ namespace CPM.Business
             Mapper.Initialize(config =>
            {
                config.CreateMap<WalletDM, WalletBM>();
+               config.CreateMap<OfferDM, OfferBM>();
            });
        
         }

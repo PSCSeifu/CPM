@@ -10,31 +10,52 @@ namespace CPM.Business.Offer
 {
     public interface IOfferService : IServiceBase
     {
-
+        GetListResult<OfferBM> GetListById(int clientId);
+        GetListResult<OfferBM> GetListBySearchTerm(int clientId, string searchTerm);
+        GetListResult<OfferBM> GetOffer(int clientId, string searchTerm);
+        GetListResult<OfferBM> GetOfferById(int offerId);
     }
 
-    public class Offerservice: ServiceBase, IOfferService
+    public class OfferService: ServiceBase, IOfferService
     {
         private readonly IOfferRepository _repository;
 
-        public Offerservice()
+        public OfferService()
         {
             _repository = new OfferRepository();
         }
 
-        public Offerservice(IOfferRepository repository)
+        public OfferService(IOfferRepository repository)
         {
             _repository = repository;
         }
 
         public GetListResult<OfferBM> GetListById( int clientId)
         {
-            throw new NotImplementedException();
+            ModelMappings.Configure();
+            try
+            {
+                var result = AutoMapper.Mapper.Map<List<OfferBM>>(_repository.GetOffersByClientId(clientId));
+                return ServiceResultsHelper.FillGetListResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ServiceResultsHelper.FillGetListResultForError<OfferBM>(ex);
+            }
         }
 
         public GetListResult<OfferBM> GetListBySearchTerm(int clientId,string searchTerm)
         {
-            throw new NotImplementedException();
+            ModelMappings.Configure();
+            try
+            {
+                var result = AutoMapper.Mapper.Map<List<OfferBM>>(_repository.GetListBySearch(clientId,searchTerm));
+                return ServiceResultsHelper.FillGetListResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ServiceResultsHelper.FillGetListResultForError<OfferBM>(ex);
+            }
         }
 
         public GetListResult<OfferBM> GetOffer(int clientId, string searchTerm)
