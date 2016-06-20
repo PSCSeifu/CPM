@@ -50,8 +50,49 @@ namespace CPM.Data
             Writer(filePath, wallets);
         }
 
-        
-            
+
+        public void CreateOffer(string filePath)
+        {
+            List<OfferEntity> offers = new List<OfferEntity>();
+            offers.Add( new OfferEntity()
+            {
+                Id = 1,
+                ClientId = 1,
+                Name = "Half_Price_Extras",
+                WalletId = 2,
+                DateCreated = DateTime.UtcNow,
+                DefaultCurrencyId = 1,
+                ExpiryDate = new DateTime(2017, 01, 01),
+                Detail = "Very short time Limited offer on stuff, Great stuff, huuge stuff,I tell you...great stuff!"
+            });
+
+            offers.Add(new OfferEntity()
+            {
+                Id = 2,
+                ClientId = 1,
+                Name = "Summer Crypto Discount",
+                WalletId = 2,
+                DateCreated = DateTime.UtcNow,
+                DefaultCurrencyId = 1,
+                ExpiryDate = new DateTime(2016, 08, 13),
+                Detail = "Great summmer deals on the big names in crypto."
+            });
+
+            offers.Add(new OfferEntity()
+            {
+                Id = 3,
+                ClientId = 2,
+                Name = "Home Decor Discount",
+                WalletId = 4,
+                DateCreated = DateTime.UtcNow,
+                DefaultCurrencyId = 1,
+                ExpiryDate = new DateTime(2016, 11, 25),
+                Detail = "Up to one third off on DIY tools!"
+            });
+
+            Writer(filePath, offers);
+        }
+
 
         private  void Writer<T>(string filePath, T list)
         {
@@ -61,5 +102,6 @@ namespace CPM.Data
                 sw.WriteLine(json);
             }
         }
+        
     }
 }

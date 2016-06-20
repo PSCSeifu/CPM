@@ -143,6 +143,7 @@ namespace CPM.Web
             {                
                 SeedTemplateJsonWriter seeWriter = new SeedTemplateJsonWriter();                
                 seeWriter.CreateWallet(Path.Combine(folderPath,"wallets.json"));
+                seeWriter.CreateOffer(Path.Combine(folderPath, "offers.json"));
             }
         }
 
@@ -151,8 +152,9 @@ namespace CPM.Web
             if (!string.IsNullOrWhiteSpace(folderPath) && Directory.Exists(folderPath))
             {
                 EnsureSeedData seeder = new EnsureSeedData(_userManager);
-               // await seeder.EnsureClientSeedDataAsync(Path.Combine(folderPath, "clients.json"));
+                // await seeder.EnsureClientSeedDataAsync(Path.Combine(folderPath, "clients.json"));
                 seeder.EnsureSeedWalletData(Path.Combine(folderPath, "wallets.json"));
+                seeder.EnsureSeedOfferData(Path.Combine(folderPath, "offers.json"));
             }
         }
 

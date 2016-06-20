@@ -1,4 +1,5 @@
 using CPM.Data.Entities;
+using CPM.Data.Offer;
 using CPM.Data.Wallet;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json.Linq;
@@ -78,6 +79,32 @@ namespace CPM.Data
             }
         }
 
+        public void EnsureSeedOfferData(string filePath)
+        {
+            OfferContext offerContext = new OfferContext();
+            if (!offerContext.Offers.Any())
+            {
+                dynamic jsonData = ReadJsonFile(filePath);
+                if (jsonData != null)
+                {
+                    foreach (dynamic d in jsonData)
+                    {
+                        offerContext.Offers.Add(new OfferEntity()
+                        {
+                            Id = d.Id,
+                            ClientId =d.ClientId,
+                            WalletId  = d.WalletId,
+                            DefaultCurrencyId = d.DefaultCurrencyId,
+                            DateCreated = d.DateCreated,
+                            ExpiryDate = d.ExpiryDate,
+                            Name = d.Name,
+                           Detail = d.Detail
+                        });
+                    }
+                }
+            }
+        }
+
         private static dynamic ReadJsonFile(string filePath)
         {
             //Read seed json file
@@ -89,5 +116,7 @@ namespace CPM.Data
             }
             return new JArray();
         }
+
+        
     }
 }
