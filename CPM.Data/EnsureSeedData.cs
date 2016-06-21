@@ -48,7 +48,8 @@ namespace CPM.Data
                             IsLocked = d.IsLocked,
                             Currency = d.Currency,
                             DateCreated = d.DateCreated,
-                            DateModified = d.DateModified
+                            DateModified = d.DateModified,
+                            WalletTypeId = 1
                         });
                     }
                     walletContext.SaveChanges();
@@ -68,12 +69,12 @@ namespace CPM.Data
                     {
                         walletContext.WalletTypes.Add(new WalletTypeEntity()
                         {
-                            Id = d.Id,
                             Name = d.Name,
                             Category = d.Category,
                             Description = d.Description
                         });
                     }
+                    walletContext.SaveChanges();
                 }
             }
         }
@@ -90,7 +91,7 @@ namespace CPM.Data
                     {
                         offerContext.Offers.Add(new OfferEntity()
                         {
-                            Id = d.Id,
+                           
                             ClientId =d.ClientId,
                             WalletId  = d.WalletId,
                             DefaultCurrencyId = d.DefaultCurrencyId,
@@ -100,6 +101,7 @@ namespace CPM.Data
                            Detail = d.Detail
                         });
                     }
+                    offerContext.SaveChanges();
                 }
             }
         }

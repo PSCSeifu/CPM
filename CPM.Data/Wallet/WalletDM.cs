@@ -29,16 +29,14 @@ namespace CPM.Data.Wallet
         public decimal SpendLimit { get; set; }
         public WalletTypeDM Type { get; set; }
         public decimal WithdrawLimit { get; set; }
+        
     }
 
     public class WalletInfoDM
     {
         public decimal Balance { get; set; }
-        public int ClientId { get; set; }
         public string Currency { get; set; }
-        public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
-        public DateTime? DeleteDate { get; set; }
         public int Id { get; set; }
         public int ImageId { get; set; }
         public bool? IsDeleted { get; set; }

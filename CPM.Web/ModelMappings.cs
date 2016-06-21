@@ -17,10 +17,14 @@ namespace CPM.Web
         {
             Mapper.Initialize(config =>
           {
-                #region " Wallets "
-                config.CreateMap<WalletBM, WalletInfoVM>().ReverseMap();
-              config.CreateMap<OfferBM, OfferInfoVM>().ReverseMap();
-              //config.CreateMap<List<WalletBM>, WalletListVM>();
+              #region " Wallets "
+               //config.CreateMap<WalletBM, WalletInfoVM>();
+              // config.CreateMap<List<WalletBM>, WalletListVM>();
+              config.CreateMap<List<WalletBM>, List<WalletInfoVM>>();
+              #endregion
+
+              #region " Offers "
+              config.CreateMap<OfferBM, OfferInfoVM>();
               #endregion
           });
         }

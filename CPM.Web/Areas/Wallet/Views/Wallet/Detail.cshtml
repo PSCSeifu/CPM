@@ -12,6 +12,10 @@
             <div>Balance : [@Model.Balance]</div>
             <div>IsLocked : @Model.IsLocked</div>
         </div>
+       <div>
+          <button class="btn btn-info btn-success btn-xs" asp-route-area="Wallet" asp-controller="wallet" asp-action="Create" asp-route-id="@Model.Id">Add &nbsp;<i class="fa fa-plus"></i></button>
+          <button class="btn btn-info btn-success btn-xs" asp-route-area="Wallet" asp-controller="wallet" asp-action="Edit" asp-route-id="@Model.Id">Add &nbsp;<i class="fa fa-edit"></i></button>           
+       </div>
        <div class="panel panel-footer">
            @DateTime.Now.ToString("d MMM yy");
        </div>

@@ -21,12 +21,13 @@ using CPM.Data.Client;
 using Microsoft.AspNetCore.Identity;
 using CPM.Data.Global.Account;
 using CPM.Data.Offer;
+using AutoMapper;
 
 namespace CPM.Web
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        public Microsoft.Extensions.Configuration.IConfiguration Configuration { get; }
         private UserManager<ClientEntity> _userManager;
 
         public Startup(IHostingEnvironment env)
@@ -39,9 +40,9 @@ namespace CPM.Web
 
             Configuration = builder.Build();
 
-            //Data.ModelMappings.Configure();
-           // Business.ModelMappings.Configure();
-            //Web.ModelMappings.Configure();
+            Data.ModelMappings.Configure();
+            Business.ModelMappings.Configure();
+            ////Web.ModelMappings.Configure();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -60,8 +61,9 @@ namespace CPM.Web
             UsePlatform(app, env);
            // UseIdentity(app);
             UseMvc(app);
-           // UseSeedDataWriter(@"C:\Projects\CPM\CPM.Data\Resources");
-           // UseSeedData(@"C:\Projects\CPM\CPM.Data\Resources");
+            // UseSeedDataWriter(@"C:\Projects\CPM\CPM.Data\Resources");
+             UseSeedData(@"C:\Projects\CPM\CPM.Data\Resources");
+            
         }
 
         #region " Add Service "
@@ -139,9 +141,9 @@ namespace CPM.Web
 
         private void UseMappings()
         {
-            Data.ModelMappings.Configure();
-            Business.ModelMappings.Configure();
-            Web.ModelMappings.Configure();
+        //    Data.ModelMappings.Configure();
+        //    Business.ModelMappings.Configure();
+        //    Web.ModelMappings.Configure();
         }
         
         private void UseSeedDataWriter(string folderPath)
@@ -154,14 +156,15 @@ namespace CPM.Web
             }
         }
 
-        private async void UseSeedData(string folderPath)
+        private  void UseSeedData(string folderPath)
         {
             if (!string.IsNullOrWhiteSpace(folderPath) && Directory.Exists(folderPath))
             {
                 EnsureSeedData seeder = new EnsureSeedData(_userManager);
                 // await seeder.EnsureClientSeedDataAsync(Path.Combine(folderPath, "clients.json"));
                 seeder.EnsureSeedWalletData(Path.Combine(folderPath, "wallets.json"));
-                seeder.EnsureSeedOfferData(Path.Combine(folderPath, "offers.json"));
+                seeder.EnsureWalletTypeSeedData(Path.Combine(folderPath, "walletTypes.json"));
+               // seeder.EnsureSeedOfferData(Path.Combine(folderPath, "offers.json"));
             }
         }
 
