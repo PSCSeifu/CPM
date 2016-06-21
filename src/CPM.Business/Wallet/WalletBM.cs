@@ -17,6 +17,31 @@ namespace CPM.Business.Wallet
         public decimal Balance { get; set; }
         public bool IsLocked { get; set; }
         public string Currency { get; set; }
-        public WalletTypeEntity Type { get; set; }      
+        public WalletTypeBM Type { get; set; }
+
+        public bool IsNew { get; set; }
+    }
+
+    public class WalletTypeBM
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Category { get; set; }
+        public string Description { get; set; }
+    }
+
+    public class WalletInfoBM
+    {
+        public decimal Balance { get; set; }
+        public int ClientId { get; set; }
+        public string Currency { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateModified { get; set; }
+        public DateTime? DeleteDate { get; set; }
+        public int Id { get; set; }
+        public int ImageId { get; set; }
+        public bool? IsDeleted { get; set; }
+        public bool IsLocked { get; set; }
+        public string Name { get; set; }
     }
 }

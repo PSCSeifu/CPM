@@ -9,7 +9,7 @@
     },
 
   "dependencies": {
-    "AutoMapper": "4.2.1",
+    "AutoMapper": "5.0.0-beta-1",
     "CPM.Data": "1.0.0-*",
     "CpmLib.Business": "1.0.0-*"
   }

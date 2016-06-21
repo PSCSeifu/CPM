@@ -29,8 +29,7 @@ namespace CPM.Data
                 //Add the user
             }
         }
-
-
+        
         public void EnsureSeedWalletData(string filePath)
         {
             WalletContext walletContext = new WalletContext();
@@ -115,8 +114,6 @@ namespace CPM.Data
                 return jsonData;
             }
             return new JArray();
-        }
-
-        
+        }   
     }
 }

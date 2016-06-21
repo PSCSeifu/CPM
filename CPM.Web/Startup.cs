@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CPM.Web;
-using AutoMapper;
+
 using CPM.Business.Wallet;
 using CPM.Web.Areas.Wallet.Models;
 using CPM.Data.Wallet;
@@ -20,22 +20,23 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using CPM.Data.Client;
 using Microsoft.AspNetCore.Identity;
 using CPM.Data.Global.Account;
+using CPM.Data.Offer;
 
 namespace CPM.Web
 {
     public class Startup
     {
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
         private UserManager<ClientEntity> _userManager;
 
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("config.json")
                 .AddEnvironmentVariables();
-            
+      
+
             Configuration = builder.Build();
 
             //Data.ModelMappings.Configure();
@@ -47,20 +48,20 @@ namespace CPM.Web
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            AddIdentity(services);
+            //AddIdentity(services);
             AddMvc(services);
-            AddBusiness(services);
-            AddEntityFramework(services);
+            AddBusiness(services);          
+            //AddEntityFramework(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {             
             UsePlatform(app, env);
-            UseIdentity(app);
+           // UseIdentity(app);
             UseMvc(app);
            // UseSeedDataWriter(@"C:\Projects\CPM\CPM.Data\Resources");
-            UseSeedData(@"C:\Projects\CPM\CPM.Data\Resources");
+           // UseSeedData(@"C:\Projects\CPM\CPM.Data\Resources");
         }
 
         #region " Add Service "
@@ -79,6 +80,8 @@ namespace CPM.Web
                      options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddDbContext<CPMUserContext>(options =>
                      options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<OfferContext>(options =>
+                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
         }
 
         private void AddIdentity(IServiceCollection services)
@@ -93,6 +96,10 @@ namespace CPM.Web
             DependecyInjection.Configure(services);
         }
 
+        //private void AddSeeder(IServiceCollection services)
+        //{
+        //    services.AddScoped<EnsureSeedData>();
+        //}
         
         #endregion
 
@@ -125,7 +132,7 @@ namespace CPM.Web
             {
                 routes.MapRoute(
                 name: "default",
-                template: "{area=Wallet}/{controller=Wallet}/{action=Index}/");
+                template: "{area=Global}/{controller=Home}/{action=Index}/");
         });
 
         }

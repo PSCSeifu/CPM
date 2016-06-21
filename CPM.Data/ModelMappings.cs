@@ -16,7 +16,12 @@ namespace CPM.Data
             Mapper.Initialize(Configure =>
            {
                Configure.CreateMap<WalletEntity, WalletDM>();
+               Configure.CreateMap<WalletTypeEntity, WalletTypeDM>();
+
+
+
                Configure.CreateMap<OfferEntity, OfferDM>();
+               Configure.CreateMap<OfferDM, OfferInfoDM>();
            });
         }
     }

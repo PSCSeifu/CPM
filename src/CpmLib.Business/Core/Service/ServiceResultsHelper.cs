@@ -1,3 +1,4 @@
+using CpmLib.Business.Core.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,26 +67,26 @@ namespace CpmLib.Business.Core.Service
         }
 
 
-        //public static ProcessResult FillProcessResult(ValidationList validations = null)
-        //{
-        //    if (validations == null)
-        //        return new ProcessResult { Result = ProcessResultEnum.Success };
+        public static ProcessResult FillProcessResult(ValidationList validations = null)
+        {
+            if (validations == null)
+                return new ProcessResult { Result = ProcessResultEnum.Success };
 
-        //    return new ProcessResult
-        //    {
-        //        Result = validations.IsValid ?
-        //                        ProcessResultEnum.Success : ProcessResultEnum.Validation,
-        //        Validations = validations
-        //    };
-        //}
+            return new ProcessResult
+            {
+                Result = validations.IsValid ?
+                                ProcessResultEnum.Success : ProcessResultEnum.Validation,
+                Validations = validations
+            };
+        }
 
-        //public static ProcessResult FillProcessResultForError(Exception error)
-        //{
-        //    return new ProcessResult
-        //    {
-        //        Result = ProcessResultEnum.Error,
-        //        Error = error
-        //    };
-        //}
+        public static ProcessResult FillProcessResultForError(Exception error)
+        {
+            return new ProcessResult
+            {
+                Result = ProcessResultEnum.Error,
+                Error = error
+            };
+        }
     }
 }

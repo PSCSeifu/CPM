@@ -17,7 +17,10 @@ namespace CPM.Web
             #endregion
 
             #region Wallet
-            services.AddScoped<IWalletService, WalletService>();
+            services.AddScoped<IWalletService, WalletService>();            
+            #endregion
+
+            #region Offer           
             services.AddScoped<IOfferService, OfferService>();
             #endregion
         }

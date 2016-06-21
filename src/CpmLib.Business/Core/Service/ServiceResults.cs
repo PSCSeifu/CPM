@@ -1,3 +1,4 @@
+using CpmLib.Business.Core.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,7 @@ namespace CpmLib.Business.Core.Service
     public class ProcessResult : ServiceResultBase
     {
         public ProcessResultEnum Result { get; set; }
-        //public ValidationList Validations { get; set; }
+        public ValidationList Validations { get; set; }
         public MessageList Messages { get; set; }
     }
 }

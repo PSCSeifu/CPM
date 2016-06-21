@@ -23,5 +23,6 @@ namespace CPM.Data.Entities
         public decimal SpendLimit { get; set; }
         public bool? IsDeleted { get; set; }
         public DateTime? DeleteDate { get; set; }
+        public int? WalletTypeId { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using AutoMapper;
 using CPM.Data.Entities;
 using CpmLib.Data.Core;
 using Newtonsoft.Json.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CPM.Data.Wallet
 {
-    public interface IWalletRepository :IRepositoryBase
+    public interface IWalletRepository : ICrudRepositoryBase<WalletInfoDM, WalletDM>
     {
         WalletDM GetWalletByClientIdAndWalletId(int clientId, int walletId);
         List<WalletDM> GetWalletsByClientId(int clientId);
@@ -83,6 +84,70 @@ namespace CPM.Data.Wallet
             return wallets.Where(w => w.Id == walletId).SingleOrDefault();
         }
 
+        //CRUD
+        public override WalletDM GetItem(int id)
+        {
+            var entity = from wallet in _context.Wallets
+                         where wallet.Id == id
+                         select new WalletDM
+                         {
+                             Id = wallet.Id,
+                             Balance = wallet.Balance,
+                             ClientId = wallet.ClientId,
+                             Currency = wallet.Currency,
+                             DateCreated = wallet.DateCreated,
+                             DateModified = wallet.DateModified,
+                             DeleteDate = wallet.DeleteDate,
+                             ImageId = wallet.ImageId,
+                             IsDeleted = wallet.IsDeleted,
+                             IsLocked = wallet.IsLocked,
+                             LockOnNotificationLimit = wallet.LockOnNotificationLimit,
+                             LockOnSpendLimit = wallet.LockOnSpendLimit,
+                             LockOnWithdrawLimit = wallet.LockOnWithdrawLimit,
+                             Name = wallet.Name,
+                             NotificationLimit = wallet.NotificationLimit,
+                             SpendLimit = wallet.SpendLimit,
+                             WithdrawLimit = wallet.WithdrawLimit,
+
+                             Type = (from walletType in _context.WalletTypes
+                                     where walletType.Id == wallet.WalletTypeId
+                                     select new WalletTypeDM
+                                     {
+                                         Id = walletType.Id,
+                                         Category = walletType.Category,
+                                         Description = walletType.Description,
+                                         Name = walletType.Name
+                                     }).SingleOrDefault()
+                         };
+
+            return entity.SingleOrDefault();
+        }
+
+        public override int? Insert(WalletDM item)
+        {
+            var wallet = Mapper.Map<WalletEntity>(item);
+            _context.Wallets.Add(wallet);
+            _context.SaveChanges();
+
+            return item.Id;
+        }
+
+        public override void Update(WalletDM item)
+        {
+            _context.SetModified(Mapper.Map<WalletEntity>(item));
+            _context.SaveChanges();            
+        }
+
+        public override void Delete(int id)
+        {
+            var dbwallet = from wallet in _context.Wallets
+                           where wallet.Id == id
+                           select wallet;
+            _context.Wallets.Remove(dbwallet.SingleOrDefault());
+            _context.SaveChanges();
+        }
+        
+        //MOCK  DATA    
         private List<WalletDM> MockPopulateWalletRepository()
         {
             //Mock
@@ -95,9 +160,6 @@ namespace CPM.Data.Wallet
             walletList.Add(new WalletDM { Id = 6, ClientId = 2, Name = "MyStash", Balance = 142.5m, IsLocked = false });
 
             return walletList;
-        }
-
-
-       
+        }        
     }
 }

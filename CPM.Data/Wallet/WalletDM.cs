@@ -27,7 +27,7 @@ namespace CPM.Data.Wallet
         public string Name { get; set; }
         public decimal NotificationLimit { get; set; }
         public decimal SpendLimit { get; set; }
-        public WalletTypeEntity Type { get; set; }
+        public WalletTypeDM Type { get; set; }
         public decimal WithdrawLimit { get; set; }
     }
 
@@ -46,6 +46,15 @@ namespace CPM.Data.Wallet
         public string Name { get; set; }
         
     }
+
+    public class WalletTypeDM
+    {
+        public int Id { get; set; }    
+        public string Name { get; set; }
+        public int Category { get; set; }
+        public string Description { get; set; }
+    }
+
    
 
   

@@ -33,16 +33,16 @@ namespace CPM.Data.Offer
         public override List<OfferInfoDM> GetList(int key)
         {
             var entity = from offer in _context.Offers
-                         join client in _context.Clients on offer.ClientId equals client.Id
-                         join wallet in _context.Wallets on offer.WalletId equals wallet.Id
-                         join currency in _context.Currencies on offer.DefaultCurrencyId equals currency.Id
+                         //join client in _context.Clients on offer.ClientId equals client.Id
+                         //join wallet in _context.Wallets on offer.WalletId equals wallet.Id
+                         //join currency in _context.Currencies on offer.DefaultCurrencyId equals currency.Id
                          where offer.Id == key
                          orderby offer.DateCreated
                          select new OfferInfoDM
                          {
                              Id = offer.Id,                         
-                             ClientName = client.NickName,                            
-                             CurrencyCode = currency.Code,
+                             //ClientName = client.NickName,                            
+                             //CurrencyCode = currency.Code,
                              DateCreated = offer.DateCreated,
                              ExpiryDate= offer.ExpiryDate,
                              Name = offer.Name,                            
@@ -54,16 +54,16 @@ namespace CPM.Data.Offer
         public  List<OfferInfoDM> GetListBySearch(int clientId,string searchTerm)
         {
             var entity = from offer in _context.Offers
-                         join client in _context.Clients on offer.ClientId equals client.Id
-                         join wallet in _context.Wallets on offer.WalletId equals wallet.Id
-                         join currency in _context.Currencies on offer.DefaultCurrencyId equals currency.Id
-                         where offer.ClientId == clientId && offer.Name.ToLower().Contains(searchTerm.ToLower())
+                         //join client in _context.Clients on offer.ClientId equals client.Id
+                         //join wallet in _context.Wallets on offer.WalletId equals wallet.Id
+                         //join currency in _context.Currencies on offer.DefaultCurrencyId equals currency.Id
+                         //where offer.ClientId == clientId && offer.Name.ToLower().Contains(searchTerm.ToLower())
                          orderby offer.DateCreated
                          select new OfferInfoDM
                          {
                              Id = offer.Id,                            
-                             ClientName = client.NickName,
-                             CurrencyCode = currency.Code,
+                             //ClientName = client.NickName,
+                             //CurrencyCode = currency.Code,
                              DateCreated = offer.DateCreated,
                              ExpiryDate = offer.ExpiryDate,
                              Name = offer.Name,                          
@@ -76,21 +76,22 @@ namespace CPM.Data.Offer
 
         public List<OfferInfoDM> GetOffersByClientId(int clientId)
         {
-            var entity = from offer in _context.Offers
-                         join client in _context.Clients on offer.ClientId equals client.Id
-                         join wallet in _context.Wallets on offer.WalletId equals wallet.Id
-                         join currency in _context.Currencies on offer.DefaultCurrencyId equals currency.Id
-                         where client.Id == clientId
-                         orderby offer.DateCreated
-                         select new OfferInfoDM
-                         {
-                             Id = offer.Id,                             
-                             ClientName = client.NickName,                             
-                             CurrencyCode = currency.Code,
-                             DateCreated = offer.DateCreated,
-                             ExpiryDate = offer.ExpiryDate,
-                             Name = offer.Name,
-                         };
+            //var entity = from offer in _context.Offers
+            //                 //join client in _context.Clients on offer.ClientId equals client.Id
+            //                 //join wallet in _context.Wallets on offer.WalletId equals wallet.Id
+            //                 //join currency in _context.Currencies on offer.DefaultCurrencyId equals currency.Id
+            //                 //where client.Id == clientId
+            //             orderby offer.DateCreated
+            //             select new OfferInfoDM
+            //             {
+            //                 Id = offer.Id,
+            //                 //ClientName = client.NickName,
+            //                 //CurrencyCode = currency.Code,
+            //                 DateCreated = offer.DateCreated,
+            //                 ExpiryDate = offer.ExpiryDate,
+            //                 Name = offer.Name,
+            //             };
+            var entity = Mapper.Map<List<OfferInfoDM>>(MockPopulateOfferRepository());
 
             return entity.ToList();
         }
