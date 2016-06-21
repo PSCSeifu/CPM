@@ -4,85 +4,170 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using CPM.Web.Data;
-using CPM.Web.Models;
-using CPM.Web.Services;
+using CPM.Web;
+
+using CPM.Business.Wallet;
+using CPM.Web.Areas.Wallet.Models;
+using CPM.Data.Wallet;
+using CPM.Data;
+using System.IO;
+using Microsoft.EntityFrameworkCore;
+using CPM.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using CPM.Data.Client;
+using Microsoft.AspNetCore.Identity;
+using CPM.Data.Global.Account;
+using CPM.Data.Offer;
+using AutoMapper;
 
 namespace CPM.Web
 {
     public class Startup
     {
+        public Microsoft.Extensions.Configuration.IConfiguration Configuration { get; }
+        private UserManager<ClientEntity> _userManager;
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                .AddJsonFile("config.json")
+                .AddEnvironmentVariables();
+      
 
-            if (env.IsDevelopment())
-            {
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets();
-            }
-
-            builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            Data.ModelMappings.Configure();
+            Business.ModelMappings.Configure();
+            //Web.ModelMappings.Configure();
         }
 
-        public IConfigurationRoot Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-
-            services.AddMvc();
-
-            // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
+            //AddIdentity(services);
+            AddMvc(services);
+            AddBusiness(services);          
+            //AddEntityFramework(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {             
+            UsePlatform(app, env);
+           // UseIdentity(app);
+            UseMvc(app);
+            // UseSeedDataWriter(@"C:\Projects\CPM\src\CPM.Data\Resources");
+            UseSeedData(@"C:\Projects\CPM\src\CPM.Data\Resources");
+            
+        }
 
+        #region " Add Service "
+
+        private void AddMvc(IServiceCollection services)
+        {
+            services.AddMvc();
+            services.AddOptions();
+        }
+              
+        private void AddEntityFramework (IServiceCollection services)
+        {
+            services.AddDbContext<WalletContext>(options => 
+                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<ClientContext>(options =>
+                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<CPMUserContext>(options =>
+                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<OfferContext>(options =>
+                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+        }
+
+        private void AddIdentity(IServiceCollection services)
+        {
+            services.AddIdentity<CPMUserEntity, IdentityRole>()
+                        .AddEntityFrameworkStores<CPMUserContext>()
+                        .AddDefaultTokenProviders();
+        }
+
+        private void AddBusiness(IServiceCollection services)
+        {
+            DependecyInjection.Configure(services);
+        }
+
+        //private void AddSeeder(IServiceCollection services)
+        //{
+        //    services.AddScoped<EnsureSeedData>();
+        //}
+        
+        #endregion
+
+        #region " Use Services "
+        //First check for static files.
+        // app.UseIdentity(); //Identity before the MVC to ensure cookies,401 errors are processed.
+        // app.UseSession(); //Session before MVC
+        private void UsePlatform(IApplicationBuilder app, IHostingEnvironment env)
+        {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
-                app.UseBrowserLink();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error"); //Home>Controller Error>Action
             }
 
             app.UseStaticFiles();
+        }
 
+        private void UseIdentity(IApplicationBuilder app)
+        {
             app.UseIdentity();
+        }
 
-            // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
-
+        private void UseMvc(IApplicationBuilder app)
+        {
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+                name: "default",
+                template: "{area=Wallet}/{controller=Wallet}/{action=Index}/");
+        });
+
         }
+
+        private void UseMappings()
+        {
+        //    Data.ModelMappings.Configure();
+        //    Business.ModelMappings.Configure();
+        //    Web.ModelMappings.Configure();
+        }
+        
+        private void UseSeedDataWriter(string folderPath)
+        {
+            if (!string.IsNullOrWhiteSpace(folderPath) && Directory.Exists(folderPath))
+            {                
+                SeedTemplateJsonWriter seeWriter = new SeedTemplateJsonWriter();                
+                seeWriter.CreateWallet(Path.Combine(folderPath,"wallets.json"));
+                seeWriter.CreateOffer(Path.Combine(folderPath, "offers.json"));
+            }
+        }
+
+        private  void UseSeedData(string folderPath)
+        {
+            if (!string.IsNullOrWhiteSpace(folderPath) && Directory.Exists(folderPath))
+            {
+                EnsureSeedData seeder = new EnsureSeedData(_userManager);
+                // await seeder.EnsureClientSeedDataAsync(Path.Combine(folderPath, "clients.json"));
+                seeder.EnsureSeedWalletData(Path.Combine(folderPath, "wallets.json"));
+                seeder.EnsureWalletTypeSeedData(Path.Combine(folderPath, "walletTypes.json"));
+               // seeder.EnsureSeedOfferData(Path.Combine(folderPath, "offers.json"));
+            }
+        }
+
+        #endregion
     }
 }

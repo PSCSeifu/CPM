@@ -1,0 +1,47 @@
+﻿@*@model List<CPM.Web.Areas.Wallet.Models.WalletInfoVM>*@
+@model CPM.Web.Areas.Wallet.Models.WalletListVM
+@*@model List<CPM.Business.Wallet.WalletBM>*@
+
+@{ Layout = "/Views/Shared/Wallet/_WalletLayout.cshtml";}
+@{ ViewBag.Title = "Wallets";}
+
+
+<div>
+   
+    <div>
+        @if (!String.IsNullOrWhiteSpace(Model.SearchTerm))
+        {
+            <div class="label label-default">Model.SearchTerm</div>
+        }
+
+        <button class="btn btn-default fa-search"></button>
+    </div>
+    <table class="table table-condensed table-striped col-sm-5">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>CustomerId</td>
+                <td>Name</td>
+                <td>Locked</td>
+                <td>Locked</td>
+                <td>Balance</td>
+            </tr>
+        </thead>
+        @foreach (var wallet in Model.Wallets.ToList())
+        {
+            <tr>
+                <td><button class="btn btn-danger btn-xs"> <i class="fa fa-remove"></i></button></td>
+                <td>@wallet.Id</td>
+                <td>@wallet.ClientId</td>
+                <td>@wallet.Name</td>
+            
+                <td>@wallet.IsLocked</td>
+                <td>@wallet.Balance</td>
+               
+                <td><button class="btn btn-info btn-success btn-xs"><i class="fa fa-plus"></i></button></td>               
+                <td><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Detail" asp-route-id="@wallet.Id"><i class="fa fa-edit"></i></a></td>               
+            </tr>
+        }
+    </table>
+
+</div>

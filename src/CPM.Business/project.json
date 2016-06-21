@@ -1,6 +1,7 @@
 {
   "version": "1.0.0-*",
   "description": "CPM.Business Class Library",
+  "emitentrypoint": true,
   "frameworks": {
     "net46": {
       "dependencies": {

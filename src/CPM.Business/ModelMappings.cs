@@ -19,6 +19,7 @@ namespace CPM.Business
             Mapper.Initialize(config =>
            {
                config.CreateMap<WalletDM, WalletBM>();
+               config.CreateMap<WalletInfoDM, WalletInfoBM>();
                config.CreateMap<WalletTypeDM, WalletTypeBM>();
 
 

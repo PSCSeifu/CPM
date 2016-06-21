@@ -10,11 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CPM.WebTest", "src\CPM.Web\CPM.WebTest.xproj", "{A16735F8-E9D5-46CF-85E2-EE32A1E61816}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CPM.Business", "src\CPM.Business\CPM.Business.xproj", "{B5B25FEF-5900-4FBA-AB18-4C0B6D928E36}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CPM.Data", "CPM.Data\CPM.Data.xproj", "{BA2D6665-BE08-49DE-9415-FB13644374C9}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CPM.Data", "src\CPM.Data\CPM.Data.xproj", "{BA2D6665-BE08-49DE-9415-FB13644374C9}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CpmLib.Data", "src\CpmLib.Data\CpmLib.Data.xproj", "{388A6F33-5046-4A1F-9DD5-B12DF576FE07}"
 EndProject
@@ -22,7 +20,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CpmLib.Web", "src\CpmLib.We
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CpmLib.Business", "src\CpmLib.Business\CpmLib.Business.xproj", "{CD4BC94B-CEBC-4341-90D9-21614D6D8FEF}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CPM.Web", "CPM.Web\CPM.Web.xproj", "{9D3DB12D-88A0-4287-9B20-DFFD5FFEC389}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CPM.Web", "src\CPM.Web\CPM.Web.xproj", "{9D3DB12D-88A0-4287-9B20-DFFD5FFEC389}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
