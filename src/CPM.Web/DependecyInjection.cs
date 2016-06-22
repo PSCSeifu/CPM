@@ -23,6 +23,10 @@ namespace CPM.Web
             #region Offer           
             services.AddScoped<IOfferService, OfferService>();
             #endregion
+
+            #region Global
+            //services.AddScoped<ISessionHelper, SessionHelper>();
+            #endregion
         }
     }
 }

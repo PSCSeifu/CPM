@@ -13,15 +13,23 @@ namespace CPM.Business.Common.Enums
         Vendor,
         EscrowAgent,
         Resolver
-
     }
 
     public enum WebSubscriptionType
     {
         Basic,
         Silver,
-        Gold,
-        Premium
+        Gold
+    }
+
+    public enum SiteProductType
+    {
+        cpmModerate,
+        cpmAutoBargain,
+        cpmAnalytics,
+        cpmNews,
+        cpmForum,
+        cpmEscrow
     }
 
     public enum IncorporationType
