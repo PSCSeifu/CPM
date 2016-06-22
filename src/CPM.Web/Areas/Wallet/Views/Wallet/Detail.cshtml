@@ -2,22 +2,39 @@
 @{ Layout = "/Views/Shared/Wallet/_WalletLayout.cshtml";}
 @{ ViewBag.Title = Model.Name;}
 <div>
-   <div class="panel">
+    <div class="panel">
         <div class="panel panel-heading panel-info">
-            <b>@Model.Name</b>
+            <div>
+                <span  class="smta-wallet-balance">@Model.Balance</span>
+                &nbsp; <span class="smta-currency-lg">@Model.Currency</span>
+            </div>           
         </div>
         <div class="panel panel-body panel-group">
-            <div></div>
-            <div>ClientID: @Model.ClientId</div>
-            <div>Balance : [@Model.Balance]</div>
-            <div>IsLocked : @Model.IsLocked</div>
+            <div class="smta-display">
+                <div claas="smta-display detail">
+                    <div>ClientID: @Model.ClientId</div>
+                    <div>@Model.Name</div>
+                    <div>IsLocked : @Model.IsLocked</div>
+                    <div>Name : @Model.Name</div>
+                    <div>Name : @Model.IsNew</div>
+                </div>
+                <div class="smta-display settings">
+                    <div>SpendLimit : @Model.SpendLimit</div>
+                    <div>NotificationLimit : @Model.NotificationLimit</div>
+                    <div>WithdrawLimit : @Model.WithdrawLimit</div>
+                    <div>LockOnSpendLimit : @Model.LockOnSpendLimit</div>
+                    <div>LockOnNotificationLimit : @Model.LockOnNotificationLimit</div>
+                    <div>LockOnWithdrawLimit : @Model.LockOnWithdrawLimit</div>
+                </div>
+            </div>
         </div>
-       <div>
-          @*<button class="btn btn-info btn-success btn-xs" asp-route-area="Wallet" asp-controller="wallet" asp-action="Create" asp-route-id="@Model.Id">Add &nbsp;<i class="fa fa-plus"></i></button>
-          <button class="btn btn-info btn-success btn-xs" asp-route-area="Wallet" asp-controller="wallet" asp-action="Edit" asp-route-id="@Model.Id">Add &nbsp;<i class="fa fa-edit"></i></button>*@           
-       </div>
-       <div class="panel panel-footer">
-           @DateTime.Now.ToString("d MMM yy");
-       </div>
+
+        <div>
+            <button class="btn  btn-success btn-xs" asp-route-area="Wallet" asp-controller="wallet" asp-action="Create" asp-route-id="@Model.Id">Add &nbsp;<i class="fa fa-plus"></i></button>
+            <button class="btn  btn-info btn-xs" asp-route-area="Wallet" asp-controller="wallet" asp-action="Edit" asp-route-id="@Model.Id">Edit &nbsp;<i class="fa fa-edit"></i></button>
+        </div>
+        <div class="panel panel-footer">
+            @DateTime.Now.ToString("d MMM yy")
+        </div>
     </div>
 </div>

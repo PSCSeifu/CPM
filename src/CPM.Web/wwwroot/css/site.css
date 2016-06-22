@@ -1,0 +1,35 @@
+
+
+.smta-display{
+    padding: 5px;
+    margin: 5px;
+    display:inline-block;
+}
+
+    .smta-display.settings{
+        background-color:#e9f4f6;
+        font-size:small;
+        border-color:#e9f4f6;
+        border-width:2px;
+        display:inline-block;
+    }
+    
+    .smta-display.display{
+        background-color:#b8c3f1;
+        font-size:medium;
+        display:inline-block;
+    }
+
+    .smta-wallet-balance {
+        font-size: xx-large;
+        font-weight:700
+    }
+
+
+.smta-currency-lg{
+    font-size:x-large;
+    color:#40522f;
+    padding:2px 15px;
+    font-weight:600;
+    
+}

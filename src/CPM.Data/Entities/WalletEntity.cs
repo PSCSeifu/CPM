@@ -11,9 +11,10 @@ namespace CPM.Data.Entities
         public string Currency { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
-        public decimal WithdrawLimit { get; set; }
+        public DateTime? DeleteDate { get; set; }
         public int Id { get; set; }
         public int ImageId { get; set; }
+        public bool? IsDeleted { get; set; }
         public bool IsLocked { get; set; }
         public bool LockOnNotificationLimit { get; set; }
         public bool LockOnSpendLimit { get; set; }
@@ -21,8 +22,7 @@ namespace CPM.Data.Entities
         public string Name { get; set; }
         public decimal NotificationLimit { get; set; }
         public decimal SpendLimit { get; set; }
-        public bool? IsDeleted { get; set; }
-        public DateTime? DeleteDate { get; set; }
         public int? WalletTypeId { get; set; }
+        public decimal WithdrawLimit { get; set; }
     }
 }

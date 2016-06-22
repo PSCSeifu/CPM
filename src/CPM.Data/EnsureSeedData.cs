@@ -13,22 +13,13 @@ using System.Threading.Tasks;
 namespace CPM.Data
 {
     public class EnsureSeedData
-    {
-        private UserManager<ClientEntity> _userManager;
+    {        
 
-        public EnsureSeedData(UserManager<ClientEntity> userManager)
+        public EnsureSeedData()
         {
-            _userManager = userManager;
+           
         }
-
-        public async Task EnsureClientSeedDataAsync(string seedFilePath)
-        {
-            string email1 = "user1@someplace.io";
-            if (await _userManager.FindByEmailAsync(email1) == null)
-            {
-                //Add the user
-            }
-        }
+              
         
         public void EnsureSeedWalletData(string filePath)
         {

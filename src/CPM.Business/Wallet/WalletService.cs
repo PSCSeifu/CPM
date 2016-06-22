@@ -108,6 +108,7 @@ namespace CPM.Business.Wallet
         {
            try
             {
+                ModelMappings.Configure();
                 var result = Mapper.Map<WalletBM>(_repository.GetItem(id));
                 return ServiceResultsHelper.FillGetItemResult(result);
             }
@@ -121,14 +122,15 @@ namespace CPM.Business.Wallet
         {
             try
             {
+                ModelMappings.Configure();
                 if (!string.IsNullOrEmpty(searchTerm))
                 {
                     var result = Mapper.Map<List<WalletInfoBM>>(_repository.GetList(key, searchTerm));
                     return ServiceResultsHelper.FillGetListResult(result);
                 }
 
-                var resutlEx = Mapper.Map<List<WalletInfoBM>>(_repository.GetList(key));
-                return ServiceResultsHelper.FillGetListResult(resutlEx);
+                var resultEx = Mapper.Map<List<WalletInfoBM>>(_repository.GetList(key));
+                return ServiceResultsHelper.FillGetListResult(resultEx);
             }
             catch (Exception ex)
             {

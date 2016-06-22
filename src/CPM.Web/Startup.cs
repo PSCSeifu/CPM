@@ -21,14 +21,12 @@ using CPM.Data.Client;
 using Microsoft.AspNetCore.Identity;
 using CPM.Data.Global.Account;
 using CPM.Data.Offer;
-using AutoMapper;
 
 namespace CPM.Web
 {
     public class Startup
     {
-        public Microsoft.Extensions.Configuration.IConfiguration Configuration { get; }
-        private UserManager<ClientEntity> _userManager;
+        public IConfiguration Configuration { get; }
 
         public Startup(IHostingEnvironment env)
         {
@@ -42,7 +40,7 @@ namespace CPM.Web
 
             Data.ModelMappings.Configure();
             Business.ModelMappings.Configure();
-            //Web.ModelMappings.Configure();
+            Web.ModelMappings.Configure();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -160,8 +158,7 @@ namespace CPM.Web
         {
             if (!string.IsNullOrWhiteSpace(folderPath) && Directory.Exists(folderPath))
             {
-                EnsureSeedData seeder = new EnsureSeedData(_userManager);
-                // await seeder.EnsureClientSeedDataAsync(Path.Combine(folderPath, "clients.json"));
+                EnsureSeedData seeder = new EnsureSeedData();               
                 seeder.EnsureSeedWalletData(Path.Combine(folderPath, "wallets.json"));
                 seeder.EnsureWalletTypeSeedData(Path.Combine(folderPath, "walletTypes.json"));
                // seeder.EnsureSeedOfferData(Path.Combine(folderPath, "offers.json"));

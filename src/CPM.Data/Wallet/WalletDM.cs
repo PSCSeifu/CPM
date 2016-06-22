@@ -20,14 +20,14 @@ namespace CPM.Data.Wallet
         public int ImageId { get; set; }
         public bool? IsDeleted { get; set; }
         public bool IsLocked { get; set; }
-        public List<WalletLedgerEntity> Ledgers { get; set; }
+        //public List<WalletLedgerEntity> Ledgers { get; set; }
         public bool LockOnNotificationLimit { get; set; }
         public bool LockOnSpendLimit { get; set; }
         public bool LockOnWithdrawLimit { get; set; }
         public string Name { get; set; }
         public decimal NotificationLimit { get; set; }
         public decimal SpendLimit { get; set; }
-        public WalletTypeDM Type { get; set; }
+        public WalletTypeDM Type { get; set; } = new WalletTypeDM();
         public decimal WithdrawLimit { get; set; }
         
     }
@@ -47,10 +47,10 @@ namespace CPM.Data.Wallet
 
     public class WalletTypeDM
     {
-        public int Id { get; set; }    
-        public string Name { get; set; }
         public int Category { get; set; }
         public string Description { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 
    

@@ -10,14 +10,18 @@ namespace CPM.Web.Areas.Wallet.Models
 {
     public class WalletInfoVM
     {
-        public int Id { get; set; } = 0;
-        public string ClientId { get; set; } = "";
-        public string Name { get; set; } = "";
-        public string ImageUrl { get; set; } = "";
-        public string Currency { get; set; } = "";
-        public decimal Balance { get; set; } = 0;
-        public bool IsLocked { get; set; } = false;
-       // public WalletTypeEntity Type { get; set; } = new WalletTypeEntity();
+        public decimal Balance { get; set; }
+        public int ClientId { get; set; }
+        public string Currency { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateModified { get; set; }
+        public DateTime? DeleteDate { get; set; }
+        public int Id { get; set; }
+        public int ImageId { get; set; }
+        public bool? IsDeleted { get; set; }
+        public bool IsLocked { get; set; }
+        public string Name { get; set; }
+        // public WalletTypeEntity Type { get; set; } = new WalletTypeEntity();
 
     }
 }

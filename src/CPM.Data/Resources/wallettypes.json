@@ -2,7 +2,19 @@
   {
     "Id": 1,
     "Category": 1,
-    "Description": "main Lcient wallet - default",
-    "Name": "Default"    
+    "Description": "Main Client wallet - Default",
+    "Name": "Default"
+  },
+  {
+    "Id": 2,
+    "Category": 2,
+    "Description": "Use for casual Bargains",
+    "Name": "Bargain"
+  },
+  {
+    "Id": 3,
+    "Category": 3,
+    "Description": "Use for Locked Auctions",
+    "Name": "Auction"
   }
 ]

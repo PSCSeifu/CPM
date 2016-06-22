@@ -34,25 +34,7 @@ namespace CPM.Data.Wallet
             _context = context;
         }
 
-        public override List<WalletInfoDM> GetList(int key)
-        {
-            var entity = (from wallet in _context.Wallets
-                          where wallet.ClientId == key
-                          orderby wallet.DateModified descending
-                          select new WalletInfoDM
-                          {
-                              Id = wallet.Id,
-                              Balance = wallet.Balance,
-                              Currency = wallet.Currency,
-                              DateModified = wallet.DateModified,
-                              Name = wallet.Name,
-                              IsLocked = wallet.IsLocked,
-                              IsDeleted = wallet.IsDeleted,
-                              ImageId = wallet.ImageId
-                          }).ToList();
-
-            return Mapper.Map<List<WalletInfoDM>>(entity);
-        }
+       
 
         public List<WalletDM> GetWalletsByClientId(int clientId)
         {
@@ -85,6 +67,27 @@ namespace CPM.Data.Wallet
         }
 
         //CRUD
+
+        public override List<WalletInfoDM> GetList(int key)
+        {
+            var entity = (from wallet in _context.Wallets
+                          where wallet.ClientId == key
+                          orderby wallet.DateModified descending
+                          select new WalletInfoDM
+                          {
+                              Id = wallet.Id,
+                              Balance = wallet.Balance,
+                              Currency = wallet.Currency,
+                              DateModified = wallet.DateModified,
+                              Name = wallet.Name,
+                              IsLocked = wallet.IsLocked,
+                              IsDeleted = wallet.IsDeleted,
+                              ImageId = wallet.ImageId
+                          }).ToList();
+
+            return entity.ToList();
+        }
+
         public override WalletDM GetItem(int id)
         {
             var entity = from wallet in _context.Wallets
@@ -110,7 +113,7 @@ namespace CPM.Data.Wallet
                              WithdrawLimit = wallet.WithdrawLimit,
 
                              Type = (from walletType in _context.WalletTypes
-                                     where walletType.Id == wallet.WalletTypeId
+                                     where walletType.Category == wallet.WalletTypeId
                                      select new WalletTypeDM
                                      {
                                          Id = walletType.Id,

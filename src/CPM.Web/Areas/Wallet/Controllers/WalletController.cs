@@ -29,11 +29,12 @@ namespace CPM.Web.Areas.Wallet.Controllers
         {
             var viewModel = new WalletListVM();
             var result = _service.GetList(1,"");
+            ModelMappings.Configure();
 
             if (result.Result == GetResultEnum.Success)
-            {
-                ModelMappings.Configure();
-                viewModel.Wallets = Mapper.Map<List<WalletInfoVM>>(result.List);                
+            {                
+                var vmList = Mapper.Map<List<WalletInfoVM>>(result.List);
+                viewModel.Wallets = vmList;
                 return View(viewModel);                
             }
             else
@@ -45,12 +46,13 @@ namespace CPM.Web.Areas.Wallet.Controllers
         public IActionResult Detail(int id)
         {
             var viewModel = new WalletVM();
-            var result = _service.GetWalletById(id);
-            
-            if(result.Result == GetResultEnum.Success)
-            {
-                ModelMappings.Configure();
-                viewModel = Mapper.Map<WalletVM>(result.Item);
+            var result = _service.GetItem(id);
+            ModelMappings.Configure();
+
+            if (result.Result == GetResultEnum.Success)
+            {               
+                 var vm = Mapper.Map<WalletVM>(result.Item);
+                viewModel = vm;
                 return View("Detail", viewModel);
             }
             else
