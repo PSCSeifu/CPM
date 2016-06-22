@@ -29,7 +29,7 @@ namespace CPM.Web.Areas.Offer.Controllers
 
             if (result.Result == GetResultEnum.Success)
             {
-               // ModelMappings.Configure();
+                ModelMappings.Configure();
                 viewModel.Offers = Mapper.Map<List<OfferInfoVM>>(result.List);
                 return View(viewModel);
             }
