@@ -58,7 +58,7 @@ namespace CPM.Business.Currency
             }
         }
 
-        public override GetListResult<CurrencyInfoBM> GetList(int key, string searchTerm)
+        public override GetListResult<CurrencyInfoBM>GetList(int key, string searchTerm)
         {
             try
             {
@@ -77,8 +77,7 @@ namespace CPM.Business.Currency
                 return ServiceResultsHelper.FillGetListResultForError<CurrencyInfoBM>(ex);
             }
         }
-
-
+        
         public override ProcessResult Save(CurrencyBM item)
         {
             try

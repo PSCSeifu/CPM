@@ -132,7 +132,7 @@ namespace CPM.Web
             {
                 routes.MapRoute(
                 name: "default",
-                template: "{area=Wallet}/{controller=Wallet}/{action=Index}/");
+                template: "{area=Currency}/{controller=Currency}/{action=Index}/");
         });
 
         }
@@ -163,6 +163,7 @@ namespace CPM.Web
                 seeder.EnsureSeedWalletTypeData(Path.Combine(folderPath, "walletTypes.json"));
                 seeder.EnsureSeedOfferData(Path.Combine(folderPath, "offers.json"));
                 seeder.EnsureSeedClientData(Path.Combine(folderPath, "clients.json"));
+                seeder.EnsureSeedCurrencyData(Path.Combine(folderPath, "currency.json"));
             }
         }
 

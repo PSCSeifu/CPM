@@ -1,4 +1,5 @@
 using CPM.Data.Client;
+using CPM.Data.Currency;
 using CPM.Data.Entities;
 using CPM.Data.Offer;
 using CPM.Data.Wallet;
@@ -21,7 +22,29 @@ namespace CPM.Data
            
         }
 
-       
+        public void EnsureSeedCurrencyData(string filePath)
+        {
+            CurrencyContext currencyContext = new CurrencyContext();
+            if (!currencyContext.Currency.Any())
+            {
+                dynamic jsonData = ReadJsonFile(filePath);
+                if (jsonData != null)
+                {
+                    foreach (dynamic d in jsonData)
+                    {
+                        currencyContext.Currency.Add(new CurrencyEntity()
+                        {
+                            Id = d.Id,
+                            Code = d.Code,
+                            Description = d.Description,
+                            MarketCap = d.Description,
+                            Name = d.Name
+                        });
+                    }
+                    currencyContext.SaveChanges();
+                }
+            }
+        }
 
         public void EnsureSeedOfferData(string filePath)
         {

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using CPM.Business.Currency;
 using CPM.Business.Offer;
 using CPM.Business.Wallet;
 using CPM.Data.Wallet;
+using CPM.Web.Areas.Currency.Models;
 using CPM.Web.Areas.Offer.Models;
 using CPM.Web.Areas.Wallet.Models;
 using System;
@@ -27,8 +29,12 @@ namespace CPM.Web
               config.CreateMap<OfferBM, OfferInfoVM>();
               #endregion
 
+              #region " Currency "
+              config.CreateMap<CurrencyInfoBM, CurrencyInfoVM>();
+              #endregion
+
               #region Global
-              
+
               #endregion
           });
         }

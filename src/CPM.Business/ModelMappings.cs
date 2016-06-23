@@ -31,8 +31,8 @@ namespace CPM.Business
 
 
                config.CreateMap<CurrencyDM, CurrencyBM>();
-               config.CreateMap<CurrencyDM, CurrencyInfoDM>();
-               config.CreateMap<CurrencyInfoDM, CurrencyBM>();
+               config.CreateMap<CurrencyInfoDM, CurrencyInfoBM>();
+               config.CreateMap< CurrencyDM , CurrencyBM>();
            });
        
         }
