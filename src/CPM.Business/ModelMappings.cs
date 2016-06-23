@@ -1,6 +1,8 @@
 using AutoMapper;
+using CPM.Business.Currency;
 using CPM.Business.Offer;
 using CPM.Business.Wallet;
+using CPM.Data.Currency;
 using CPM.Data.Entities;
 using CPM.Data.Offer;
 using CPM.Data.Wallet;
@@ -26,6 +28,11 @@ namespace CPM.Business
                config.CreateMap<OfferDM, OfferBM>();
                config.CreateMap<OfferDM, OfferInfoDM>();
                config.CreateMap<OfferInfoDM, OfferBM>();
+
+
+               config.CreateMap<CurrencyDM, CurrencyBM>();
+               config.CreateMap<CurrencyDM, CurrencyInfoDM>();
+               config.CreateMap<CurrencyInfoDM, CurrencyBM>();
            });
        
         }
