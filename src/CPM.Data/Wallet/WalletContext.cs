@@ -13,6 +13,10 @@ namespace CPM.Data.Wallet
     {
         DbSet<WalletEntity> Wallets { get; set; }
         DbSet<WalletTypeEntity> WalletTypes { get; set; }
+
+        DbSet<OfferEntity> Offers { get; set; }
+        DbSet<ClientEntity> Clients { get; set; }
+        DbSet<CurrencyEntity> Currencies { get; set; }
     }
 
 
@@ -24,5 +28,9 @@ namespace CPM.Data.Wallet
         }
         public DbSet<WalletEntity> Wallets { get; set; }
         public DbSet<WalletTypeEntity> WalletTypes { get; set; }
+
+        public DbSet<OfferEntity> Offers { get; set; }
+        public DbSet<ClientEntity> Clients { get; set; }        
+        public DbSet<CurrencyEntity> Currencies { get; set; }
     }
 }

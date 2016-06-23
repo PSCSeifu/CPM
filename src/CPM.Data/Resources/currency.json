@@ -1,0 +1,81 @@
+[
+  {
+    "Id": 0,
+    "Name": "BitCoin",
+    "Code": "BTC",
+    "MarketCap": 123456.15,
+    "Description": null
+
+  },
+  {
+    "Id": 0,
+    "Name": "Ethereum",
+    "Code": "ETH",
+    "MarketCap": 2266226622,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "Dash",
+    "Code": "DASH",
+    "MarketCap": 65236963.15,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "Ripple",
+    "Code": "XRP",
+    "MarketCap": 123456.15,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "Dodge",
+    "Code": "DOGE",
+    "MarketCap": 111123456.15,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "MaidSafeCoin",
+    "Code": "MAID",
+    "MarketCap": 123456.15,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "DarkCoin",
+    "Code": "DARK",
+    "MarketCap": 123456.15,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "SolarCoin",
+    "Code": "SLR",
+    "MarketCap": 225522.15,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "NEM",
+    "Code": "XEM",
+    "MarketCap": 168337217.15,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "The DAO",
+    "Code": "DAO",
+    "MarketCap": 168337217.15,
+    "Description": null
+  },
+
+  {
+    "Id": 0,
+    "Name": "Lisk",
+    "Code": "LSK",
+    "MarketCap": 35889800.0m,
+    "Description": null
+  }
+]

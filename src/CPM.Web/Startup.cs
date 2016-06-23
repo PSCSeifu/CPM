@@ -154,14 +154,15 @@ namespace CPM.Web
             }
         }
 
-        private  void UseSeedData(string folderPath)
+        private void UseSeedData(string folderPath)
         {
             if (!string.IsNullOrWhiteSpace(folderPath) && Directory.Exists(folderPath))
             {
-                EnsureSeedData seeder = new EnsureSeedData();               
+                EnsureSeedData seeder = new EnsureSeedData();
                 seeder.EnsureSeedWalletData(Path.Combine(folderPath, "wallets.json"));
-                seeder.EnsureWalletTypeSeedData(Path.Combine(folderPath, "walletTypes.json"));
-               // seeder.EnsureSeedOfferData(Path.Combine(folderPath, "offers.json"));
+                seeder.EnsureSeedWalletTypeData(Path.Combine(folderPath, "walletTypes.json"));
+                seeder.EnsureSeedOfferData(Path.Combine(folderPath, "offers.json"));
+                seeder.EnsureSeedClientData(Path.Combine(folderPath, "clients.json"));
             }
         }
 

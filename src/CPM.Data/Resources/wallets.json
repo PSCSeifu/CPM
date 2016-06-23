@@ -54,7 +54,7 @@
     "LockOnWithdrawLimit": false,
     "Name": "EtherAuctionWallet",
     "NotificationLimit": 500.0,
-    "SpendLimit":600.0,
+    "SpendLimit": 600.0,
     "IsDeleted": null,
     "DeleteDate": null,
     "WalletTypeId": 3
@@ -93,7 +93,7 @@
     "LockOnSpendLimit": false,
     "LockOnWithdrawLimit": false,
     "Name": "BitBargainer",
-    "NotificationLimit":1.2,
+    "NotificationLimit": 1.2,
     "SpendLimit": 1.5,
     "IsDeleted": null,
     "DeleteDate": null,

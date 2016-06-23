@@ -1,0 +1,54 @@
+[
+  {
+    "UserId": "",
+    "WebUserType": 1,
+    "WebSubscriptionType": 1,
+    "AgreedOnTerms": true,
+    "Suspended": false,
+    "ExpiryDate": "2018-01-01T00:00:00",
+    "DateRegistered": "2016-06-23T13:22:54.7247652Z",
+    "NickName": "James200",
+    "ForumUserName": "",
+    "cpmModerate": false,
+    "cpmAutoBargain": false,
+    "cpmAnalytics": false,
+    "cpmForum": true,
+    "cpmNews": true,
+    "cpmEscrow": false
+  },
+  {
+    "UserId": "",
+    "WebUserType": 3,
+    "WebSubscriptionType": 2,
+    "AgreedOnTerms": true,
+    "Suspended": false,
+    "ExpiryDate": "2018-01-01T00:00:00",
+    "DateRegistered": "2016-06-23T13:22:54.7247652Z",
+    "NickName": "rt45",
+    "ForumUserName": "",
+    "cpmModerate": false,
+    "cpmAutoBargain": false,
+    "cpmAnalytics": false,
+    "cpmForum": true,
+    "cpmNews": true,
+    "cpmEscrow": false
+  },
+  {
+    "UserId": "",
+    "WebUserType": 2,
+    "WebSubscriptionType": 3,
+    "AgreedOnTerms": true,
+    "Suspended": false,
+    "ExpiryDate": "2018-01-01T00:00:00",
+    "DateRegistered": "2016-06-23T13:22:54.7247652Z",
+    "NickName": "TradingCo200",
+    "ForumUserName": "",
+    "cpmModerate": false,
+    "cpmAutoBargain": false,
+    "cpmAnalytics": false,
+    "cpmForum": true,
+    "cpmNews": true,
+    "cpmEscrow": false
+  }
+
+]

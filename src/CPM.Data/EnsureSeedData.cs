@@ -1,3 +1,4 @@
+using CPM.Data.Client;
 using CPM.Data.Entities;
 using CPM.Data.Offer;
 using CPM.Data.Wallet;
@@ -19,8 +20,71 @@ namespace CPM.Data
         {
            
         }
-              
-        
+
+       
+
+        public void EnsureSeedOfferData(string filePath)
+        {
+            OfferContext offerContext = new OfferContext();
+            if (!offerContext.Offers.Any())
+            {
+                dynamic jsonData = ReadJsonFile(filePath);
+                if (jsonData != null)
+                {
+                    foreach (dynamic d in jsonData)
+                    {
+                        offerContext.Offers.Add(new OfferEntity()
+                        {
+
+                            ClientId = d.ClientId,
+                            WalletId = d.WalletId,
+                            DefaultCurrencyId = d.DefaultCurrencyId,
+                            DateCreated = d.DateCreated,
+                            ExpiryDate = d.ExpiryDate,
+                            Name = d.Name,
+                            Detail = d.Detail
+                        });
+                    }
+                    offerContext.SaveChanges();
+                }
+            }
+        }
+
+        public void EnsureSeedClientData(string filePath)
+        {
+            ClientContext clientContext = new ClientContext();
+            if (clientContext != null && !clientContext.Clients.Any())
+            {
+                dynamic jsonData = ReadJsonFile(filePath);
+                if (jsonData != null)
+                {
+                    foreach (dynamic d in jsonData)
+                    {
+                        clientContext.Clients.Add(new ClientEntity()
+                        {
+                            AgreedOnTerms = d.AgreedOnTerms,
+                            cpmAnalytics = d.cpmAnalytics,
+                            cpmAutoBargain = d.cpmAutoBargain,
+                            cpmEscrow = d.cpmEscrow,
+                            cpmForum = d.cpmForum,
+                            cpmModerate = d.cpmModerate,
+                            cpmNews = d.cpmNews,
+                            DateRegistered = d.DateRegistered,
+                            ExpiryDate = d.ExpiryDate,
+                            ForumUserName = d.ForumUserName,
+                            NickName = d.NickName,
+                            Suspended = d.Suspended,
+                            UserId = d.UserId,
+                            WebSubscriptionType = d.WebSubscriptionType,
+                            WebUserType = d.WebUserType
+
+                        });
+                    }
+                    clientContext.SaveChanges();
+                }
+            }
+        }
+
         public void EnsureSeedWalletData(string filePath)
         {
             WalletContext walletContext = new WalletContext();
@@ -48,7 +112,7 @@ namespace CPM.Data
             }
         }
 
-        public void EnsureWalletTypeSeedData(string filePath)
+        public void EnsureSeedWalletTypeData(string filePath)
         {
             WalletContext walletContext = new WalletContext();
             if (!walletContext.WalletTypes.Any())
@@ -70,33 +134,6 @@ namespace CPM.Data
             }
         }
 
-        public void EnsureSeedOfferData(string filePath)
-        {
-            OfferContext offerContext = new OfferContext();
-            if (!offerContext.Offers.Any())
-            {
-                dynamic jsonData = ReadJsonFile(filePath);
-                if (jsonData != null)
-                {
-                    foreach (dynamic d in jsonData)
-                    {
-                        offerContext.Offers.Add(new OfferEntity()
-                        {
-                           
-                            ClientId =d.ClientId,
-                            WalletId  = d.WalletId,
-                            DefaultCurrencyId = d.DefaultCurrencyId,
-                            DateCreated = d.DateCreated,
-                            ExpiryDate = d.ExpiryDate,
-                            Name = d.Name,
-                           Detail = d.Detail
-                        });
-                    }
-                    offerContext.SaveChanges();
-                }
-            }
-        }
-
         private static dynamic ReadJsonFile(string filePath)
         {
             //Read seed json file
@@ -107,6 +144,6 @@ namespace CPM.Data
                 return jsonData;
             }
             return new JArray();
-        }   
+        }
     }
 }

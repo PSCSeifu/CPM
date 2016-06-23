@@ -25,11 +25,12 @@ namespace CPM.Data.Entities
         public string NickName { get; set; }
         public string ForumUserName { get; set; }
 
+        public bool? cpmModerate { get; set; }
+        public bool? cpmAutoBargain { get; set; }
+        public bool? cpmAnalytics { get; set; }
+        public bool? cpmForum { get; set; }
+        public bool? cpmNews { get; set; }
+        public bool? cpmEscrow { get; set; }
 
-        public bool? eMarketData { get; set; }
-        public bool? eForum { get; set; }
-        public bool? eAnalytics { get; set; }
-        public bool? eNews { get; set; }
-        
     }
 }
