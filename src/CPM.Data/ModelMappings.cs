@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CPM.Data.Currency;
 using CPM.Data.Entities;
 using CPM.Data.Offer;
 using CPM.Data.Wallet;
@@ -17,11 +18,12 @@ namespace CPM.Data
            {
                Configure.CreateMap<WalletEntity, WalletDM>();
                Configure.CreateMap<WalletTypeEntity, WalletTypeDM>();
-
-
-
+               
                Configure.CreateMap<OfferEntity, OfferDM>();
                Configure.CreateMap<OfferDM, OfferInfoDM>();
+
+               Configure.CreateMap<CurrencyEntity, CurrencyDM>();
+               Configure.CreateMap<CurrencyDM, CurrencyInfoDM>();
            });
         }
     }
