@@ -51,7 +51,7 @@ namespace CPM.Web.Areas.Currency.Controllers
 
             if(result.Result == GetResultEnum.Success)
             {
-                ModelMappings.Configure();
+                ModelMappings.Configure(); 
                 var viewmodel = Mapper.Map<List<CurrencyInfoVM>>(result.List);
                 return Json(viewmodel.ToDataSourceResult(request));
             }
