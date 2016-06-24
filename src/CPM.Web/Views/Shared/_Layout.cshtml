@@ -4,44 +4,108 @@
 <head>
     <meta charset="utf-8" name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @*<environment names="Devlopment">*@
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/bootswatch/spacelab/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
-    <link href="~/css/site.css" rel="stylesheet" />
-    <link href="~/css/kendo.common.min.css" rel="stylesheet" />
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    @*</environment>*@
+    <environment names="Development">
+        <link href="~/css/site.css" rel="stylesheet" />
+        <link href="~/lib/css/kendo.common-bootstrap.min.css" rel="stylesheet" />
+        <link href="~/lib/css/kendo.mobile.all.min.css" rel="stylesheet" />
+        <link href="~/lib/css/kendo.bootstrap.min.css" rel="styleshee" />
+        <link href="~/lib/css/Bootstrap/bootstrap.css" rel="stylesheet" />        
+        <link href="~/lib/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="~/lib/css/bootswatch/spacelab/bootstrap.min.css" rel="stylesheet" />
 
-    <environment names="Devlopment">
+        <link href="~/lib/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/lib/js/jquery.min.js"></script>
+        <script src="~/lib/js/kendo.all.min.js"></script>
+        <script src="~/lib/js/kendo.aspnetmvc.min.js"></script>
+   
+    </environment>
+
+    <environment names="Staging,Production">
         @*Bundlded and minified versions *@
     </environment>
 </head>
 <body>
-    <div>
-        <ul id="nav-menu">
-            <li><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Index">Wallets</a></li>
-            <li>
-                Offer
-                <ul>
-                    <li><a asp-route-area="Offer" asp-controller="Offer" asp-action="Index">All</a></li>
-                    <li>Recent</li>
-                    <li>Favourite Traders</li>
+    <nav id="TopNavParent" class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="nav navbar-header">
+                <a asp-route-area="Global" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+            <div class="navbar navbar-collapse" id="navbar-collapse">
+                <div class="nav navbar-brand">CPM</div>
+                <ul class="nav navbar-nav ">
+                    @* @Component.Invoke("NavbarMenu") *@
+                    <li id="currencyMenu">
+                        <a href="#"
+                           data-toggle="collapse"
+                           data-target="#ulCurrency"
+                           class="visible-sm-ms-lg">
+                            <i class="fa fa-money"></i> &nbsp; CURRENCY&nbsp; <b class="caret"></b>
+                        </a>
+                        <div>
+                            <ul id="ulCurrency" class="collapse" data-parent="currencyMenu">
+                                <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Index">All</a></li>
+                                <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Modal">Top 10</a></li>
+                                <li><a href="#">Top 10 Performing</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li id="Offermenu">
+                        <a href="#"
+                           data-toggle="collapse"
+                           data-target="#ulOffers"
+                           class="visible-sm visible-lg-md">
+                            <i class="fa fa-binoculars"></i> OFFERS&nbsp;<b class="caret"></b>
+                        </a>
+                        <div class="visible-sm visible-lg-md">
+                            <ul id="ulOffers" class="collapse" data-parent="#Offermenu">
+                                <li><a asp-route-area="Offer" asp-controller="Offer" asp-action="Index">All</a></li>
+                                <li>Recent</li>
+                                <li>Favourite Traders</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a asp-route-area="Transaction" asp-controller="Transaction" asp-action="Index">TRANSACTION</a>
+                    </li>
+                    <li id="walletmenu">
+                        <a href="#"
+                           data-toggle="collapse"
+                           data-target="#ulwallet"
+                           class="visible-sm-lg-md"
+                            <i class="fa fa-money"></i>WALLETS&nbsp;<b class="caret"></b>
+                         </a>
+                        <div class="visible-sm-lg-md">
+                            <ul id="ulwallet" class="collapse" data-parent="#walletmenu">
+                                <li><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Grid_Read">All</a></li>
+                                <li><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Index">Recent</a></li>
+                            </ul>
+                        </div>          
+                    </li>
+                    <li>
+                        <a asp-route-area="FiatAccount" asp-controller="FiatAccount" asp-action="Index">FIAT</a>
+                    </li>
                 </ul>
-            </li>
-            <li>
-                Currency
-                <ul>
-                    <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Index">All</a></li>
-                    <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Modal">Top 10</a></li>
-                    <li><a href="#">Top 10 Performing</a></li>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Logout</a></li>
+                    @*
+                        <span id="LoggedUsername">@User.FindFirst("username").Value</span>*@
+                    <li><a href="#">Login</a></li>
+                    <li><a asp-route-area="Global" asp-controller="Account" asp-action="Register">Register</a></li>
+
+
                 </ul>
-            </li>
-            <li><a asp-route-area="Transaction" asp-controller="Transaction" asp-action="Index">Transactions</a></li>
-        </ul>
-    </div>
-    
+            </div>
+
+        </div>
+    </nav>
+    @*Navigation bar*@
 
     <div id="main" class="container">
         @RenderBody()

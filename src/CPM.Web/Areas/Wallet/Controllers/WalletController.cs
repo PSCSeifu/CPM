@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CPM.Business.Wallet;
 using CPM.Web.Areas.Wallet.Models;
 using CpmLib.Business.Core.Service;
 using AutoMapper;
-using CPM.Data.Wallet;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -42,7 +42,47 @@ namespace CPM.Web.Areas.Wallet.Controllers
                 return RedirectToAction("Error", "Home", new { Area = "Global" });
             }
         }
-        
+
+        public IActionResult Grid_Read([DataSourceRequest] DataSourceRequest request, string searchTerm = "")
+        {
+            GetListResult<WalletInfoBM> result;
+
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                result = _service.GetList(1, searchTerm);
+            }
+            else
+            {
+                result = _service.GetList(2, searchTerm);
+            }
+
+            if(result.Result == GetResultEnum.Success)
+            {
+                ModelMappings.Configure();                
+                var viewModel = Mapper.Map<List<WalletInfoVM>>(result.List);
+                return Json(viewModel.ToDataSourceResult(request));                 
+            }
+            else
+            {
+                return RedirectToAction("Error", "Home", new { Area = "Global" });
+            }
+
+            //var viewModel = new WalletListVM();
+            //var result = _service.GetList(1, "");
+            //ModelMappings.Configure();
+
+            //if (result.Result == GetResultEnum.Success)
+            //{
+            //    var vmList = Mapper.Map<List<WalletInfoVM>>(result.List);
+            //    viewModel.Wallets = vmList;
+            //    return View(viewModel);
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Error", "Home", new { Area = "Global" });
+            //}
+        }
+
         public IActionResult Detail(int id)
         {
             var viewModel = new WalletVM();

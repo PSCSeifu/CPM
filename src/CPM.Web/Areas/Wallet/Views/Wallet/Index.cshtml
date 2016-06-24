@@ -5,37 +5,35 @@
 @{ Layout = "/Views/Shared/Wallet/_WalletLayout.cshtml";}
 @{ ViewBag.Title = "Wallets";}
 
-
 <div>
-   
     <div>
         @if (!String.IsNullOrWhiteSpace(Model.SearchTerm))
         {
             <div class="label label-default">Model.SearchTerm</div>
         }
 
-        <button asp-route-area="Wallet" sp-controller="Wallet" asp-action="Filter"  class="btn btn-default fa-search"></button>
+        <button asp-route-area="Wallet" sp-controller="Wallet" asp-action="Filter" class="btn btn-default fa-search"></button>
     </div>
     <table class="table table-condensed table-striped col-sm-5">
         <thead>
             <tr>
                 <td></td>
-                <td>Id</td>               
-                <td>Name</td>             
+                <td>Id</td>
+                <td>Name</td>
                 <td>Locked &nbsp;<i class="fa fa-lock"></i></td>
                 <td>Balance&nbsp;<i class="fa fa-bank"></i></td>
-                
+
             </tr>
         </thead>
         @foreach (var wallet in Model.Wallets.ToList())
         {
             <tr>
-                <td><a href="#" class="btn btn-danger btn-xs" > <i class="fa fa-remove" ></i></a></td>
-                <td>@wallet.Id</td>               
-                <td>@wallet.Name</td>            
+                <td><a href="#" class="btn btn-danger btn-xs"> <i class="fa fa-remove"></i></a></td>
+                <td>@wallet.Id</td>
+                <td>@wallet.Name</td>
                 <td>@wallet.IsLocked</td>
                 <td>@wallet.Balance</td>
-                <td><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Detail" asp-route-id="@wallet.Id"><i class="fa fa-edit"></i></a></td>               
+                <td><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Detail" asp-route-id="@wallet.Id"><i class="fa fa-edit"></i></a></td>
             </tr>
         }
     </table>

@@ -20,8 +20,8 @@ namespace CPM.Web
             Mapper.Initialize(config =>
           {
               #region " Wallets "
-              config.CreateMap<WalletTypeBM, WalletTypeVM>();
-              config.CreateMap<WalletInfoBM,WalletInfoVM>();
+              config.CreateMap<WalletTypeBM, WalletTypeVM>();              
+              config.CreateMap<WalletInfoBM, WalletInfoVM>();
               config.CreateMap<WalletBM, WalletVM>();
               #endregion
 
