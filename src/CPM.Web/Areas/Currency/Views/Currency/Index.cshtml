@@ -4,27 +4,24 @@
 @{ ViewBag.Title = "CPM Currencies";}
 
 <div>
-    <h4>CurrencyListVM</h4>
-    <table class="table table-condensed table-striped">
-        <thead>
-            <tr>
-                <td>""</td>
-                <td>Name</td>
-                <td>Code</td>                
-                <td>""</td>
-                <td>""</td>
-            </tr>
-        </thead>   
-        @foreach (var item in Model.Currencies)
-        {
-            <tr>
-                <td>""</td>
-                <td>@item.Name</td>
-                <td>@item.Code</td>
-                <td>""</td>
-                <td>""</td>
-                }
-            </tr>
-        }
+    <table class="table table-bordered table-condensed">        
+     <tr >
+         <th></th>
+        <th>Name</th>
+        <th>Code</th>                
+        <th></th>
+        <th></th>
+    </tr>
+                   
+    @foreach (var item in Model.Currencies)
+    {
+        <tr>
+            <td></td>
+            <td>@item.Name</td>
+            <td>@item.Code</td>
+            <td></td>
+            <td></td>            
+        </tr>
+    }
     </table>  
 </div>

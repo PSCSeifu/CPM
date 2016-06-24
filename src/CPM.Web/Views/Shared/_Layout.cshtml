@@ -9,16 +9,17 @@
         <link href="~/lib/css/kendo.common-bootstrap.min.css" rel="stylesheet" />
         <link href="~/lib/css/kendo.mobile.all.min.css" rel="stylesheet" />
         <link href="~/lib/css/kendo.bootstrap.min.css" rel="styleshee" />
-        <link href="~/lib/css/Bootstrap/bootstrap.css" rel="stylesheet" />        
-        <link href="~/lib/css/font-awesome.min.css" rel="stylesheet" />
-        <link href="~/lib/css/bootswatch/spacelab/bootstrap.min.css" rel="stylesheet" />
 
-        <link href="~/lib/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="~/lib/css/Bootstrap/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/lib/css/bootswatch/spacelab/bootstrap.min.css" rel="stylesheet" />
         <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/lib/css/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
         <script src="~/lib/js/jquery.min.js"></script>
         <script src="~/lib/js/kendo.all.min.js"></script>
         <script src="~/lib/js/kendo.aspnetmvc.min.js"></script>
-   
+        <script src="~/lib/js/bootstrap.min.js"></script>
+        <script src="~/lib/js/jquery.min.js"></script>
     </environment>
 
     <environment names="Staging,Production">
@@ -30,14 +31,13 @@
         <div class="container-fluid">
             <div class="nav navbar-header">
                 <a asp-route-area="Global" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                    <span class="glyphicon glyphicon-home"></span>
                 </a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
             </div>
             <div class="navbar navbar-collapse" id="navbar-collapse">
-                <div class="nav navbar-brand">CPM</div>
+                <div class="nav navbar-brand" style="font-size:xx-large">CPM <i class="fa fa-home"></i></div>
                 <ul class="nav navbar-nav ">
                     @* @Component.Invoke("NavbarMenu") *@
                     <li id="currencyMenu">
@@ -49,8 +49,8 @@
                         </a>
                         <div>
                             <ul id="ulCurrency" class="collapse" data-parent="currencyMenu">
-                                <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Index">All</a></li>
-                                <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Modal">Top 10</a></li>
+                                <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Grid_Read">All</a></li>
+                                <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Index">Top 10</a></li>
                                 <li><a href="#">Top 10 Performing</a></li>
                             </ul>
                         </div>
@@ -69,15 +69,12 @@
                                 <li>Favourite Traders</li>
                             </ul>
                         </div>
-                    </li>
-                    <li>
-                        <a asp-route-area="Transaction" asp-controller="Transaction" asp-action="Index">TRANSACTION</a>
-                    </li>
+                    </li>                   
                     <li id="walletmenu">
-                        <a href="#"
+                        <a href ="#"
                            data-toggle="collapse"
                            data-target="#ulwallet"
-                           class="visible-sm-lg-md"
+                           class="visible-sm visible-lg-md"
                             <i class="fa fa-money"></i>WALLETS&nbsp;<b class="caret"></b>
                          </a>
                         <div class="visible-sm-lg-md">
@@ -86,10 +83,7 @@
                                 <li><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Index">Recent</a></li>
                             </ul>
                         </div>          
-                    </li>
-                    <li>
-                        <a asp-route-area="FiatAccount" asp-controller="FiatAccount" asp-action="Index">FIAT</a>
-                    </li>
+                    </li>                    
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -110,9 +104,9 @@
     <div id="main" class="container">
         @RenderBody()
     </div>
-    <script src="~/js/kendo.all.min.js"></script>
+    @*<script src="~/js/kendo.all.min.js"></script>
     <script src="~/js/kendo.aspnetmvc.min.js"></script>
-    <script src="~/js/layout.js"></script>
+    <script src="~/js/layout.js"></script>*@
    
 
     @RenderSection("Scripts", false)

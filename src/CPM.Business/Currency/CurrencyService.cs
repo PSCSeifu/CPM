@@ -77,7 +77,22 @@ namespace CPM.Business.Currency
                 return ServiceResultsHelper.FillGetListResultForError<CurrencyInfoBM>(ex);
             }
         }
-        
+
+        public override GetListResult<CurrencyInfoBM> GetList()
+        {
+            try
+            {
+                ModelMappings.Configure();
+
+                var result = Mapper.Map < List<CurrencyInfoBM>>(_repository.GetList());
+                return ServiceResultsHelper.FillGetListResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ServiceResultsHelper.FillGetListResultForError<CurrencyInfoBM>(ex);
+            }
+        }
+
         public override ProcessResult Save(CurrencyBM item)
         {
             try

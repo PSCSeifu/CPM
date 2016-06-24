@@ -31,9 +31,23 @@ namespace CPM.Data.Currency
 
         //CRUD 
 
+        public override List<CurrencyInfoDM> GetList()
+        {
+            var entity = (from currency in _context.Currency
+                          select new CurrencyInfoDM
+                          {
+                              Id = currency.Id,
+                              Code = currency.Code,
+                              Name = currency.Name
+                          });
+
+            return entity.ToList();
+        }
+
         public override List<CurrencyInfoDM> GetList(int key)
         {
             var entity = (from currency in _context.Currency
+                          where currency.Id == key
                           select new CurrencyInfoDM
                           {
                               Id = currency.Id,

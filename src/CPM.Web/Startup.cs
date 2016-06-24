@@ -132,7 +132,7 @@ namespace CPM.Web
             {
                 routes.MapRoute(
                 name: "default",
-                template: "{area=Currency}/{controller=Currency}/{action=Index}/");
+                template: "{area=Wallet}/{controller=Wallet}/{action=Index}/");
         });
 
         }

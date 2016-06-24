@@ -1,8 +1,6 @@
 ﻿@model CPM.Web.Areas.Wallet.Models.WalletListVM
 
-<div><p>this is the wallet grid read page</p></div>
-
-@*@(Html.Kendo().Grid<CPM.Web.Areas.Wallet.Models.WalletInfoVM>()
+@(Html.Kendo().Grid<CPM.Web.Areas.Wallet.Models.WalletInfoVM>()
     .Name("grid")
     .Columns(c =>
     {
@@ -12,12 +10,13 @@
           .Title("Locked?");
         c.Bound(b => b.Balance)
           .Title("Balance");
-    })
+    }
+    )
     .Pageable(p => p.PageSizes( new int[] { 5, 10, 20 }))
     .DataSource(data => data
         .Ajax()
         .PageSize(3)
         .ServerOperation(false)
-        .Read(read => read.Action("Grid_Read", "Wallet", new { area = "Wallet", searchTerm = "" }))
+        .Read(read => read.Action("Grid_Read", "Wallet", new { Area = "Wallet", searchTerm = "" }))
     )
-)*@
+)

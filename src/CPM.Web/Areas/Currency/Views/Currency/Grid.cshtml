@@ -1,7 +1,27 @@
 ﻿@model CPM.Web.Areas.Currency.Models.CurrencyListVM
-@{ ViewBag.Title = "Currency List";}
 @{ Layout = "/Views/Shared/Currency/_CurrencyLayout.cshtml"; }
 
-<div>
 
-</div>
+@Html.Kendo().Editor()
+        
+
+
+ @(Html.Kendo().Grid<CPM.Web.Areas.Currency.Models.CurrencyInfoVM>()
+    .Name("grid")
+     .DataSource(data => data
+        .Ajax()
+        .Read(read => read.Action("Grid_Read", "Currency", new { area = "Currency" }))
+    )
+    .Columns(c =>
+    {
+        c.Bound(b => b.Name)
+          .Title("Name");
+        c.Bound(b => b.Code)
+          .Title("Code");
+        c.Bound(b => b.Id)
+          .Title("ID");
+    }
+    )
+    .Pageable(p => p.PageSizes(new int[] { 8, 10, 20 }))
+
+        )

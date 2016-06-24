@@ -66,21 +66,6 @@ namespace CPM.Web.Areas.Wallet.Controllers
             {
                 return RedirectToAction("Error", "Home", new { Area = "Global" });
             }
-
-            //var viewModel = new WalletListVM();
-            //var result = _service.GetList(1, "");
-            //ModelMappings.Configure();
-
-            //if (result.Result == GetResultEnum.Success)
-            //{
-            //    var vmList = Mapper.Map<List<WalletInfoVM>>(result.List);
-            //    viewModel.Wallets = vmList;
-            //    return View(viewModel);
-            //}
-            //else
-            //{
-            //    return RedirectToAction("Error", "Home", new { Area = "Global" });
-            //}
         }
 
         public IActionResult Detail(int id)

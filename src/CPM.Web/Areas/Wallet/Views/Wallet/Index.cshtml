@@ -22,14 +22,13 @@
                 <td>Name</td>
                 <td>Locked &nbsp;<i class="fa fa-lock"></i></td>
                 <td>Balance&nbsp;<i class="fa fa-bank"></i></td>
-
             </tr>
         </thead>
         @foreach (var wallet in Model.Wallets.ToList())
         {
             <tr>
                 <td><a href="#" class="btn btn-danger btn-xs"> <i class="fa fa-remove"></i></a></td>
-                <td>@wallet.Id</td>
+               
                 <td>@wallet.Name</td>
                 <td>@wallet.IsLocked</td>
                 <td>@wallet.Balance</td>
