@@ -1,48 +1,65 @@
 ﻿@{Layout = "/Views/Shared/_Layout.cshtml";}
 @{ ViewBag.Title = "Home";}
+
 <div>
-    <h3>Global index view</h3>
-    <div class="smta-widget-container">
-        <div class="smta-widget">
-            <div class="smta-widget-header">
-                <a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Index">Wallets</a>
+    <div >
+        <div class="col-xs-12 col-sm-4">
+            <div class="smta-summary-block smta-summary-block-primary">
+                <div class="smta-summary-background">
+                    <i class="fa fa-archive"></i>
+                </div>
+                <div class="smta-summary-body">
+                    <div class="summary-line1">5</div>
+                    <div class="summary-line2">Wallets</div>
+                </div>
+                <div class="smta-summary-footer">
+                    <a href="#">View Wallets</a>
+                    <i class="fa fa-chevron-right pull-right"></i>
+                </div>
             </div>
-            <div class="smta-widget-body">4</div>
-            <div class="smta-widget-footer"><a href="#">You have 4 wallets... <i class="fa fa-chevron-right"></i></a></div>
-        </div>
 
-        <div class="smta-widget">
-            <div class="smta-widget-header">
-                <a asp-route-area="Currency" asp-controller="Currency" asp-action="Index">Currency</a>
+            <div class="smta-summary-block smta-summary-block-success">
+                <div class="smta-summary-background">
+                    <i class="fa fa-hand-o-right"></i>
+                </div>
+                <div class="smta-summary-body">
+                    <div class="summary-line1">13</div>
+                    <div class="summary-line2">Offers</div>
+                </div>
+                <div class="smta-summary-footer">
+                    <a href="#">View Offers</a>
+                    <i class="fa fa-chevron-right pull-right"></i>
+                </div>
             </div>
-            <div class="smta-widget-body">250</div>
-            <div class="smta-widget-footer"><a href="#">Your favourites ... <i class="fa fa-chevron-right"></i></a> </div>
-        </div>
 
-        <div class="smta-widget">
-            <div class="smta-widget-header">
-                <a asp-route-area="Offer" asp-controller="Offer" asp-action="Index">Offers</a>
+            <div class="smta-summary-block smta-summary-block-info">
+                <div class="smta-summary-background">
+                    <i class="fa fa-money"></i>
+                </div>
+                <div class="smta-summary-body">
+                    <div class="summary-line1">261</div>
+                    <div class="summary-line2">Currency</div>
+                </div>
+                <div class="smta-summary-footer">
+                    <a href="#">View Currencies</a>
+                    <i class="fa fa-chevron-right pull-right"></i>
+                </div>
             </div>
-            <div class="smta-widget-body">26</div>
-            <div class="smta-widget-footer"><a href="#">Latest Offers... <i class="fa fa-chevron-right"></i></a></div>
-        </div>
 
-        <div class="smta-widget">
-            <div class="smta-widget-header">
-                <a href="#">Transactions</a>
+            <div class="smta-summary-block smta-summary-block-danger">
+                <div class="smta-summary-background">
+                    <i class="fa fa-table"></i>
+                </div>
+                <div class="smta-summary-body">
+                    <div class="summary-line1">38</div>
+                    <div class="summary-line2">Transactions</div>
+                </div>
+                <div class="smta-summary-footer">
+                    <a href="#">See Transactions</a>
+                    <i class="fa fa-chevron-right pull-right"></i>
+                </div>
             </div>
-            <div class="smta-widget-body">38</div>
-            <div class="smta-widget-footer"><a href="#">Recent Transactions... <i class="fa fa-chevron-right"></i></a></div>
+
         </div>
-
-        <div class="smta-widget">
-            <div class="smta-widget-header">
-                <a href="#">News</a>
-            </div>
-            <div class="smta-widget-body">5</div>
-            <div class="smta-widget-footer"><a href="#">Most recent... <i class="fa fa-chevron-right"></i></a></div>
-        </div>
-
-
     </div>
 </div>
