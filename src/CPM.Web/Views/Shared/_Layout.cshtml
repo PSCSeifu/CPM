@@ -28,26 +28,24 @@
 </head>
 <body>
     <nav id="TopNavParent" class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="nav navbar-header">
-                <a asp-route-area="Global" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                </a>
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
+        <div class="container-fluid">           
             <div class="navbar navbar-collapse" id="navbar-collapse">
-                <div class="nav navbar-brand" style="font-size:xx-large">CPM <i class="fa fa-home"></i></div>
+
+                <div class="nav navbar-brand" style="font-size:xx-large">CPM
+                    <a asp-route-area="Global" asp-controller="Home" asp-action="Index" >
+                         <i class="fa fa-home"></i>
+                    </a>                    
+                </div>
                 <ul class="nav navbar-nav ">
                     @* @Component.Invoke("NavbarMenu") *@
                     <li id="currencyMenu">
                         <a href="#"
                            data-toggle="collapse"
                            data-target="#ulCurrency"
-                           class="visible-sm-ms-lg">
+                           class="visible-sm-ms-lg"
                             <i class="fa fa-money"></i> &nbsp; CURRENCY&nbsp; <b class="caret"></b>
                         </a>
-                        <div>
+                        <div class="visible-sm-ms-lg">
                             <ul id="ulCurrency" class="collapse" data-parent="currencyMenu">
                                 <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Grid_Read">All</a></li>
                                 <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Index">Top 10</a></li>
@@ -59,22 +57,22 @@
                         <a href="#"
                            data-toggle="collapse"
                            data-target="#ulOffers"
-                           class="visible-sm visible-lg-md">
+                           class="visible-sm-ms-lg"
                             <i class="fa fa-binoculars"></i> OFFERS&nbsp;<b class="caret"></b>
                         </a>
-                        <div class="visible-sm visible-lg-md">
+                        <div class="visible-sm-ms-lg">
                             <ul id="ulOffers" class="collapse" data-parent="#Offermenu">
                                 <li><a asp-route-area="Offer" asp-controller="Offer" asp-action="Index">All</a></li>
                                 <li>Recent</li>
                                 <li>Favourite Traders</li>
                             </ul>
                         </div>
-                    </li>                   
+                    </li>
                     <li id="walletmenu">
-                        <a href ="#"
+                        <a href="#"
                            data-toggle="collapse"
                            data-target="#ulwallet"
-                           class="visible-sm visible-lg-md"
+                           class="visible-sm-ms-lg"
                             <i class="fa fa-money"></i>WALLETS&nbsp;<b class="caret"></b>
                          </a>
                         <div class="visible-sm-lg-md">
@@ -82,8 +80,8 @@
                                 <li><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Grid_Read">All</a></li>
                                 <li><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Index">Recent</a></li>
                             </ul>
-                        </div>          
-                    </li>                    
+                        </div>
+                    </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -105,9 +103,9 @@
         @RenderBody()
     </div>
     @*<script src="~/js/kendo.all.min.js"></script>
-    <script src="~/js/kendo.aspnetmvc.min.js"></script>
-    <script src="~/js/layout.js"></script>*@
-   
+        <script src="~/js/kendo.aspnetmvc.min.js"></script>
+        <script src="~/js/layout.js"></script>*@
+
 
     @RenderSection("Scripts", false)
 

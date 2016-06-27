@@ -10,10 +10,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CPM.Web.Areas.Global.Controllers
 {
+    [Area("Global")]
     public class HomeController : Controller
     {
         // GET: /<controller>/
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Error()
         {
             return View();
         }

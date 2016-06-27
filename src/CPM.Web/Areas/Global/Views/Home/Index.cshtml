@@ -1,6 +1,48 @@
-﻿
-@{ Layout = "/Views/Shared/Global/_GlobalLayout.cshtml" ; }
+﻿@{Layout = "/Views/Shared/_Layout.cshtml";}
+@{ ViewBag.Title = "Home";}
 <div>
-    @{ ViewBag.Title = "Global Home";}
     <h3>Global index view</h3>
+    <div class="smta-widget-container">
+        <div class="smta-widget">
+            <div class="smta-widget-header">
+                <a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Index">Wallets</a>
+            </div>
+            <div class="smta-widget-body">4</div>
+            <div class="smta-widget-footer"><a href="#">You have 4 wallets... <i class="fa fa-chevron-right"></i></a></div>
+        </div>
+
+        <div class="smta-widget">
+            <div class="smta-widget-header">
+                <a asp-route-area="Currency" asp-controller="Currency" asp-action="Index">Currency</a>
+            </div>
+            <div class="smta-widget-body">250</div>
+            <div class="smta-widget-footer"><a href="#">Your favourites ... <i class="fa fa-chevron-right"></i></a> </div>
+        </div>
+
+        <div class="smta-widget">
+            <div class="smta-widget-header">
+                <a asp-route-area="Offer" asp-controller="Offer" asp-action="Index">Offers</a>
+            </div>
+            <div class="smta-widget-body">26</div>
+            <div class="smta-widget-footer"><a href="#">Latest Offers... <i class="fa fa-chevron-right"></i></a></div>
+        </div>
+
+        <div class="smta-widget">
+            <div class="smta-widget-header">
+                <a href="#">Transactions</a>
+            </div>
+            <div class="smta-widget-body">38</div>
+            <div class="smta-widget-footer"><a href="#">Recent Transactions... <i class="fa fa-chevron-right"></i></a></div>
+        </div>
+
+        <div class="smta-widget">
+            <div class="smta-widget-header">
+                <a href="#">News</a>
+            </div>
+            <div class="smta-widget-body">5</div>
+            <div class="smta-widget-footer"><a href="#">Most recent... <i class="fa fa-chevron-right"></i></a></div>
+        </div>
+
+
+    </div>
 </div>

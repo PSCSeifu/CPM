@@ -47,7 +47,7 @@ namespace CPM.Web
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //AddIdentity(services);
+            AddIdentity(services);
             AddMvc(services);
             AddBusiness(services);          
             //AddEntityFramework(services);
@@ -57,7 +57,7 @@ namespace CPM.Web
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {             
             UsePlatform(app, env);
-           // UseIdentity(app);
+            UseIdentity(app);
             UseMvc(app);
             // UseSeedDataWriter(@"C:\Projects\CPM\src\CPM.Data\Resources");
             UseSeedData(@"C:\Projects\CPM\src\CPM.Data\Resources");
@@ -95,11 +95,7 @@ namespace CPM.Web
         {
             DependecyInjection.Configure(services);
         }
-
-        //private void AddSeeder(IServiceCollection services)
-        //{
-        //    services.AddScoped<EnsureSeedData>();
-        //}
+               
         
         #endregion
 
@@ -132,7 +128,7 @@ namespace CPM.Web
             {
                 routes.MapRoute(
                 name: "default",
-                template: "{area=Wallet}/{controller=Wallet}/{action=Index}/");
+                template: "{area=Global}/{controller=Home}/{action=Index}/");
         });
 
         }

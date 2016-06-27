@@ -25,14 +25,12 @@ namespace CPM.Business
                config.CreateMap<WalletTypeDM, WalletTypeBM>();
 
 
-               config.CreateMap<OfferDM, OfferBM>();
-               config.CreateMap<OfferDM, OfferInfoDM>();
-               config.CreateMap<OfferInfoDM, OfferBM>();
+               config.CreateMap<OfferDM, OfferBM>();               
+               config.CreateMap<OfferInfoDM, OfferInfoBM>();
 
 
                config.CreateMap<CurrencyDM, CurrencyBM>();
-               config.CreateMap<CurrencyInfoDM, CurrencyInfoBM>();
-               config.CreateMap< CurrencyDM , CurrencyBM>();
+               config.CreateMap<CurrencyInfoDM, CurrencyInfoBM>();               
            });
        
         }

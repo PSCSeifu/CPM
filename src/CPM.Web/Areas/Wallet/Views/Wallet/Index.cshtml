@@ -6,35 +6,54 @@
 @{ ViewBag.Title = "Wallets";}
 
 <div>
-    <div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <span class="input-icon">
+                <input id="SearchBox" type="text" placeholder="Search by Wallet Name e.g MyWallet" />
+                <a class="btn btn-default" asp-controller="Wallet" asp-action="Filter" data-val="">
+                    <i class="ace-icon fa fa-search"></i>
+                </a>
+            </span>
+        </div>
+    </div>
+    @*<div>
         @if (!String.IsNullOrWhiteSpace(Model.SearchTerm))
         {
             <div class="label label-default">Model.SearchTerm</div>
         }
-
-        <button asp-route-area="Wallet" sp-controller="Wallet" asp-action="Filter" class="btn btn-default fa-search"></button>
-    </div>
+    </div>*@
     <table class="table table-condensed table-striped col-sm-5">
         <thead>
             <tr>
                 <td></td>
-                <td>Id</td>
                 <td>Name</td>
-                <td>Locked &nbsp;<i class="fa fa-lock"></i></td>
-                <td>Balance&nbsp;<i class="fa fa-bank"></i></td>
+                <td>Locked</td>
+                <td>Balance</td>
+                <td></td>
             </tr>
         </thead>
         @foreach (var wallet in Model.Wallets.ToList())
         {
             <tr>
-                <td><a href="#" class="btn btn-danger btn-xs"> <i class="fa fa-remove"></i></a></td>
-               
+                <td><a href="#" class="btn btn-danger btn-xs"> <i class="fa fa-remove"></i></a></td>               
                 <td>@wallet.Name</td>
-                <td>@wallet.IsLocked</td>
-                <td>@wallet.Balance</td>
+                <td>                    
+                        @if (@wallet.IsLocked)
+                        {
+                            <i class="fa fa-lock"></i>;
+                        }
+                        else
+                        {
+                            <i class="fa fa-unlock"></i>;
+                        }  
+                </td>
+                <td>@wallet.Currency &nbsp; @wallet.Balance</td>
                 <td><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Detail" asp-route-id="@wallet.Id"><i class="fa fa-edit"></i></a></td>
             </tr>
         }
+        
     </table>
-
+    <div>
+        <button class="btn  btn-success btn-xs" asp-route-area="Wallet" asp-controller="wallet" asp-action="Create">New &nbsp;<i class="fa fa-plus"></i></button>
+    </div>
 </div>

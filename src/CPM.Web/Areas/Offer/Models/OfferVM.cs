@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CPM.Business.Offer
+namespace CPM.Web.Areas.Offer.Models
 {
-    public class OfferBM
+    public class OfferVM
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
@@ -22,15 +22,5 @@ namespace CPM.Business.Offer
         public string Detail { get; set; }
 
         public bool IsNew { get; set; }
-    }
-
-    public class OfferInfoBM
-    {
-        public int Id { get; set; }
-        public string ClientName { get; set; }
-        public string CurrencyCode { get; set; }
-        public DateTime? DateCreated { get; set; }
-        public DateTime? ExpiryDate { get; set; }
-        public string Name { get; set; }
     }
 }

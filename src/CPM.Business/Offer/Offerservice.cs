@@ -1,3 +1,4 @@
+using AutoMapper;
 using CPM.Data.Offer;
 using CpmLib.Business.Core.Service;
 using System;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CPM.Business.Offer
 {
-    public interface IOfferService : IServiceBase
+    public interface IOfferService : ICrudServiceBase<OfferInfoBM,OfferBM>
     {
         GetListResult<OfferBM> GetListById(int clientId);
         GetListResult<OfferBM> GetListBySearchTerm(int clientId, string searchTerm);
@@ -16,18 +17,20 @@ namespace CPM.Business.Offer
         GetListResult<OfferBM> GetOfferById(int offerId);
     }
 
-    public class OfferService: ServiceBase, IOfferService
+    public class OfferService: CrudServiceBase<OfferInfoBM,OfferBM>, IOfferService
     {
-        private readonly IOfferRepository _repository;
+        private  IOfferRepository _repository;
+        private  IOfferValidator _validator;
 
         public OfferService()
         {
             _repository = new OfferRepository();
         }
 
-        public OfferService(IOfferRepository repository)
+        public OfferService(IOfferRepository repository,IOfferValidator validator)
         {
             _repository = repository;
+            _validator = validator;
         }
 
         public GetListResult<OfferBM> GetListById( int clientId)
@@ -67,5 +70,77 @@ namespace CPM.Business.Offer
         {
             throw new NotImplementedException();
         }
+
+        //CRUD 
+
+        public override ProcessResult Delete(int id)
+        {
+            try
+            {
+                _repository.Delete(id);
+                return ServiceResultsHelper.FillProcessResult(null);
+            }
+            catch (Exception ex)
+            {
+                return ServiceResultsHelper.FillProcessResultForError(ex);
+            }
+        }
+
+        public override GetItemResult<OfferBM> GetItem(int id)
+        {
+            try
+            {
+                ModelMappings.Configure();
+                var result = Mapper.Map<OfferBM>(_repository.GetItem(id));
+                return ServiceResultsHelper.FillGetItemResult(result);
+            }
+            catch (Exception ex)
+            {
+               return ServiceResultsHelper.FillGetItemResultForError<OfferBM>(ex);
+            }
+        }
+
+        public override GetListResult<OfferInfoBM> GetList(int key, string searchTerm)
+        {
+           try
+            {
+                ModelMappings.Configure();
+                if (!string.IsNullOrEmpty(searchTerm))
+                {
+                    var result = Mapper.Map<List<OfferInfoBM>>(_repository.GetList(key,searchTerm));
+                    return ServiceResultsHelper.FillGetListResult(result);
+                }
+
+                var resultEx = Mapper.Map<List<OfferInfoBM>>(_repository.GetList(key));
+                return ServiceResultsHelper.FillGetListResult(resultEx);
+
+            }
+            catch(Exception ex)
+            {
+                return ServiceResultsHelper.FillGetListResultForError<OfferInfoBM>(ex);
+            }
+        }
+
+        public override ProcessResult Save(OfferBM item)
+        {
+            try
+            {
+                //Validation can be inserted here
+                if (item.IsNew)
+                {
+                    _repository.Insert(Mapper.Map<OfferDM>(item));
+                }
+                else
+                {
+                    _repository.Update(Mapper.Map<OfferDM>(item));
+                }
+                return ServiceResultsHelper.FillProcessResult(_validator.Validations);
+            }
+            catch (Exception ex)
+            {
+                return ServiceResultsHelper.FillProcessResultForError(ex);
+            }
+        }
+
     }
 }
