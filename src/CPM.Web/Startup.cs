@@ -50,7 +50,7 @@ namespace CPM.Web
             AddIdentity(services);
             AddMvc(services);
             AddBusiness(services);          
-            //AddEntityFramework(services);
+            AddEntityFramework(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,13 +75,13 @@ namespace CPM.Web
         private void AddEntityFramework (IServiceCollection services)
         {
             services.AddDbContext<WalletContext>(options => 
-                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+                     options.UseSqlServer(Configuration["Data:CPMConnection"],b => b.MigrationsAssembly("CPM.Web")));
             services.AddDbContext<ClientContext>(options =>
-                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+                     options.UseSqlServer(Configuration["Data:CPMConnection"], b => b.MigrationsAssembly("CPM.Web")));
             services.AddDbContext<CPMUserContext>(options =>
-                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+                     options.UseSqlServer(Configuration["Data:CPMConnection"], b => b.MigrationsAssembly("CPM.Web")));
             services.AddDbContext<OfferContext>(options =>
-                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+                     options.UseSqlServer(Configuration["Data:CPMConnection"], b => b.MigrationsAssembly("CPM.Web")));
         }
 
         private void AddIdentity(IServiceCollection services)
@@ -96,6 +96,11 @@ namespace CPM.Web
             DependecyInjection.Configure(services);
         }
                
+        private void AddDbCOntext(IServiceCollection services)
+        {
+            services.AddDbContext<ClientContext>(options =>
+                options.UseSqlServer(Configuration[""]));
+        }
         
         #endregion
 

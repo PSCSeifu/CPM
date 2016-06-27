@@ -40,11 +40,11 @@
                 <td>                    
                         @if (@wallet.IsLocked)
                         {
-                            <i class="fa fa-lock"></i>;
+                            <i class="fa fa-lock "></i>;
                         }
                         else
                         {
-                            <i class="fa fa-unlock"></i>;
+                            <i class="fa fa-unlock blue"></i>;
                         }  
                 </td>
                 <td>@wallet.Currency &nbsp; @wallet.Balance</td>
@@ -54,6 +54,6 @@
         
     </table>
     <div>
-        <button class="btn  btn-success btn-xs" asp-route-area="Wallet" asp-controller="wallet" asp-action="Create">New &nbsp;<i class="fa fa-plus"></i></button>
+        <button class="btn  btn-success btn-sm" asp-route-area="Wallet" asp-controller="Wallet" asp-action="Create" >Add New &nbsp;<i class="fa fa-plus"></i></button>
     </div>
 </div>

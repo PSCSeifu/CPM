@@ -1,9 +1,8 @@
 [
-  
-  {
-    "Id": 0,
+
+  {    
     "ClientId": 1,
-    "WalletId": 2,
+    "WalletId": 1,
     "DefaultCurrencyId": 1,
     "DateCreated": "2016-06-23T13:22:54.7197647Z",
     "ExpiryDate": "2017-01-01T00:00:00",
@@ -11,7 +10,7 @@
     "Detail": "Very short time Limited offer on stuff, Great stuff, huuge stuff,I tell you...great stuff!"
   },
   {
-    "Id": 0,
+    
     "ClientId": 1,
     "WalletId": 2,
     "DefaultCurrencyId": 1,
@@ -21,8 +20,8 @@
     "Detail": "Great summmer deals on the big names in crypto."
   },
   {
-    "Id": 0,
-    "ClientId": 2,
+    
+    "ClientId": 1,
     "WalletId": 4,
     "DefaultCurrencyId": 1,
     "DateCreated": "2016-06-23T13:22:54.7197647Z",
@@ -31,13 +30,53 @@
     "Detail": "Up to one third off on DIY tools!"
   },
   {
-    "Id": 0,
+    
     "ClientId": 1,
-    "WalletId": 2,
+    "WalletId": 5,
     "DefaultCurrencyId": 1,
     "DateCreated": "2016-06-23T13:22:54.7197647Z",
     "ExpiryDate": "2018-05-05T00:00:00",
     "Name": "Buy one get One Cat free",
     "Detail": "Two cats for the price of one!"
+  },
+  {
+    
+    "ClientId": 1,
+    "WalletId": 3,
+    "DefaultCurrencyId":3,
+    "DateCreated": "2016-06-23T13:22:54.7197647Z",
+    "ExpiryDate": "2017-01-01T00:00:00",
+    "Name": "BulkBuy Discount",
+    "Detail": "Cotton based garments,20 meter blocks, Green in color."
+  },
+  {
+    
+    "ClientId": 2,
+    "WalletId": 9,
+    "DefaultCurrencyId": 1,
+    "DateCreated": "2016-06-23T13:22:54.7197647Z",
+    "ExpiryDate": "2016-08-13T00:00:00",
+    "Name": "Cutlery - 10% Off",
+    "Detail": "Various cutlery items, sold in ulk, colelction only. 10% applies when buying more than 5 sets."
+  },
+  {
+    
+    "ClientId": 2,
+    "WalletId": 6,
+    "DefaultCurrencyId": 1,
+    "DateCreated": "2016-06-23T13:22:54.7197647Z",
+    "ExpiryDate": "2016-11-25T00:00:00",
+    "Name": "Paint Discount",
+    "Detail": "Up to one third off on house Paints, hurry! Limited stock."
+  },
+  {
+    
+    "ClientId": 2,
+    "WalletId": 8,
+    "DefaultCurrencyId": 1,
+    "DateCreated": "2016-06-23T13:22:54.7197647Z",
+    "ExpiryDate": "2018-05-05T00:00:00",
+    "Name": "Buy one get One Tire free",
+    "Detail": "21 inch wheels only."
   }
 ]

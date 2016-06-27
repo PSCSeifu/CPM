@@ -1,8 +1,9 @@
-﻿@{Layout = "/Views/Shared/_Layout.cshtml";}
+﻿
+@{Layout = "/Views/shared/Global/_GlobalLayout.cshtml";}
 @{ ViewBag.Title = "Home";}
 
 <div>
-    <div >
+    <div>
         <div class="col-xs-12 col-sm-4">
             <div class="smta-summary-block smta-summary-block-primary">
                 <div class="smta-summary-background">
@@ -10,10 +11,12 @@
                 </div>
                 <div class="smta-summary-body">
                     <div class="summary-line1">5</div>
-                    <div class="summary-line2">Wallets</div>
+                    <div class="summary-line2">
+                       Wallets
+                    </div>
                 </div>
                 <div class="smta-summary-footer">
-                    <a href="#">View Wallets</a>
+                    <a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Index">My Wallets...</a>
                     <i class="fa fa-chevron-right pull-right"></i>
                 </div>
             </div>
@@ -27,7 +30,7 @@
                     <div class="summary-line2">Offers</div>
                 </div>
                 <div class="smta-summary-footer">
-                    <a href="#">View Offers</a>
+                    <a asp-route-area="Offer" asp-controller="Offer" asp-action="Index">Latest Offers...</a>
                     <i class="fa fa-chevron-right pull-right"></i>
                 </div>
             </div>
@@ -41,9 +44,9 @@
                     <div class="summary-line2">Currency</div>
                 </div>
                 <div class="smta-summary-footer">
-                    <a href="#">View Currencies</a>
-                    <i class="fa fa-chevron-right pull-right"></i>
-                </div>
+                    <a asp-route-area="Offer" asp-controller="Offer" asp-action="Index">View Currencies...</a>
+                <i class="fa fa-chevron-right pull-right"></i>
+            </div>
             </div>
 
             <div class="smta-summary-block smta-summary-block-danger">

@@ -132,3 +132,13 @@
     font-weight:600;
     
 }
+
+/*START FONT AWESOME OVERLOADS */
+.fa-unlock {
+    color: green;
+}
+
+.fa-lock {
+    color: red;
+}
+/*END FONT AWESOME OVERLOADS*/
