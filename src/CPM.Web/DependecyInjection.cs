@@ -1,6 +1,7 @@
 ﻿using CPM.Business.Currency;
 using CPM.Business.Offer;
 using CPM.Business.Wallet;
+using CPM.Data.Global.Account;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,10 @@ namespace CPM.Web
         {
             #region " Global "
 
+            #endregion
+
+            #region " CPMUser "
+            services.AddScoped<CPMUserContext, CPMUserContext>();
             #endregion
 
             #region " Wallet "

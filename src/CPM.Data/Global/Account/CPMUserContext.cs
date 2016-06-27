@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CPM.Data.Global.Account
 {
-    public interface IUserContext 
+    public interface IUserContext : IIdentityDBContextBase<CPMUserContext>
     {
         int SaveChanges();
         DbSet<CPMUserEntity> CPMUsers { get; set; }
