@@ -21,6 +21,7 @@ using CPM.Data.Client;
 using Microsoft.AspNetCore.Identity;
 using CPM.Data.Global.Account;
 using CPM.Data.Offer;
+using Newtonsoft.Json.Serialization;
 
 namespace CPM.Web
 {
@@ -68,7 +69,11 @@ namespace CPM.Web
 
         private void AddMvc(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc()
+            .AddJsonOptions(opt =>
+            {
+                opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
             services.AddOptions();
         }
               

@@ -15,8 +15,8 @@
     .Pageable(p => p.PageSizes( new int[] { 5, 10, 20 }))
     .DataSource(data => data
         .Ajax()
-        .PageSize(3)
-        .ServerOperation(false)
+        //.PageSize(3)
+        //.ServerOperation(false)
         .Read(read => read.Action("Grid_Read", "Wallet", new { Area = "Wallet"}))
     )
 )
