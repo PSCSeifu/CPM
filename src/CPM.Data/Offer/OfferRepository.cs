@@ -99,7 +99,7 @@ namespace CPM.Data.Offer
                              //join client in _context.Clients on offer.ClientId equals client.Id
                              //join wallet in _context.Wallets on offer.WalletId equals wallet.Id
                              //join currency in _context.Currencies on offer.DefaultCurrencyId equals currency.Id
-                         where offer.Id == key
+                         where offer.ClientId == key
                          orderby offer.DateCreated
                          select new OfferInfoDM
                          {

@@ -25,7 +25,7 @@ namespace CPM.Web.Areas.Offer.Controllers
         public  IActionResult Index()
         {
             var viewModel = new OfferListVM();
-            var result = _service.GetListById(2);
+            var result = _service.GetList(2);
 
             if (result.Result == GetResultEnum.Success)
             {

@@ -26,7 +26,7 @@ namespace CPM.Web
               #endregion
 
               #region " Offers "
-              config.CreateMap<OfferBM, OfferInfoVM>();
+              config.CreateMap<OfferInfoBM, OfferInfoVM>();
               #endregion
 
               #region " Currency "

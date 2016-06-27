@@ -38,7 +38,7 @@ namespace CPM.Business.Offer
             ModelMappings.Configure();
             try
             {
-                var result = AutoMapper.Mapper.Map<List<OfferBM>>(_repository.GetOffersByClientId(clientId));
+                var result = AutoMapper.Mapper.Map<List<OfferBM>>(_repository.GetList(clientId));
                 return ServiceResultsHelper.FillGetListResult(result);
             }
             catch (Exception ex)
@@ -119,6 +119,11 @@ namespace CPM.Business.Offer
             {
                 return ServiceResultsHelper.FillGetListResultForError<OfferInfoBM>(ex);
             }
+        }
+
+        public override GetListResult<OfferInfoBM> GetList(int key)
+        {
+            return GetList(key, "");
         }
 
         public override ProcessResult Save(OfferBM item)
