@@ -60,5 +60,10 @@ namespace CPM.Web.Areas.Currency.Controllers
                 return RedirectToAction("Error", "Home", new { Area = "Global" });
             }
         }
+
+        public IActionResult Grid()
+        {
+            return View();
+        }
     }
 }

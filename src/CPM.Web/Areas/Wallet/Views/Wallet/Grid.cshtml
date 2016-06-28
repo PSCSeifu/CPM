@@ -12,11 +12,11 @@
           .Title("Balance");
     }
     )
-    .Pageable(p => p.PageSizes( new int[] { 5, 10, 20 }))
+    //.Pageable(p => p.PageSizes( new int[] { 5, 10, 20 }))
     .DataSource(data => data
         .Ajax()
         //.PageSize(3)
-        //.ServerOperation(false)
+        .ServerOperation(false)
         .Read(read => read.Action("Grid_Read", "Wallet", new { Area = "Wallet"}))
     )
 )
