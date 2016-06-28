@@ -13,30 +13,50 @@ using System.Threading.Tasks;
 
 namespace CPM.Web
 {
-    public class ModelMappings
+    public class WebModelMappings :Profile
     {
-        public static void Configure()
+        public WebModelMappings()
         {
-            Mapper.Initialize(config =>
-          {
-              #region " Wallets "
-              config.CreateMap<WalletTypeBM, WalletTypeVM>();              
-              config.CreateMap<WalletInfoBM, WalletInfoVM>();
-              config.CreateMap<WalletBM, WalletVM>();
-              #endregion
+            #region " Wallets "
+            CreateMap<WalletTypeBM, WalletTypeVM>();
+            CreateMap<WalletInfoBM, WalletInfoVM>();
+            CreateMap<WalletBM, WalletVM>();
+            #endregion
 
-              #region " Offers "
-              config.CreateMap<OfferInfoBM, OfferInfoVM>();
-              #endregion
+            #region " Offers "
+            CreateMap<OfferInfoBM, OfferInfoVM>();
+            #endregion
 
-              #region " Currency "
-              config.CreateMap<CurrencyInfoBM, CurrencyInfoVM>();
-              #endregion
+            #region " Currency "
+            CreateMap<CurrencyInfoBM, CurrencyInfoVM>();
+            #endregion
 
-              #region Global
+            #region Global
 
-              #endregion
-          });
+            #endregion
         }
+        //public static void Configure()
+        //{
+        //    Mapper.Initialize(config =>
+        //  {
+        //      #region " Wallets "
+        //      config.CreateMap<WalletTypeBM, WalletTypeVM>();              
+        //      config.CreateMap<WalletInfoBM, WalletInfoVM>();
+        //      config.CreateMap<WalletBM, WalletVM>();
+        //      #endregion
+
+        //      #region " Offers "
+        //      config.CreateMap<OfferInfoBM, OfferInfoVM>();
+        //      #endregion
+
+        //      #region " Currency "
+        //      config.CreateMap<CurrencyInfoBM, CurrencyInfoVM>();
+        //      #endregion
+
+        //      #region Global
+
+        //      #endregion
+        //  });
+        //}
     }
 }

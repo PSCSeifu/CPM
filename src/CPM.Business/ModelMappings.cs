@@ -14,25 +14,41 @@ using System.Threading.Tasks;
 
 namespace CPM.Business
 {
-    public static class ModelMappings
+    public class BusinessModelMappings :Profile
     {
-        public static void Configure()
+        public BusinessModelMappings()
         {
-            Mapper.Initialize(config =>
-           {
-               config.CreateMap<WalletDM, WalletBM>();
-               config.CreateMap<WalletInfoDM, WalletInfoBM>();
-               config.CreateMap<WalletTypeDM, WalletTypeBM>();
+            CreateMap<WalletDM, WalletBM>();
+            CreateMap<WalletInfoDM, WalletInfoBM>();
+            CreateMap<WalletTypeDM, WalletTypeBM>();
 
 
-               config.CreateMap<OfferDM, OfferBM>();               
-               config.CreateMap<OfferInfoDM, OfferInfoBM>();
+            CreateMap<OfferDM, OfferBM>();
+            CreateMap<OfferInfoDM, OfferInfoBM>();
 
 
-               config.CreateMap<CurrencyDM, CurrencyBM>();
-               config.CreateMap<CurrencyInfoDM, CurrencyInfoBM>();               
-           });
-       
+            CreateMap<CurrencyDM, CurrencyBM>();
+            CreateMap<CurrencyInfoDM, CurrencyInfoBM>();
+
         }
+
+        //public static void Configure()
+        //{
+        //    Mapper.Initialize(config =>
+        //   {
+        //       config.CreateMap<WalletDM, WalletBM>();
+        //       config.CreateMap<WalletInfoDM, WalletInfoBM>();
+        //       config.CreateMap<WalletTypeDM, WalletTypeBM>();
+
+
+        //       config.CreateMap<OfferDM, OfferBM>();               
+        //       config.CreateMap<OfferInfoDM, OfferInfoBM>();
+
+
+        //       config.CreateMap<CurrencyDM, CurrencyBM>();
+        //       config.CreateMap<CurrencyInfoDM, CurrencyInfoBM>();               
+        //   });
+
+        //}
     }
 }

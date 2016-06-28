@@ -10,21 +10,33 @@ using System.Threading.Tasks;
 
 namespace CPM.Data
 {
-    public class ModelMappings
+    public class DataModelMappings :Profile
     {
-        public static void Configure()
+        public DataModelMappings()
         {
-            Mapper.Initialize(Configure =>
-           {
-               Configure.CreateMap<WalletEntity, WalletDM>();
-               Configure.CreateMap<WalletTypeEntity, WalletTypeDM>();
-               
-               Configure.CreateMap<OfferEntity, OfferDM>();
-               Configure.CreateMap<OfferDM, OfferInfoDM>();
+            CreateMap<WalletEntity, WalletDM>();
+            CreateMap<WalletTypeEntity, WalletTypeDM>();
 
-               Configure.CreateMap<CurrencyEntity, CurrencyDM>();
-               Configure.CreateMap<CurrencyDM, CurrencyInfoDM>();
-           });
+            CreateMap<OfferEntity, OfferDM>();
+            CreateMap<OfferDM, OfferInfoDM>();
+
+            CreateMap<CurrencyEntity, CurrencyDM>();
+            CreateMap<CurrencyDM, CurrencyInfoDM>();
         }
+
+        //public static void Configure()
+        //{
+        //    Mapper.Initialize(Configure =>
+        //   {
+        //       Configure.CreateMap<WalletEntity, WalletDM>();
+        //       Configure.CreateMap<WalletTypeEntity, WalletTypeDM>();
+               
+        //       Configure.CreateMap<OfferEntity, OfferDM>();
+        //       Configure.CreateMap<OfferDM, OfferInfoDM>();
+
+        //       Configure.CreateMap<CurrencyEntity, CurrencyDM>();
+        //       Configure.CreateMap<CurrencyDM, CurrencyInfoDM>();
+        //   });
+        //}
     }
 }

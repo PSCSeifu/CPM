@@ -35,7 +35,7 @@ namespace CPM.Business.Offer
 
         public GetListResult<OfferBM> GetListById( int clientId)
         {
-            ModelMappings.Configure();
+            //ModelMappings.Configure();
             try
             {
                 var result = AutoMapper.Mapper.Map<List<OfferBM>>(_repository.GetList(clientId));
@@ -49,7 +49,7 @@ namespace CPM.Business.Offer
 
         public GetListResult<OfferBM> GetListBySearchTerm(int clientId,string searchTerm)
         {
-            ModelMappings.Configure();
+            //ModelMappings.Configure();
             try
             {
                 var result = AutoMapper.Mapper.Map<List<OfferBM>>(_repository.GetListBySearch(clientId,searchTerm));
@@ -90,7 +90,7 @@ namespace CPM.Business.Offer
         {
             try
             {
-                ModelMappings.Configure();
+                //ModelMappings.Configure();
                 var result = Mapper.Map<OfferBM>(_repository.GetItem(id));
                 return ServiceResultsHelper.FillGetItemResult(result);
             }
@@ -104,7 +104,7 @@ namespace CPM.Business.Offer
         {
            try
             {
-                ModelMappings.Configure();
+                //ModelMappings.Configure();
                 if (!string.IsNullOrEmpty(searchTerm))
                 {
                     var result = Mapper.Map<List<OfferInfoBM>>(_repository.GetList(key,searchTerm));

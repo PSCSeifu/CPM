@@ -35,7 +35,7 @@ namespace CPM.Business.Wallet
 
         public GetListResult<WalletBM> GetListById(int clientId)
         {            
-            ModelMappings.Configure();
+            //ModelMappings.Configure();
             try
             {
                 var result = Mapper.Map<List<WalletBM>>(_repository.GetWalletsByClientId(clientId));
@@ -49,7 +49,7 @@ namespace CPM.Business.Wallet
 
         public GetListResult<WalletBM> GetListBySearchTerm(int clientId, string searchTerm)
         {
-            ModelMappings.Configure();
+            //ModelMappings.Configure();
             try
             {
                 var result = Mapper.Map<List<WalletBM>>(_repository.GetWalletsBySearchTerm(clientId,searchTerm));
@@ -63,7 +63,7 @@ namespace CPM.Business.Wallet
 
         public GetItemResult<WalletBM> GetWallet(int clientId, int walletId)
         {
-            ModelMappings.Configure();
+            //ModelMappings.Configure();
             try
             {
                 var result = Mapper.Map<WalletBM>(_repository.GetWalletByClientIdAndWalletId(clientId,walletId));
@@ -77,7 +77,7 @@ namespace CPM.Business.Wallet
 
         public GetItemResult<WalletBM> GetWalletById( int walletId)
         {
-            ModelMappings.Configure();
+            //ModelMappings.Configure();
             try
             {
                 var result = Mapper.Map<WalletBM>(_repository.GetWalletByWalletId( walletId));
@@ -108,7 +108,7 @@ namespace CPM.Business.Wallet
         {
            try
             {
-                ModelMappings.Configure();
+                //ModelMappings.Configure();
                 var result = Mapper.Map<WalletBM>(_repository.GetItem(id));
                 return ServiceResultsHelper.FillGetItemResult(result);
             }
@@ -122,7 +122,7 @@ namespace CPM.Business.Wallet
         {
             try
             {
-                ModelMappings.Configure();
+                //ModelMappings.Configure();
                 if (!string.IsNullOrEmpty(searchTerm))
                 {
                     var result = Mapper.Map<List<WalletInfoBM>>(_repository.GetList(key, searchTerm));

@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Identity;
 using CPM.Data.Global.Account;
 using CPM.Data.Offer;
 using Newtonsoft.Json.Serialization;
+using CPM.Business;
 
 namespace CPM.Web
 {
@@ -38,10 +39,15 @@ namespace CPM.Web
       
 
             Configuration = builder.Build();
-
-            Data.ModelMappings.Configure();
-            Business.ModelMappings.Configure();
-            Web.ModelMappings.Configure();
+            AutoMapper.Mapper.Initialize(config => {
+                config.AddProfile<BusinessModelMappings>();
+                config.AddProfile<DataModelMappings>();
+                config.AddProfile<WebModelMappings>();
+                
+                });
+            //Data.ModelMappings.Configure();
+            //Business.ModelMappings.Configure();
+            //Web.ModelMappings.Configure();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -52,6 +58,7 @@ namespace CPM.Web
             AddMvc(services);
             AddBusiness(services);          
             AddEntityFramework(services);
+            AddThirdParty(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +67,8 @@ namespace CPM.Web
             UsePlatform(app, env);
             UseIdentity(app);
             UseMvc(app);
+
+            app.UseKendo(env);
             // UseSeedDataWriter(@"C:\Projects\CPM\src\CPM.Data\Resources");
             UseSeedData(@"C:\Projects\CPM\src\CPM.Data\Resources");
             
@@ -76,7 +85,12 @@ namespace CPM.Web
             });
             services.AddOptions();
         }
-              
+
+        private void AddThirdParty(IServiceCollection services)
+        {
+            //services.AddKendo();
+        }
+
         private void AddEntityFramework (IServiceCollection services)
         {
             services.AddDbContext<WalletContext>(options => 

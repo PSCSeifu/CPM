@@ -48,7 +48,7 @@ namespace CPM.Business.Currency
         {
             try
             {
-                ModelMappings.Configure();
+                //ModelMappings.Configure();
                 var result = Mapper.Map<CurrencyBM>(_repository.GetItem(id));
                 return ServiceResultsHelper.FillGetItemResult(result);
             }
@@ -62,7 +62,7 @@ namespace CPM.Business.Currency
         {
             try
             {
-                ModelMappings.Configure();
+                //ModelMappings.Configure();
                 if (!string.IsNullOrEmpty(searchTerm))
                 {
                     var result = Mapper.Map<List<CurrencyInfoBM>>(_repository.GetList(key, searchTerm));
@@ -82,7 +82,7 @@ namespace CPM.Business.Currency
         {
             try
             {
-                ModelMappings.Configure();
+                //ModelMappings.Configure();
 
                 var result = Mapper.Map < List<CurrencyInfoBM>>(_repository.GetList());
                 return ServiceResultsHelper.FillGetListResult(result);
