@@ -1,6 +1,8 @@
 ﻿using CPM.Business.Wallet;
 using CPM.Web.Areas.Wallet.Controllers;
+using CPM.Web.Areas.Wallet.Models;
 using CpmLib.Business.Core.Service;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
@@ -62,11 +64,26 @@ namespace CPM.Test
         public void ShouldRenderEditView()
         {
             var fakewalletService = new Mock<IWalletService>();
+           
             var sut = new WalletController(fakewalletService.Object);
 
             var result = sut.Edit(0) as ViewResult;
 
             Assert.That(result.ViewName, Is.EqualTo("Edit"));
+        }
+
+        [Test]
+        public void Create_DefaultWalletVM_ShouldrReturnWalletVMType()
+        {
+            var fakewalletService = new Mock<IWalletService>();
+            var fakeWalletVM = new Mock<WalletVM>();           
+
+            var sut = new WalletController(fakewalletService.Object);
+
+            var result = sut.Create(fakeWalletVM.Object) as ViewResult;
+
+            result.Model.Should().BeOfType<WalletVM>();
+            //Assert.That(result.Model.GetType, Is.EqualTo(typeof(WalletVM)));
         }
     }
 }

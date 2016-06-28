@@ -23,9 +23,9 @@
         }
     </div>*@
 
-    <div id="Grid" class="col-sm-12">
+    @*@*<div id="Grid" class="col-sm-12">
         @Html.Partial("Grid")
-    </div>
+    </div>*@
     <table class="table table-condensed table-striped col-sm-5">
         <thead>
             <tr>
@@ -58,6 +58,6 @@
         
     </table>
     <div>
-        <button class="btn  btn-success btn-sm" asp-route-area="Wallet" asp-controller="Wallet" asp-action="Create" >Add New &nbsp;<i class="fa fa-plus"></i></button>
+        <a class="btn  btn-success btn-sm" asp-route-area="Wallet" asp-controller="Wallet" asp-action="Create" >Add New &nbsp;<i class="fa fa-plus"></i></a>
     </div>
 </div>
