@@ -3,6 +3,10 @@
 }
 
 /*Start of Summary block*/
+.container{
+    width: 100%;
+}
+
 .smta-summary-block{
     position:relative;
     width:100%;
@@ -21,7 +25,7 @@
 
     .smta-summary-block .smta-summary-body{
         position:absolute;
-        top: 0.4em;
+        top:1.3em;
         right:0.8em;
     }
     .smta-summary-block .summary-line1{

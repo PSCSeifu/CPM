@@ -69,6 +69,7 @@ namespace CPM.Test
 
             var result = sut.Edit(0) as ViewResult;
 
+            //result.Model.Equals
             Assert.That(result.ViewName, Is.EqualTo("Edit"));
         }
 
