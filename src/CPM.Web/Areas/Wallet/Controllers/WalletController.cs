@@ -77,15 +77,15 @@ namespace CPM.Web.Areas.Wallet.Controllers
 
         public IActionResult Detail(int id)
         {
-            var viewModel = new WalletVM();
+            //var viewModel = new WalletVM();
             var result = _service.GetItem(id);
             //ModelMappings.Configure();
 
-            if (result.Result == GetResultEnum.Success)
+            if (result != null && result.Result == GetResultEnum.Success)
             {               
-                 var vm = Mapper.Map<WalletVM>(result.Item);
-                viewModel = vm;
-                return View("Detail", viewModel);
+                //var vm = Mapper.Map<WalletVM>(result.Item);
+                //viewModel = vm;
+                return View("Detail", Mapper.Map<WalletVM>(result.Item));
             }
             else
             {

@@ -23,6 +23,7 @@ using CPM.Data.Global.Account;
 using CPM.Data.Offer;
 using Newtonsoft.Json.Serialization;
 using CPM.Business;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace CPM.Web
 {
@@ -69,6 +70,7 @@ namespace CPM.Web
             UseMvc(app);
 
             app.UseKendo(env);
+
             // UseSeedDataWriter(@"C:\Projects\CPM\src\CPM.Data\Resources");
             UseSeedData(@"C:\Projects\CPM\src\CPM.Data\Resources");
             
@@ -89,6 +91,9 @@ namespace CPM.Web
         private void AddThirdParty(IServiceCollection services)
         {
             //services.AddKendo();
+            //foreach (ServiceDescriptor service in Kendo.Mvc.KendoServices.GetServices())
+            //    services.Add(service);
+            //services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
         }
 
         private void AddEntityFramework (IServiceCollection services)
