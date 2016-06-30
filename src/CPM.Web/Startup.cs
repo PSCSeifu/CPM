@@ -91,9 +91,9 @@ namespace CPM.Web
         private void AddThirdParty(IServiceCollection services)
         {
             //services.AddKendo();
-            //foreach (ServiceDescriptor service in Kendo.Mvc.KendoServices.GetServices())
-            //    services.Add(service);
-            //services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            foreach (ServiceDescriptor service in Kendo.Mvc.KendoServices.GetServices())
+                services.Add(service);
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
         }
 
         private void AddEntityFramework (IServiceCollection services)

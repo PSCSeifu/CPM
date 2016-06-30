@@ -1,107 +1,121 @@
-﻿using CPM.Business.Wallet;
+﻿using CPM.Business;
+using CPM.Business.Wallet;
+using CPM.Data;
+using CPM.Web;
 using CPM.Web.Areas.Wallet.Controllers;
 using CPM.Web.Areas.Wallet.Models;
 using CpmLib.Business.Core.Service;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using Xunit;
 //using NUnit.Framework;
 
 namespace CPM.Test
 {
-   // [TestFixture]
+   
     public class WalletControllerTests
-    {
-        private CPM.Web.Areas.Wallet.Controllers.WalletController _sut;
+    {        
+        private  Mock<IWalletService> _service;
+
+        public WalletControllerTests()
+        {
+            AutoMapper.Mapper.Initialize(config =>
+            {
+                config.AddProfile<BusinessModelMappings>();
+                config.AddProfile<DataModelMappings>();
+                config.AddProfile<WebModelMappings>();
+
+            });
+
+            _service = new Mock<IWalletService>();
+        }        
+      
+        public GetItemResult<WalletBM> SetupFakeService( bool success)
+        {            
+            GetItemResult<WalletBM> bm = new GetItemResult<WalletBM>();
+            if (success)
+            {
+                bm.Result = GetResultEnum.Success;
+                bm.Item = new WalletBM();
+            }
+            else
+            {
+                bm.Result = GetResultEnum.Error;
+                bm.Error = new System.Exception();
+            }
+
+            return bm;
+        }
+
+
+        #region "  Detail "
         
-        //[SetUp]
-        public void Setup()
-        {
-            var fakewalletService = new Mock<IWalletService>();
-            _sut = new CPM.Web.Areas.Wallet.Controllers.WalletController(fakewalletService.Object);
-        }
-
-        //    [Test]
-        //    public void ShouldRenderDefaultView()
-        //    {
-        //        var result = _sut.Index() as ViewResult;
-        //        Assert.That(result.ViewName, Is.EqualTo("Index"));
-        //        //_sut.WithCallTo(x => x.Index()).ShouldRenderDefaultView();
-        //    }
-
-        //    [Test]
-        //    public void ShouldRdirectToIndexViewOnSuccess()
-        //    {
-
-
-        //    }
-
-
-        //    [Test]
-        //public void ShouldRenderDefaultView()
-        //{
-        //    var fakewalletService = new Mock<IWalletService>();
-        //    var sut = new WalletController(fakewalletService.Object);
-
-        //    var result = sut.Index() as ViewResult;
-
-        //    Assert.That(result, Is.EqualTo("Index"));
-        //    //sut.WithCallTo(x => x.Index()).ShouldRenderDefaultView();
-        //}
-        //[Test]
-        //public void SHouldRenderGridView()
-        //{
-        //    var fakewalletService = new Mock<IWalletService>();
-        //    var sut = new WalletController(fakewalletService.Object);
-
-        //    var result = sut.Grid() as ViewResult;
-
-        //    Assert.That(result.ViewName, Is.EqualTo(null));
-        //}
-
-       // [Test]
-        public void ShouldRenderEditView()
-        {
-            var fakewalletService = new Mock<IWalletService>();
-           
-            var sut = new WalletController(fakewalletService.Object);
-
-            var result = sut.Edit(0) as ViewResult;
-
-            //result.Model.Equals
-            //Assert.That(result.ViewName, Is.EqualTo("Edit"));
-        }
-
-       // [Test]
-        public void Detail_DetailView_ShouldRenderDetailViewOnValidId()
+        [Fact]
+        [Trait("Category", "Controller")]
+        public void Detail_ShouldReturnCorrectType_OnValidId()
         {
             //Arrange
-            var fakewalletService = new Mock<IWalletService>();
-            var fakeWalletVM = new Mock<WalletVM>();
-
-            var sut = new WalletController(fakewalletService.Object);
+            var bm = SetupFakeService(true);            
+            _service.Setup(w => w.GetItem(1)).Returns(bm);
 
             //Act
-            var result = sut.Detail(1)as ViewResult;
+            var sut = new WalletController(_service.Object);
+            var result = sut.Detail(1) as ViewResult;
 
-          
-            // Assert.That(result.ViewName, Is.EqualTo("Detail"));
-            //Assert.That(result.ViewName, Is.EqualTo("Detail"));
-            //result.ViewName.Should().BeEquivalentTo("Detail");
+            //Assert
+            Assert.IsType<WalletVM>(result.Model);
         }
 
-        //[Test]
-        public void Create_DefaultWalletVM_ShouldReturnWalletVMType()
+
+        [Fact]
+        [Trait("Category", "Controller")]
+        public void Detail_ShouldRedirectToError_OnInvalidId()
         {
-            var fakewalletService = new Mock<IWalletService>();
-            var fakeWalletVM = new Mock<WalletVM>();           
+            //Arrange
+            var bm = SetupFakeService(false);
+            _service.Setup(w => w.GetItem(1)).Returns(bm);
 
-            var sut = new WalletController(fakewalletService.Object);
+            //Act
+            var sut = new WalletController(_service.Object);
+            var result = sut.Detail(0) as RedirectToActionResult;
 
-            var result = sut.Create(fakeWalletVM.Object) as ViewResult;
-
-            //result.Model.Should().BeOfType<WalletVM>();
-            //Assert.That(result.Model.GetType, Is.EqualTo(typeof(WalletVM)));
+            //Assert
+            Assert.Equal(result.ActionName, "Error");
         }
+
+        [Fact]
+        [Trait("Category", "Controller")]
+        public void Detail_ShouldrenderDetailView_OnCorrectId()
+        {
+            //Arrange
+            var bm = SetupFakeService(true);
+            _service.Setup(w => w.GetItem(1)).Returns(bm);
+
+            //Act
+            var sut = new WalletController(_service.Object);
+            var result = sut.Detail(1) as ViewResult;
+
+            //Assert
+            Assert.Equal(result.ViewName, "Detail");
+        }
+
+        [Fact]
+        [Trait("Category", "Controller")]
+        public void Detail_ShouldCreateWalletVM_OnCorrectId()
+        {
+            //Arrange
+            var bm = SetupFakeService(true);
+            _service.Setup(w => w.GetItem(1)).Returns(bm);
+
+            //Act
+            var sut = new WalletController(_service.Object);
+            var result = sut.Detail(1) as ViewResult;
+
+            //Assert
+            Assert.IsType<WalletVM>(result.Model);
+        }
+
+        #endregion
     }
 }

@@ -13,4 +13,12 @@
   "frameworks": {
     "net46": {}
   }
+  //,  
+  //  "buildOptions": {
+  //    "copyToOutput": {
+  //      "include": [ "xunit.runner.json" ]
+  //    }
+  //  }
+  
+
 }

@@ -21,7 +21,6 @@ namespace CPM.Web.Areas.Wallet.Controllers
         public WalletController(IWalletService service)
         {            
             _service = service;
-           // ModelMappings.Configure();
         }
 
         // GET: /<controller>/
@@ -42,8 +41,7 @@ namespace CPM.Web.Areas.Wallet.Controllers
                 return RedirectToAction("Error", "Home", new { Area = "Global" });
             }
         }
-
-    
+        
         public IActionResult Grid_Read([DataSourceRequest] DataSourceRequest request, string searchTerm = "")
         {
             GetListResult<WalletInfoBM> result;
@@ -58,34 +56,9 @@ namespace CPM.Web.Areas.Wallet.Controllers
             }
 
             if(result.Result == GetResultEnum.Success)
-            {
-                //ModelMappings.Configure();                
+            {             
                 var viewModel = Mapper.Map<List<WalletInfoVM>>(result.List);
                 return Json(viewModel.ToDataSourceResult(request));                 
-            }
-            else
-            {
-                return RedirectToAction("Error", "Home", new { Area = "Global" });
-            }
-        }  
-        
-        public IActionResult Grid()
-        {
-            return View();
-        }     
-
-
-        public IActionResult Detail(int id)
-        {
-            //var viewModel = new WalletVM();
-            var result = _service.GetItem(id);
-            //ModelMappings.Configure();
-
-            if (result != null && result.Result == GetResultEnum.Success)
-            {               
-                //var vm = Mapper.Map<WalletVM>(result.Item);
-                //viewModel = vm;
-                return View("Detail", Mapper.Map<WalletVM>(result.Item));
             }
             else
             {
@@ -106,17 +79,36 @@ namespace CPM.Web.Areas.Wallet.Controllers
             var result = _service.GetListBySearchTerm(clientId, searchTerm);
             viewModel.SearchTerm = searchTerm;
 
-            if(result.Result == GetResultEnum.Success)
+            if (result.Result == GetResultEnum.Success)
             {
                 //ModelMappings.Configure();
                 viewModel.Wallets = Mapper.Map<List<WalletInfoVM>>(result.List);
-                return View("Filter",viewModel);
+                return View("Filter", viewModel);
             }
             else
             {
                 return RedirectToAction("Error", "Home", new { Area = "Global" });
             }
         }
+
+        public IActionResult Detail(int id)
+        {           
+            var result = _service.GetItem(id);
+         
+
+            if (result != null && result.Result == GetResultEnum.Success)
+            {               
+                //var vm = Mapper.Map<WalletVM>(result.Item);
+                //viewModel = vm;
+                return View("Detail", Mapper.Map<WalletVM>(result.Item));
+            }
+            else
+            {
+                return RedirectToAction("Error", "Home", new { Area = "Global" });
+            }
+        }
+
+        
        
         public IActionResult Create(WalletVM walletVM)
         {
