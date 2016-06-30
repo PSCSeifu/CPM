@@ -2,6 +2,7 @@
 using CPM.Business.Offer;
 using CPM.Business.Wallet;
 using CPM.Data.Global.Account;
+using CPM.Web.Common.Session;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace CPM.Web
             #endregion
 
             #region " Global "
-            //services.AddScoped<ISessionHelper, SessionHelper>();
+            services.AddScoped<ISessionHelper, SessionHelper>();
             #endregion
 
 

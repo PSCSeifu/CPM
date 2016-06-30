@@ -1,0 +1,34 @@
+{
+  "Items": [
+    {
+      "Name": "Currency",
+      "Area": "Currency",
+      "Controller": "Currency",
+      "Action": "Index",
+      "Access": "Currency",
+      "Icon": "fa fa-money",
+      "Product": "cpmModerate  cpmAutoBargain cpmAnalytics cpmNews cpmForum cpmEscrow",
+      "Items": []
+    },
+    {
+      "Name": "Wallet",
+      "Area": "wallet",
+      "Controller": "Wallet",
+      "Action": "Index",
+      "Access": "Wallet",
+      "Icon": "fa fa-wallet",
+      "Product": "cpmModerate  cpmAutoBargain cpmAnalytics cpmNews cpmForum cpmEscrow",
+      "Items": []
+    },
+    {
+      "Name": "Offer",
+      "Area": "Offer",
+      "Controller": "Offer",
+      "Action": "Index",
+      "Access": "Offer",
+      "Icon": "fa fa-home",
+      "Product": "cpmModerate  cpmAutoBargain cpmAnalytics cpmNews cpmForum cpmEscrow",
+      "Items": []
+    }
+  ]
+}

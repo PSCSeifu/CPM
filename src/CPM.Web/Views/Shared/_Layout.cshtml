@@ -27,88 +27,51 @@
     </environment>
 </head>
 <body>
-    <nav id="TopNavParent" class="navbar navbar-default">
-        <div class="container-fluid">           
-            <div class="navbar navbar-collapse" id="navbar-collapse">
-
-                <div class="nav navbar-brand" style="font-size:xx-large">CPM
-                    <a asp-route-area="Global" asp-controller="Home" asp-action="Index" >
-                         <i class="fa fa-home"></i>
-                    </a>                    
-                </div>
-                <ul class="nav navbar-nav ">
-                    @* @Component.Invoke("NavbarMenu") *@
-                    <li id="currencyMenu">
-                        <a href="#"
-                           data-toggle="collapse"
-                           data-target="#ulCurrency"
-                           class="visible-sm-ms-lg">
-                            <i class="fa fa-money"></i> &nbsp; CURRENCY&nbsp; <b class="caret"></b>
-                        </a>
-                        <div class="visible-sm-ms-lg">
-                            <ul id="ulCurrency" class="collapse" data-parent="currencyMenu">
-                                <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Grid">All</a></li>
-                                <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Index">Top 10</a></li>
-                                <li><a href="#">Top 10 Performing</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li id="Offermenu">
-                        <a href="#"
-                           data-toggle="collapse"
-                           data-target="#ulOffers"
-                           class="visible-sm-ms-lg">
-                            <i class="fa fa-binoculars"></i> OFFERS&nbsp;<b class="caret"></b>
-                        </a>
-                        <div class="visible-sm-ms-lg">
-                            <ul id="ulOffers" class="collapse" data-parent="#Offermenu">
-                                <li><a asp-route-area="Offer" asp-controller="Offer" asp-action="Index">All</a></li>
-                                <li>Recent</li>
-                                <li>Favourite Traders</li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li id="walletmenu">
-                        <a href="#"
-                           data-toggle="collapse"
-                           data-target="#ulwallet"
-                           class="visible-sm-ms-lg">
-                            <i class="fa fa-money"></i>WALLETS&nbsp;<b class="caret"></b>
-                         </a>
-                        <div class="visible-sm-lg-md">
-                            <ul id="ulwallet" class="collapse" data-parent="#walletmenu">
-                                <li><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Grid">All</a></li>
-                                <li><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Index">Recent</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Logout</a></li>
-                    @*
-                        <span id="LoggedUsername">@User.FindFirst("username").Value</span>*@
-                    <li><a href="#">Login</a></li>
-                    <li><a asp-route-area="Global" asp-controller="Account" asp-action="Register">Register</a></li>
-
-
-                </ul>
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a asp-route-area="Global" asp-controller="Home" asp-action="Index"  class="navbar-brand">
+                    <span class="fa fa-home"></span>
+                </a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
             </div>
 
+            <div class="collpase navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    @*@await Component.InvokeAsync("NavbarMenu")*@
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @*<span style="height:65px; width:45px;"><i class="fa fa-question fa-2x"></i></span>*@
+                    </li>
+                    <li>
+                        @*<span style="height:65px; width:45px;"><i class="fa fa-envelope"></i></span>*@
+                    </li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle" style="height:70px;">
+                            <span class="nav-title">
+                                <span>SessionUser@*@User.FindFirst("name").Value*@</span>
+                            </span>
+                        </a>
+                        <ul class="user-menu dropdown-menu dropdown-menu-right dropdown-yellow dropdown-caret dropdown-close">
+                            <li><a href="#">Change Details</a></li>
+                            <li><a href="#">Change Password</a></li>
+                            <li><a asp-route-area="Global" asp-controller="Account" asp-action="Logout">LogOut</a></li>
+                            <li><a asp-route-area="Global" asp-controller="Account" asp-action="Login">LogIn</a></li>
+                            <li><a asp-route-area="Global" asp-controller="Account" asp-action="Register">Register</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </nav>
-    @*Navigation bar*@
+    </div>
 
     <div id="main" class="container">
         @RenderBody()
     </div>
-    @*<script src="~/js/kendo.all.min.js"></script>
-        <script src="~/js/kendo.aspnetmvc.min.js"></script>
-        <script src="~/js/layout.js"></script>*@
-
 
     @RenderSection("Scripts", false)
-
-
 </body>
 </html>

@@ -1,0 +1,28 @@
+﻿@using CPM.Web.Common.Navigation
+@model List<MenuItem>
+
+@foreach (var item in Model)
+{
+    string subline = "";
+
+    switch (item.Name)
+    {
+        case "Currency":
+            subline = ViewBag.CurrencyName;
+            break;
+        case "Wallet":
+            subline = ViewBag.WalletName;
+            break;
+        case "Offer":
+            subline = ViewBag.OfferName;
+            break;
+        default:
+            break;
+    }
+
+    <li id="Navbar-@item.Name">
+        <a id="@(item.Name)Button" href="#" class="text-center">
+            <span class="nav-title">@item.Name</span> <br/> @subline
+        </a>
+    </li>
+}
