@@ -111,7 +111,8 @@ namespace CPM.Web.Areas.Wallet.Controllers
         public IActionResult Create(WalletVM walletVM)
         {
             var viewModel = new WalletVM();
-            viewModel.Type = new WalletTypeVM();
+            viewModel.Type = new WalletTypeVM(); 
+            //viewModel.Type = _service.get //get list of wallet types
             return View(viewModel);
         }
 

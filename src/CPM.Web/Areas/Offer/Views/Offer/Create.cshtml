@@ -3,7 +3,7 @@
 
 
 <div class="container-fluid">
-    @Html.HiddenFor( m => m.Id)
+    @Html.HiddenFor(m => m.Id)
     @Html.HiddenFor(m => m.ClientId)
     @Html.HiddenFor(m => m.ClientName)
     @Html.HiddenFor(m => m.IsNew)
@@ -26,7 +26,7 @@
             </div>
             <span asp-validation-for="offerdescription"></span>
         </div>
-        
+
         <div class="form-group row">
             <label asp-for="currency" class="control-label col-sm-4">Currency</label>
             <div class="col-sm-4 col-xs-12">
@@ -58,6 +58,7 @@
         @*wallet name from wallet*@
 
         @*Currecy code from Currency*@
+
         <div class="form-group row">
             <label asp-for="expirydate" class="control-label col-sm-4">Expires On</label>
             <div class="col-sm-4 col-xs-12">
@@ -73,20 +74,17 @@
                     $('#expirydate').datetimpicker();
                 });
             </script>
-        </div>
+        </div>       
 
-        
-        <div class="form-group">
+        <div class="form-group row">
             <div class="col-sm-4 col-xs-12">
-                <a href="#" role="button" class="btn btn-success btn-lg active"> 
-                    <span>Save<i class="fa fa-save"></i></span>
+                <a href="#" role="button" class="btn btn-success  active">
+                    <span>Save &nbsp;<i class="fa fa-save fa-lg"></i></span>
                 </a>
-                <a href="#" class="btn btn-danger btn-lg">
-                    <span>Cancel<i class="fa fa-remove"></i></span>
+                <a href="#" class="btn btn-danger">
+                    <span>Cancel &nbsp;<i class="fa fa-remove fa-lg"></i></span>
                 </a>
             </div>
         </div>
-
-
-    </form>
+</form>
 </div>

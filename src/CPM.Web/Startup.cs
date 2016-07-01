@@ -56,10 +56,11 @@ namespace CPM.Web
         public void ConfigureServices(IServiceCollection services)
         {
             AddIdentity(services);
+           // AddSession(services);
             AddMvc(services);
             AddBusiness(services);          
             AddEntityFramework(services);
-            AddThirdParty(services);
+            AddThirdParty(services);            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,8 +68,8 @@ namespace CPM.Web
         {             
             UsePlatform(app, env);
             UseIdentity(app);
+            //UseSession(app);
             UseMvc(app);
-
             app.UseKendo(env);
 
             // UseSeedDataWriter(@"C:\Projects\CPM\src\CPM.Data\Resources");
@@ -126,6 +127,20 @@ namespace CPM.Web
                 options.UseSqlServer(Configuration[""]));
         }
 
+        private void AddSession(IServiceCollection services)
+        {
+            services.AddDistributedSqlServerCache(options =>
+           {
+               options.ConnectionString = Configuration["Data:SessionConnection:ConnectionString"];
+               options.SchemaName = "dbo";
+               options.TableName = "Sessions";
+           });
+
+            services.AddSession(options =>
+            {
+                options.CookieName = ".cpm.Session";
+            });            
+        }
 
         
         #endregion
@@ -193,7 +208,11 @@ namespace CPM.Web
                 seeder.EnsureSeedCurrencyData(Path.Combine(folderPath, "currency.json"));
             }
         }
-
+        
+        private void UseSession(IApplicationBuilder app)
+        {
+            app.UseSession();
+        }
         #endregion
     }
 }
