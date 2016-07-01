@@ -7,8 +7,9 @@
     <table  class="table table-condensed table-responsive">
         <thead>
             <tr>
+                <td></td>
                 <td>Offerer</td>
-                <td>OffererWallet</td>
+                <td>Wallet</td>
                 <td>Offer</td>
                 <td>Description</td>
             </tr>
@@ -23,7 +24,8 @@
                 <td>@offer.Name</td>
                 <td>@offer.Detail</td>
 
-                <td><a asp-route-area="Offer" asp-controller="Offer" asp-action="Detail" asp-route-id="@offer.Id"><i class="fa fa-plus"></i></a></td>
+                @*<td><button class="btn  btn-primary btn-xs" asp-route-area="Offer" asp-controller="Offer" asp-action="Create" asp-route-id="@offer.Id"><i class="fa fa-eye"></i></button></td>                
+                <td><a asp-route-area="Offer" asp-controller="Offer" asp-action="Detail" asp-route-id="@offer.Id"><i class="fa fa-plus"></i></a></td>*@
                 <td><a asp-route-area ="Offer" asp-controller="Offer" asp-action="Detail" asp-route-id="@offer.Id"><i class="fa fa-edit"></i></a></td>                
             </tr>
         }

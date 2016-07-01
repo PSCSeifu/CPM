@@ -1,6 +1,41 @@
 ﻿@model CPM.Web.Areas.Offer.Models.OfferVM
 @{ Layout = "/Views/Shared/Offer/_OfferLayout.cshtml";}
+@{ ViewBag.Title = Model.Name}
 
+
+<div class="container-fluid">
+    <ul class="nav nav-pills" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#Summary" role="tab" data-toggle="tab">Summary</a>
+        </li>
+        <li role="presentation" class="active">
+            <a href="#Settings" role="tab" data-toggle="tab">Settings</a>
+        </li>
+        <li role="presentation" class="active">
+            <a href="#Profile" role="tab" data-toggle="tab">Profile</a>
+        </li>
+        <li role="presentation" class="active">
+            <a href="#Transactons" role="tab" data-toggle="tab">Transactons</a>
+        </li>
+    </ul>
+
+    <div class="tabl-content" style="border:none;">
+        <div id="Summary" role="tabpanel" class="tabl-pane active">
+            Summary contents here ...
+        </div>
+        <div id="Settings" role="tabpanel" class="tabl-pane active">
+            Settings contents here ...
+        </div>
+        <div id="Profile" role="tabpanel" class="tabl-pane active">
+            Profile contents here ...
+        </div>
+        <div id="Transactons" role="tabpanel" class="tabl-pane active">
+            Transactons contents here ...
+        </div>
+
+    </div>
+
+</div>
 
 <div class="container-fluid">
     @Html.HiddenFor( m => m.Id)
