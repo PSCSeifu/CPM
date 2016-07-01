@@ -1,92 +1,33 @@
 ﻿@model CPM.Web.Areas.Offer.Models.OfferVM
-@{ Layout = "/Views/Shared/Offer/_OfferLayout.cshtml";}
 
-
-<div class="container-fluid">
+<div class="col-xs-12 col-sm-6">
     @Html.HiddenFor( m => m.Id)
     @Html.HiddenFor(m => m.ClientId)
     @Html.HiddenFor(m => m.ClientName)
     @Html.HiddenFor(m => m.IsNew)
     @Html.HiddenFor(m => m.Id)
-    <form method="post" asp-area="Offer" asp-controller="Offer" class="form-horizontal">
-        <div asp-validation-summary="ValidationSummary.ModelOnly"></div>
-
-        <div class="form-group row">
-            <label asp-for="offername" class="control-label col-sm-4">Offer Name</label>
-            <div class="col-sm-4 col-xs-12">
-                <input type="text" class="form-control" id="offername" placeholder="Create an Offer Name" />
-                <span asp-validation-for="offername"></span>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="offerdescription" class="control-label col-sm-4 col-xs-12">Offer Details</label>
-            <div class="col-sm-8 col-xs-12">
-                <textarea class="form-control" id="offerdescription" placeholder="Add Offer Details here ..." rows="5"></textarea>
-            </div>
-            <span asp-validation-for="offerdescription"></span>
-        </div>
-        
-        <div class="form-group row">
-            <label asp-for="currency" class="control-label col-sm-4">Currency</label>
-            <div class="col-sm-4 col-xs-12">
-                <select class="form-control" id="currency">
-                    <option selected>Default Wallet Currency</option>
-                    <option>BTC</option>
-                    <option>ETH</option>
-                    <option>DAO</option>
-                    <option>XRP</option>
-                </select>
-            </div>
-            <span asp-validation-for="currency"></span>
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="wallet" class="control-label col-sm-4 col-xs-12">Wallet</label>
-            <div class="col-sm-4 col-xs-12">
-                <select class="form-control" id="wallet">
-                    <option selected>Your wallets</option>
-                    <option>My Purse</option>
-                    <option>BitCoin Bag</option>
-                    <option>Main Account</option>
-                    <option>DodgeBucket</option>
-                </select>
-            </div>
-            <span asp-validation-for="currency"></span>
-        </div>
+    <form>
+        <label for="wallet">Wallet</label>
+        <input type="text" id="wallet" placeholder="Select a Wallet" />
 
         @*wallet name from wallet*@
 
+        <label for="currency">Currency</label>
+        <input type="text" id="currency" placeholder="Select a Currency" />
+
         @*Currecy code from Currency*@
-        <div class="form-group row">
-            <label asp-for="expirydate" class="control-label col-sm-4">Expires On</label>
-            <div class="col-sm-4 col-xs-12">
-                <div class="input-group date" id="expirydate">
-                    <input type="text" class="form-control " />
-                    <span class="input-group-addon">
-                        <span class="fa fa-calendar"></span>
-                    </span>
-                </div>
-            </div>
-            <script type="text/javascript">
-                $(function () {
-                    $('#expirydate').datetimpicker();
-                });
-            </script>
-        </div>
 
-        
-        <div class="form-group">
-            <div class="col-sm-4 col-xs-12">
-                <a href="#" role="button" class="btn btn-success btn-lg active"> 
-                    <span>Save<i class="fa fa-save"></i></span>
-                </a>
-                <a href="#" class="btn btn-danger btn-lg">
-                    <span>Cancel<i class="fa fa-remove"></i></span>
-                </a>
-            </div>
-        </div>
+        <label for="offername">Offer Name</label>
+        <input type="text" id="offername" placeholder="Create Offer Name" />
+
+        <label for="offerdescription">Offer Detail</label>
+        <input type="text" id="offerdescription" placeholder="Offer Description" />
+
+        <label for="expirydate">Expiry Date</label>
+        <input type="datetime" id="expirydate" />
 
 
+        <button id="save" value="Save" calss="btn btn-success">Save</button>
+        <button id="cancel" value="cancel" calss="btn btn-danger">Cancel</button>
     </form>
 </div>

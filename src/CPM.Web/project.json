@@ -35,8 +35,7 @@
     "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
     "Kendo.Mvc": "2016.2.617",
     "Bootswatch": "3.3.6",
-    "Microsoft.Extensions.DependencyInjection": "1.0.0",
-    "Microsoft.Extensions.Caching.SqlServer": "1.0.0"
+    "Microsoft.Extensions.DependencyInjection": "1.0.0"
   },
 
   "tools": {

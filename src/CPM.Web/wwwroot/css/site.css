@@ -138,11 +138,11 @@
 }
 
 /*START FONT AWESOME OVERLOADS */
-.table .fa-unlock {
+.fa-unlock {
     color: green;
 }
 
-.table .fa-lock {
+.fa-lock {
     color: red;
 }
 /*END FONT AWESOME OVERLOADS*/

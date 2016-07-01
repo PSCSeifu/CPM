@@ -90,10 +90,9 @@ namespace CPM.Web.Areas.Offer.Controllers
             //viewModel.ClientId = _sessionHelper.CPMUser.ClientId;
             viewModel.ClientId = 2;
             viewModel.IsNew = true;
-            //viewModel.WebUserType = (int)_sessionHelper.CPMUser.WebUserType;
-            viewModel.WebUserType = (int)Business.Common.Enums.WebUserType.Customer;
+            viewModel.WebUserType = (int)_sessionHelper.CPMUser.WebUserType;
 
-            return View("Create", viewModel);
+            return View("Detail", viewModel);
         }
     }
 }
