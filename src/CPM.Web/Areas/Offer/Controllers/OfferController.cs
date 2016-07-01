@@ -30,7 +30,7 @@ namespace CPM.Web.Areas.Offer.Controllers
         {
             var viewModel = new OfferListVM();
             //var result = _service.GetList(_sessionHelper.CPMUser.ClientId);
-            var result = _service.GetList(2);
+            var result = _service.GetList(1);
 
             if (result.Result == GetResultEnum.Success)
             {
@@ -70,7 +70,7 @@ namespace CPM.Web.Areas.Offer.Controllers
 
         public IActionResult Detail(int id)
         {
-            var result = _service.GetItem(id);
+            var result = _service.GetItem(6);
 
             if(result.Result == GetResultEnum.Success)
             {

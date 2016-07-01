@@ -25,6 +25,7 @@ namespace CPM.Web
 
             #region " Offers "
             CreateMap<OfferInfoBM, OfferInfoVM>();
+            CreateMap<OfferBM, OfferVM>();
             #endregion
 
             #region " Currency "
