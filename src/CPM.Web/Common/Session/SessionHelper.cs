@@ -10,7 +10,7 @@ namespace CPM.Web.Common.Session
 {
     public interface ISessionHelper :ISessionConfigBase
     {
-
+        SessionCPMUserVM CPMUser { get; set; }
     }
 
     public class SessionHelper :SessionConfigBase, ISessionHelper
@@ -25,6 +25,7 @@ namespace CPM.Web.Common.Session
             get { return Session.GetObjectFromJson<SessionCPMUserVM>("User"); }
             set { Session.SetObjectAsJson("User", value); }
         }  
+               
 
         public void ClearSession()
         {

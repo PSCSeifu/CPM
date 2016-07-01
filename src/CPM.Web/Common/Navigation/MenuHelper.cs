@@ -15,7 +15,8 @@ namespace CPM.Web.Common.Navigation
 
         public static void LoadMenu(IHostingEnvironment env)
         {
-            var stream = new FileStream(env.ContentRootPath + "/Common/Navigation/MenuStructure.json", FileMode.Open);
+            //var stream = new FileStream(env.ContentRootPath + "/Common/Navigation/MenuStructure.json", FileMode.Open);
+            var stream = new FileStream(@"C:\Projects\CPM\src\CPM.Web\Common\NavigationMenuStructure.json", FileMode.Open);
             var menuJson = new StreamReader(stream).ReadToEnd();
             Menu = JsonConvert.DeserializeObject<MenuItem>(menuJson);
         }

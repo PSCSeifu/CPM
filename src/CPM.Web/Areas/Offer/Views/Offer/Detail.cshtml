@@ -1,5 +1,33 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model CPM.Web.Areas.Offer.Models.OfferVM
+
+<div class="col-xs-12 col-sm-6">
+    @Html.HiddenFor( m => m.Id)
+    @Html.HiddenFor(m => m.ClientId)
+    @Html.HiddenFor(m => m.ClientName)
+    @Html.HiddenFor(m => m.IsNew)
+    @Html.HiddenFor(m => m.Id)
+    <form>
+        <label for="wallet">Wallet</label>
+        <input type="text" id="wallet" placeholder="Select a Wallet" />
+
+        @*wallet name from wallet*@
+
+        <label for="currency">Currency</label>
+        <input type="text" id="currency" placeholder="Select a Currency" />
+
+        @*Currecy code from Currency*@
+
+        <label for="offername">Offer Name</label>
+        <input type="text" id="offername" placeholder="Create Offer Name" />
+
+        <label for="offerdescription">Offer Detail</label>
+        <input type="text" id="offerdescription" placeholder="Offer Description" />
+
+        <label for="expirydate">Expiry Date</label>
+        <input type="datetime" id="expirydate" />
+
+
+        <button id="save" value="Save" calss="btn btn-success">Save</button>
+        <button id="cancel" value="cancel" calss="btn btn-danger">Cancel</button>
+    </form>
+</div>

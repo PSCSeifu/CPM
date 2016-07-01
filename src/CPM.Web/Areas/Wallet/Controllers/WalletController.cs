@@ -107,8 +107,6 @@ namespace CPM.Web.Areas.Wallet.Controllers
                 return RedirectToAction("Error", "Home", new { Area = "Global" });
             }
         }
-
-        
        
         public IActionResult Create(WalletVM walletVM)
         {

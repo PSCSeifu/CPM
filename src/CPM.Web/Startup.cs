@@ -76,7 +76,7 @@ namespace CPM.Web
             
         }
 
-        #region " Add Service "
+        #region " Add Services "
 
         private void AddMvc(IServiceCollection services)
         {
@@ -125,6 +125,8 @@ namespace CPM.Web
             services.AddDbContext<ClientContext>(options =>
                 options.UseSqlServer(Configuration[""]));
         }
+
+
         
         #endregion
 
