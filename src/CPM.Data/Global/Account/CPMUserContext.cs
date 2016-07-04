@@ -11,20 +11,21 @@ using System.Threading.Tasks;
 
 namespace CPM.Data.Global.Account
 {
-    public interface IUserContext : IIdentityDBContextBase<CPMUserContext>
+    public interface IUserContext : IDbContextBase
     {
-        int SaveChanges();
         DbSet<CPMUserEntity> CPMUsers { get; set; }
+        DbSet<ClientEntity> Clients { get; set; }
     }
 
-    public class CPMUserContext : IdentityDbContextBase<CPMUserEntity>, IUserContext
+    public class CPMUserContext : DbContextBase, IUserContext
     {
         public CPMUserContext()
         {
-            //
+           
         }
 
         public DbSet<CPMUserEntity> CPMUsers { get; set; }
+        public DbSet<ClientEntity> Clients { get; set; }
         
     }
 }

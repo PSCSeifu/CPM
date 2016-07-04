@@ -43,11 +43,11 @@ namespace CpmLib.Data.Core
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //    builder.Entity<IdentityUser>().HasKey(i => i.Id);
+            builder.Entity<IdentityUser>().HasKey(i => i.Id);
 
-            //    builder.Entity<IdentityUser>().Property(i => i.Id).ValueGeneratedOnAdd();
-         
-            //builder.Entity<IdentityUser>().Property(i => i.Id).IsRequired(true);
+            builder.Entity<IdentityUser>().Property(i => i.Id).ValueGeneratedOnAdd();
+
+            builder.Entity<IdentityUser>().Property(i => i.Id).IsRequired(true);
 
 
             base.OnModelCreating(builder);

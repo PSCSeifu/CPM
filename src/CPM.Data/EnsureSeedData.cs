@@ -85,21 +85,21 @@ namespace CPM.Data
                     {
                         clientContext.Clients.Add(new ClientEntity()
                         {
-                            AgreedOnTerms = d.AgreedOnTerms,
+                            //AgreedOnTerms = d.AgreedOnTerms,
                             cpmAnalytics = d.cpmAnalytics,
                             cpmAutoBargain = d.cpmAutoBargain,
                             cpmEscrow = d.cpmEscrow,
                             cpmForum = d.cpmForum,
                             cpmModerate = d.cpmModerate,
                             cpmNews = d.cpmNews,
-                            DateRegistered = d.DateRegistered,
-                            ExpiryDate = d.ExpiryDate,
+                            //DateRegistered = d.DateRegistered,
+                            //ExpiryDate = d.ExpiryDate,
                             ForumUserName = d.ForumUserName,
                             NickName = d.NickName,
-                            Suspended = d.Suspended,
-                            UserId = d.UserId,
-                            WebSubscriptionType = d.WebSubscriptionType,
-                            WebUserType = d.WebUserType
+                           // Suspended = d.Suspended,
+                           // UserId = d.UserId,
+                           // WebSubscriptionType = d.WebSubscriptionType,
+                           // WebUserType = d.WebUserType
 
                         });
                     }

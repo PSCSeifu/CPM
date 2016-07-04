@@ -20,6 +20,7 @@ namespace CPM.Test.Wallet
         public DbSet<OfferEntity> Offers { get; set; }
         public DbSet<ClientEntity> Clients { get; set; }
         public DbSet<CurrencyEntity> Currency { get; set; }
+        public DbSet<CPMUserEntity> CPMUser { get; set; }
 
         public WalletMockContext()
         {

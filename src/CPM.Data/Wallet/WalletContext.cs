@@ -17,6 +17,7 @@ namespace CPM.Data.Wallet
         DbSet<OfferEntity> Offers { get; set; }
         DbSet<ClientEntity> Clients { get; set; }
         DbSet<CurrencyEntity> Currency { get; set; }
+        DbSet<CPMUserEntity> CPMUser { get; set; }
     }
 
 
@@ -32,5 +33,6 @@ namespace CPM.Data.Wallet
         public DbSet<OfferEntity> Offers { get; set; }
         public DbSet<ClientEntity> Clients { get; set; }        
         public DbSet<CurrencyEntity> Currency { get; set; }
+        public DbSet<CPMUserEntity> CPMUser { get; set; }
     }
 }

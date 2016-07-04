@@ -155,9 +155,9 @@ namespace CPM.Data.Offer
                                            where wallet.Id == offer.WalletId
                                            select wallet.Name
                                           ).SingleOrDefault(),
-                             WebUserType = (from client in _context.Clients
-                                            where client.Id == offer.ClientId
-                                            select client.WebUserType.Value
+                             WebUserType = (from user in _context.CPMUsers
+                                            where user.ClientId == offer.ClientId
+                                            select user.WebUserType.Value
                                             ).SingleOrDefault()
                          };
 

@@ -15,7 +15,7 @@ namespace CPM.Data.Offer
         DbSet<ClientEntity> Clients { get; set; }
         DbSet<WalletEntity> Wallets { get; set; }
         DbSet<CurrencyEntity> Currencies { get; set; }
-
+        DbSet<CPMUserEntity> CPMUsers { get; set; }
     }
 
     public class OfferContext :DbContextBase, IOfferContext
@@ -28,5 +28,6 @@ namespace CPM.Data.Offer
         public DbSet<ClientEntity> Clients { get; set; }
         public DbSet<WalletEntity> Wallets { get; set; }
         public DbSet<CurrencyEntity> Currencies { get; set; }
+        public DbSet<CPMUserEntity> CPMUsers { get; set; }
     }
 }

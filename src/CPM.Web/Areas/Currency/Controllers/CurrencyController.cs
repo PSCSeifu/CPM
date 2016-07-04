@@ -9,12 +9,14 @@ using CpmLib.Business.Core.Service;
 using Kendo.Mvc.UI;
 using AutoMapper;
 using Kendo.Mvc.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CPM.Web.Areas.Currency.Controllers
 {
     [Area("Currency")]
+    [Authorize]
     public class CurrencyController : Controller
     {
         private ICurrencySerivce _service;

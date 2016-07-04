@@ -9,12 +9,14 @@ using CpmLib.Business.Core.Service;
 using AutoMapper;
 using Kendo.Mvc.UI;
 using CPM.Web.Common.Session;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CPM.Web.Areas.Offer.Controllers
 {
     [Area("Offer")]
+    [Authorize]
     public class OfferController : Controller
     {
         private  IOfferService _service;

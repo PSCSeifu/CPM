@@ -38,32 +38,32 @@ namespace CPM.Web.Areas.Global
         [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterVM model)
         {
-            if (ModelState.IsValid)
-            {
-                //Set user ceredentails
-                var cpmUser = new CPMUserEntity { UserName = model.Username, Email = model.Email };
+            //if (ModelState.IsValid)
+            //{
+            //    //Set user ceredentails
+            //    var cpmUser = new CPMUserEntity { UserName = model.Username, Email = model.Email };
                
-                //Create the user
-                var result = await _userManager.CreateAsync(cpmUser, model.Password);
+            //    //Create the user
+            //    var result = await _userManager.CreateAsync(cpmUser, model.Password);
               
-                //Get the role from vm, add to user role
-                var userRole = model.WebUserType.ToString();
-                await _userManager.AddToRoleAsync(cpmUser, userRole);
+            //    //Get the role from vm, add to user role
+            //    var userRole = model.WebUserType.ToString();
+            //    await _userManager.AddToRoleAsync(cpmUser, userRole);
 
-                //SignIn
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(cpmUser, isPersistent: false);
-                    return RedirectToAction(nameof(HomeController.Index), "Home");
-                }
-                else
-                {
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error.Description);
-                    }
-                }
-            }
+            //    //SignIn
+            //    if (result.Succeeded)
+            //    {
+            //        await _signInManager.SignInAsync(cpmUser, isPersistent: false);
+            //        return RedirectToAction(nameof(HomeController.Index), "Home");
+            //    }
+            //    else
+            //    {
+            //        foreach (var error in result.Errors)
+            //        {
+            //            ModelState.AddModelError("", error.Description);
+            //        }
+            //    }
+            //}
 
             return View();
         }

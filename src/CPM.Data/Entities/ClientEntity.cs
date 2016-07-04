@@ -13,14 +13,13 @@ namespace CPM.Data.Entities
     {
         //public override string Id { get; set; }
         public int Id { get; set; }
-        public string UserId { get; set; }
-
-        public int? WebUserType { get; set; }
-        public int? WebSubscriptionType { get; set; }
-        public bool? AgreedOnTerms { get; set; }
-        public bool? Suspended { get; set; }
-        public DateTime? ExpiryDate { get; set; }
-        public DateTime? DateRegistered { get; set; }
+        //public string UserId { get; set; }
+        //public int? WebUserType { get; set; }
+        //public int? WebSubscriptionType { get; set; }
+        //public bool? AgreedOnTerms { get; set; }
+        //public bool? Suspended { get; set; }
+        //public DateTime? ExpiryDate { get; set; }
+        //public DateTime? DateRegistered { get; set; }
 
         public string NickName { get; set; }
         public string ForumUserName { get; set; }
