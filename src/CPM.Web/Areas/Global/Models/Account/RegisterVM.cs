@@ -24,5 +24,9 @@ namespace CPM.Web.Areas.Global.Models.Account
 
         [Required]
         public WebUserType WebUserType { get; set; }
+
+        public bool RememberMe { get; set; }
+
+        public string ReturnUrl { get; set; }
     }
 }

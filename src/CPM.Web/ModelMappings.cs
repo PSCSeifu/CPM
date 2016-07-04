@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using CPM.Business.Currency;
+using CPM.Business.Global.Account;
 using CPM.Business.Offer;
 using CPM.Business.Wallet;
+using CPM.Data.Global.Account;
 using CPM.Data.Wallet;
 using CPM.Web.Areas.Currency.Models;
 using CPM.Web.Areas.Offer.Models;
@@ -17,6 +19,10 @@ namespace CPM.Web
     {
         public WebModelMappings()
         {
+            #region " CPMUsers  "
+            CreateMap<CPMUserBM, CPMUserDM>();
+            #endregion
+
             #region " Wallets "
             CreateMap<WalletTypeBM, WalletTypeVM>();
             CreateMap<WalletInfoBM, WalletInfoVM>();

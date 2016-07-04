@@ -1,8 +1,11 @@
 ﻿using CPM.Business.Currency;
+using CPM.Business.Global.Account;
 using CPM.Business.Offer;
 using CPM.Business.Wallet;
 using CPM.Data.Global.Account;
+using CPM.Web.Common.Account;
 using CPM.Web.Common.Session;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,8 +18,14 @@ namespace CPM.Web
     {
         public static void Configure(IServiceCollection services)
         {
-            #region " Global "
+            #region  " Framework "
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();            
+            #endregion
 
+            #region " Global "
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ISessionHelper, SessionHelper>();
+            services.AddScoped<IHasher, Hasher>();
             #endregion
 
             #region " CPMUser "
@@ -34,11 +43,6 @@ namespace CPM.Web
             #region " Currency " 
             services.AddScoped<ICurrencySerivce, CurrencyService>();
             #endregion
-
-            #region " Global "
-            services.AddScoped<ISessionHelper, SessionHelper>();
-            #endregion
-
 
         }
     }

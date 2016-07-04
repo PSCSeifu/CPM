@@ -11,6 +11,7 @@ namespace CPM.Web.Common.Session
     public interface ISessionHelper :ISessionConfigBase
     {
         SessionCPMUserVM CPMUser { get; set; }
+        void ClearSession();
     }
 
     public class SessionHelper :SessionConfigBase, ISessionHelper

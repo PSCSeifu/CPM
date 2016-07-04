@@ -73,7 +73,7 @@ namespace CPM.Web
             app.UseKendo(env);
 
             // UseSeedDataWriter(@"C:\Projects\CPM\src\CPM.Data\Resources");
-            UseSeedData(@"C:\Projects\CPM\src\CPM.Data\Resources");
+            //UseSeedData(@"C:\Projects\CPM\src\CPM.Data\Resources");
             
         }
 

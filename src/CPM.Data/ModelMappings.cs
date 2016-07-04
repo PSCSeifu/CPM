@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CPM.Data.Currency;
 using CPM.Data.Entities;
+using CPM.Data.Global.Account;
 using CPM.Data.Offer;
 using CPM.Data.Wallet;
 using System;
@@ -14,6 +15,8 @@ namespace CPM.Data
     {
         public DataModelMappings()
         {
+            CreateMap<CPMUserEntity, CPMUserDM>();
+
             CreateMap<WalletEntity, WalletDM>();
             CreateMap<WalletTypeEntity, WalletTypeDM>();
 

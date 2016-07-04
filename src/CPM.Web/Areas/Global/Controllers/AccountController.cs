@@ -29,14 +29,14 @@ namespace CPM.Web.Areas.Global
         private IAccountService _accountService;
         private ISessionHelper _sessionHelper;
         private IHasher _hasher;
-        private ILogger _logger;
+ 
 
-        public AccountController(ISessionHelper sessionHelper, IAccountService accountService,ILogger logger, IHasher hasher)
+        public AccountController(ISessionHelper sessionHelper, IAccountService accountService,IHasher hasher)
         {
             _sessionHelper = sessionHelper;
             _accountService = accountService;
             _hasher = hasher;
-            _logger = logger;
+         
         }
 
 
@@ -50,7 +50,7 @@ namespace CPM.Web.Areas.Global
 
         [HttpPost]
         [AllowAnonymous]
-        public  IActionResult Register(RegisterVM model)
+        public  IActionResult Register(RegisterVM model,string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -65,15 +65,19 @@ namespace CPM.Web.Areas.Global
                 //SignIn
                 if (result.Result == ProcessResultEnum.Success)
                 {
-                   //Login
+                    //Login
+                    LoginVM vm = new LoginVM();
+                    vm.Username = model.Username;
+                    vm.Password = model.Password;
+                    vm.ReturnUrl = returnUrl;
+                    vm.RememberMe = model.RememberMe;
+                    Login(vm, vm.ReturnUrl).Wait();
+
                     return RedirectToAction(nameof(HomeController.Index), "Home");
                 }
                 else
-                {                    
-                    foreach (var error in result.Messages.Items)
-                    {
-                        ModelState.AddModelError("", error.Text);
-                    }
+                {
+                    ModelState.AddModelError(result.Error.Message, result.ErrorDescription);                    
                 }
             }
 

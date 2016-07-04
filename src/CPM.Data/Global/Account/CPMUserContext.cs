@@ -21,7 +21,7 @@ namespace CPM.Data.Global.Account
     {
         public CPMUserContext()
         {
-           
+            Database.EnsureCreated();  
         }
 
         public DbSet<CPMUserEntity> CPMUsers { get; set; }
