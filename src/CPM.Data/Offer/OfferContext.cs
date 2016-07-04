@@ -1,6 +1,7 @@
 using CPM.Data.Entities;
 using CpmLib.Data.Core;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace CPM.Data.Offer
 
     public class OfferContext :DbContextBase, IOfferContext
     {
+        IConfiguration Configuration { get; set; }
+
         public OfferContext()
         {
             Database.EnsureCreated();
@@ -29,5 +32,11 @@ namespace CPM.Data.Offer
         public DbSet<WalletEntity> Wallets { get; set; }
         public DbSet<CurrencyEntity> Currencies { get; set; }
         public DbSet<CPMUserEntity> CPMUsers { get; set; }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    var connectionString = Configuration["Data:CPMConnection"];
+        //    optionsBuilder.UseSqlServer(connectionString);
+        //}
     }
 }

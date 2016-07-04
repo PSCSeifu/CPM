@@ -4,28 +4,31 @@
 @{ ViewBag.Title = "CPM Currencies";}
 
 <div>
-    <div id="Grid" class="col-sm-12">
-        @Html.Partial("Grid_Read")
-    </div>
-    
-    <table class="table table-bordered table-condensed">        
-     <tr >
-         <th></th>
-        <th>Name</th>
-        <th>Code</th>                
-        <th></th>
-        <th></th>
-    </tr>
-                   
-    @foreach (var item in Model.Currencies)
-    {
+
+
+    <table class="table table-bordered table-condensed">
         <tr>
-            <td></td>
-            <td>@item.Name</td>
-            <td>@item.Code</td>
-            <td></td>
-            <td></td>            
+            <th></th>
+            <th>Name</th>
+            <th>Code</th>
+            <th></th>
+            <th></th>
         </tr>
-    }
-    </table>  
+
+        @foreach (var item in Model.Currencies)
+        {
+            <tr>
+                <td></td>
+                <td>@item.Name</td>
+                <td>@item.Code</td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </table>
+
+    <div id="Grid" class="col-sm-12">
+        <h5>Here ought to be a grid view</h5>
+        @Html.Partial("Grid")
+    </div>
 </div>

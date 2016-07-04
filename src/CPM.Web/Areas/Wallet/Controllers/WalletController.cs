@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace CPM.Web.Areas.Wallet.Controllers
 {
     [Area("Wallet")]
-    [Authorize]
+   
     public class WalletController : Controller
     {
         private IWalletService _service;
@@ -43,7 +43,13 @@ namespace CPM.Web.Areas.Wallet.Controllers
                 return RedirectToAction("Error", "Home", new { Area = "Global" });
             }
         }
-        
+
+        public IActionResult Grid()
+        {
+            return View();
+        }
+
+
         public IActionResult Grid_Read([DataSourceRequest] DataSourceRequest request, string searchTerm = "")
         {
             GetListResult<WalletInfoBM> result;

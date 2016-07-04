@@ -13,10 +13,12 @@
     }
     )
     //.Pageable(p => p.PageSizes( new int[] { 5, 10, 20 }))
+    .Pageable()
+    //.HtmlAttributes(new { style = "height:550px;" })
     .DataSource(data => data
         .Ajax()
-        //.PageSize(3)
+        .PageSize(3)
         .ServerOperation(false)
-        .Read(read => read.Action("Grid_Read", "Wallet", new { Area = "Wallet"}))
+        .Read(read => read.Action("Grid_Read", "Wallet", new { Area = "Wallet" }))
     )
 )

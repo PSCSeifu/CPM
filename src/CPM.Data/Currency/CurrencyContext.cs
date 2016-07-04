@@ -1,6 +1,7 @@
 using CPM.Data.Entities;
 using CpmLib.Data.Core;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,19 @@ namespace CPM.Data.Currency
 
     public class CurrencyContext : DbContextBase, ICurrencyContext
     {
+        IConfiguration Configuration { get; set; }
+
         public CurrencyContext()
         {
             Database.EnsureCreated();
         }
 
         public DbSet<CurrencyEntity> Currency {get;set;}
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    var connectionString = Configuration["Data:CPMConnection"];
+        //    optionsBuilder.UseSqlServer(connectionString);
+        //}
     }
 }

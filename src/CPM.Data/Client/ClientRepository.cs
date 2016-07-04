@@ -22,8 +22,7 @@ namespace CPM.Data.Client
 
     public class ClientRepository : IClientRepository
     {
-        private readonly IClientContext _context;
-        private readonly UserManager<ClientEntity> _userManager;
+        private readonly IClientContext _context;       
 
         public ClientRepository()
         {
