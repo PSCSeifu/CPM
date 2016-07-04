@@ -16,8 +16,7 @@ namespace CPM.Data.Global.Account
         public bool? cpmModerate { get; set; }
         public bool? cpmNews { get; set; }
         public bool? cpmForum { get; set; }
-        public bool? cpmEscrow { get; set; }
-        public DateTime? DateOfBirth { get; set; }
+        public bool? cpmEscrow { get; set; }       
         public string Email { get; set; }
         public int Id { get; set; }
         public DateTime? LastSawMessage { get; set; }

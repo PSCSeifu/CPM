@@ -16,7 +16,7 @@ namespace CPM.Business.Global.Account
         GetItemResult<bool> UserExists(string username);
     }
 
-    public class AccountService :IAccountService
+    public class AccountService :  IAccountService
     {
         #region _Constructor_
 
