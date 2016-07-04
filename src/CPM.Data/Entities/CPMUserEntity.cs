@@ -31,5 +31,6 @@ namespace CPM.Data.Entities
         public bool? Suspended { get; set; }
         public string Username { get; set; }
         public int? WebUserType { get; set; }
+        public int? WebSubscriptionType { get; set; }
     }
 }

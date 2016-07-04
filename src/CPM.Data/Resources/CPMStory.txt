@@ -1,0 +1,11 @@
+﻿
+CPM 
+
+A cpm user can be a customer, Vendor, Escrow Agent or A Moderator.
+
+- CPMUser is for rregistering/login 
+
+- Client determines the webuser type {customer, Vendor, Escrow Agent or A Moderator} ,
+the subscription type{basic,silver,gold}, 
+and the site product types the user is allowed to access {analytics,news,forums etc}
+
