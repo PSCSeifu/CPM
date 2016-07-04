@@ -73,7 +73,7 @@ namespace CPM.Web
             app.UseKendo(env);
 
             // UseSeedDataWriter(@"C:\Projects\CPM\src\CPM.Data\Resources");
-            //UseSeedData(@"C:\Projects\CPM\src\CPM.Data\Resources");
+            UseSeedData(@"C:\Projects\CPM\src\CPM.Data\Resources");
             
         }
 
@@ -84,17 +84,15 @@ namespace CPM.Web
             services.AddMvc()
             .AddJsonOptions(opt =>
             {
-                opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                //opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                opt.SerializerSettings.ContractResolver = new DefaultContractResolver();
             });
             services.AddOptions();
         }
 
         private void AddThirdParty(IServiceCollection services)
         {
-            //services.AddKendo();
-            foreach (ServiceDescriptor service in Kendo.Mvc.KendoServices.GetServices())
-                services.Add(service);
-            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            services.AddKendo();
         }
 
         private void AddEntityFramework (IServiceCollection services)

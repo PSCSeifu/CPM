@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace CPM.Web.Areas.Currency.Controllers
 {
     [Area("Currency")]
-    [Authorize]
+    
     public class CurrencyController : Controller
     {
         private ICurrencySerivce _service;
