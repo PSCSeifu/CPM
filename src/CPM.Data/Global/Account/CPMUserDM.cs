@@ -8,7 +8,7 @@ namespace CPM.Data.Global.Account
 {
     public class CPMUserDM
     {
-        public string Actions { get; set; }
+       
         public bool AgreedOnTerms { get; set; }
         public int ClientId { get; set; }
         public bool? cpmAnalytics { get; set; }
