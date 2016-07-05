@@ -1,9 +1,12 @@
 {
   "Data": {
+    "MigrationAssembly": "CPM.Web",
     "CPMConnection": "Server=(localdb)\\ProjectsV13;Database=CPMDB;Trusted_Connection=true;MultipleActiveResultSets=true;"
   },
   "SessionConeection": {
     "ConnectionString": "Server=(localdb)\\ProjectsV13;Database=ASPNETSession;Trusted_Connection=true;MultipleActiveResultSets=true;"
+  },
+  "PriceService": {
+    "DefaultFiatCurrency": "usd"
   }
-  
 }

@@ -33,7 +33,8 @@ namespace CpmLib.Data.Core
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString = Configuration["Data:CPMConnection"];
-            optionsBuilder.UseSqlServer(connectionString, b => b.MigrationsAssembly("CPM.Web"));
+            //optionsBuilder.UseSqlServer(connectionString, b => b.MigrationsAssembly("CPM.Web"));
+            optionsBuilder.UseSqlServer(connectionString, b => b.MigrationsAssembly(Configuration["Data:MigrationAssembly"]));            
         }
 
         public void SetModified(object entity)

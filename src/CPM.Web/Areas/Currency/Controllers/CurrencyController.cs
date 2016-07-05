@@ -20,10 +20,12 @@ namespace CPM.Web.Areas.Currency.Controllers
     public class CurrencyController : Controller
     {
         private ICurrencySerivce _service;
+        private IPriceTickerService _priceService;
 
-        public CurrencyController(ICurrencySerivce service )
+        public CurrencyController(ICurrencySerivce service, IPriceTickerService priceService)
         {
             _service = service;
+            _priceService = priceService;
         }
 
         // GET: /<controller>/
@@ -31,7 +33,6 @@ namespace CPM.Web.Areas.Currency.Controllers
         {
             var viewModel = new CurrencyListVM();
             var result = _service.GetList();
-            //ModelMappings.Configure();
 
             if (result.Result == GetResultEnum.Success)
             {
@@ -62,6 +63,25 @@ namespace CPM.Web.Areas.Currency.Controllers
                 return RedirectToAction("Error", "Home", new { Area = "Global" });
             }
         }
+
+        public async Task<IActionResult> Detail(int id)
+        {
+            var result = _service.GetItem(id);
+
+            if (result != null && result.Result == GetResultEnum.Success)
+            {
+                var priceticker = await _priceService.GetPriceTicker(result.Item.Code, "usd", true);
+                result.Item.Prices.Add(priceticker);
+                return View("Detail", Mapper.Map<CurrencyVM>(result.Item));
+            }
+            else
+            {
+                return RedirectToAction("Error", "Home", new { Area = "Global" });
+            }
+
+
+        }
+
 
         public IActionResult Grid()
         {

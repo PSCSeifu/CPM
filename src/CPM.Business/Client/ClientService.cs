@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CPM.Business.Client
 {
-    public interface IClientService 
+    public interface IClientService
+    {
+
+    }
 
     public class ClientService
     {

@@ -29,7 +29,7 @@ namespace CPM.Data.Entities
         public int ImageId { get; set; } = 0;
         #endregion
 
-        #region Companywwwwwwwww
+        #region Company
         public string CompanyName { get; set; } = "";
         public DateTime? DateEstablished { get; set; }
         public int? IncorporationType { get; set; } //Ltd, Private

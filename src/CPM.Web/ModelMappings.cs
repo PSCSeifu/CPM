@@ -36,6 +36,9 @@ namespace CPM.Web
 
             #region " Currency "
             CreateMap<CurrencyInfoBM, CurrencyInfoVM>();
+            CreateMap<CurrencyBM, CurrencyVM>();
+            CreateMap<PriceMarketBM, PriceMarketVM>();
+            CreateMap<PriceTickerBM, PriceTickerVM>();
             #endregion
 
             #region Global

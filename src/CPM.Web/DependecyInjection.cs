@@ -42,6 +42,7 @@ namespace CPM.Web
 
             #region " Currency " 
             services.AddScoped<ICurrencySerivce, CurrencyService>();
+            services.AddScoped<IPriceTickerService, PriceTickerService>();
             #endregion
 
         }

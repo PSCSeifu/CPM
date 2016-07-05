@@ -1,0 +1,31 @@
+﻿@model CPM.Web.Areas.Currency.Models.CurrencyVM
+@{ Layout = "/Views/Shared/Currency/_CurrencyLayout.cshtml";}
+@{ ViewBag.Title = Model.Name;}
+
+
+<div class="container-fluid">
+    <p>@Model.Code</p>
+    <p>@Model.Name</p>
+    <p>@Model.Description</p>
+
+    <ul style="background-color:aquamarine;">
+        @foreach (var item in @Model.Prices)
+        {
+
+            <li>@item.CryptoCode</li>
+            <li>@item.FiatCode</li>
+            <li>@item.Price</li>
+                <li>@item.Volume</li>
+                <li>@item.Change</li>
+                <li>@item.Success</li>
+
+                @*@foreach (var market in @item.Markets)
+                {
+                    <h5>@market.Market</h5>
+                            <h5>@market.Price</h5>
+                            <h5>@market.Volume</h5>
+                }*@
+        }
+    </ul>
+
+</div>
