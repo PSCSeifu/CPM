@@ -64,22 +64,28 @@ namespace CPM.Web.Areas.Currency.Controllers
             }
         }
 
-        public async Task<IActionResult> Detail(int id)
+        public  IActionResult Detail(int id)
         {
             var result = _service.GetItem(id);
 
             if (result != null && result.Result == GetResultEnum.Success)
             {
-                var priceticker = await _priceService.GetPriceTicker(result.Item.Code, "usd", true);
-                result.Item.Prices.Add(priceticker);
+                List<string> fiatList = new List<string>()
+                {
+                    "usd","gbp","eur","aud","rub"
+                };
+                foreach (var item in fiatList)
+                {
+                    var priceticker = _priceService.GetPriceTickerSync(result.Item.Code, item, "usd", true);
+                    result.Item.Prices.Add(priceticker);
+                }
+                
                 return View("Detail", Mapper.Map<CurrencyVM>(result.Item));
             }
             else
             {
                 return RedirectToAction("Error", "Home", new { Area = "Global" });
             }
-
-
         }
 
 

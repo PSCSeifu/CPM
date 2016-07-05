@@ -13,8 +13,10 @@ namespace CPM.Web.Areas.Currency.Models
         public string Code { get; set; }
         public decimal? MarketCap { get; set; }
         public string Description { get; set; }
-        public List<PriceTickerVM> Prices { get; set; }
+        public List<PriceTickerVM> Prices { get; set; } = new List<PriceTickerVM>();
         public bool IsNew { get; set; }
+
+        public List<string> FiatCodes { get; set; }
     }
     
     public class PriceTickerVM
@@ -26,7 +28,7 @@ namespace CPM.Web.Areas.Currency.Models
         public decimal Change { get; set; }
         public int UnitTimeStamp { get; set; }
         public DateTime DateTime { get; set; }
-        public List<PriceMarketVM> Markets { get; set; }
+        public List<PriceMarketVM> Markets { get; set; } = new List<PriceMarketVM>();
         public bool Success { get; set; }
         public string Error { get; set; }
     }

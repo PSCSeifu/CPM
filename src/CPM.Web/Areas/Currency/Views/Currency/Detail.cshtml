@@ -4,28 +4,60 @@
 
 
 <div class="container-fluid">
-    <p>@Model.Code</p>
-    <p>@Model.Name</p>
-    <p>@Model.Description</p>
+    <div>
+        <label class="checkbox-inline">
+            <input type="checkbox" id="usdCheckbox" value="usd"> USD
+        </label>
+        <label class="checkbox-inline">
+            <input type="checkbox" id="gbpCheckbox" value="gbp"> GBP
+        </label>
+        <label class="checkbox-inline">
+            <input type="checkbox" id="eurCheckbox" value="eur"> EUR            
+        </label>
+    </div>
 
-    <ul style="background-color:aquamarine;">
-        @foreach (var item in @Model.Prices)
+    <div class="smta-CurrencyBlock">
+        <p>@Model.Code</p>
+        <p>@Model.Name</p>
+        <p>@Model.Description</p>
+        @if (@Model.Prices != null)
         {
-
-            <li>@item.CryptoCode</li>
-            <li>@item.FiatCode</li>
-            <li>@item.Price</li>
-                <li>@item.Volume</li>
-                <li>@item.Change</li>
-                <li>@item.Success</li>
-
-                @*@foreach (var market in @item.Markets)
+            <ul class="smta-CurrencyBlock smta-currencydetail">
+                @foreach (var item in @Model.Prices)
                 {
-                    <h5>@market.Market</h5>
-                            <h5>@market.Price</h5>
-                            <h5>@market.Volume</h5>
-                }*@
-        }
-    </ul>
+                    <li>@item.FiatCode</li>
+                    <li>@item.CryptoCode</li>
+                    <li>@item.Price  @item.FiatCode</li>
+                    @*@if (@item.Price < 1.0m)
+                        {
+                            <li>@item.FiatCode : @( 1 / @item.Price)</li>
+                        }
+                        else
+                        {
+                            <li>@item.FiatCode :  @item.Price</li>
+                        }*@
 
+                    <li>HOUR VOLUME : @item.Volume</li>
+                    <li>HOUR CHANGE: @item.Change</li>
+                    <li>
+                        @foreach (var market in @item.Markets)
+                        {
+                            <ul class="smta-currencydetail smta-currencymarket">
+                                <li>@market.Market</li>
+                                <li>@market.Price</li>
+                                <li>@market.Volume</li>
+                            </ul>
+                        }
+                    </li>
+                }
+            </ul>
+        }
+    </div>    
 </div>
+<script>
+    $(function show(elem) {
+        console.log("hi");
+        var id = document.getElementById("#eurCheckbox");
+        console.log(document.getElementById("#eurCheckbox").onactivate());
+    });
+</script>

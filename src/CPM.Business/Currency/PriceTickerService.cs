@@ -12,38 +12,58 @@ using System.Threading.Tasks;
 namespace CPM.Business.Currency
 {
     public interface IPriceTickerService
-    {
-         Task<PriceTickerBM> GetPriceTicker(string cryptoCode, string fiatCode, bool? includeMarkets = false);
+    {         
+        PriceTickerBM GetPriceTickerSync(string cryptoCode, string fiatCode, string defaultFiatCode, bool? includeMarkets = false);
+        Task<PriceTickerBM> GetPriceTickerAsync(string cryptoCode, string fiatCode, string defaultFiatCode, bool? includeMarkets = false);
     }
 
     public class PriceTickerService : IPriceTickerService
     {
-        IConfiguration Configuration { get; set; }
-
-        public PriceTickerService()
-        {
-
-        }
-
+        private string DefaultFiatCode { get; set; }
         
-        private async Task<JObject> APICall(string url)
+
+        public PriceTickerBM GetPriceTickerSync(string cryptoCode, string fiatCode, string defaultFiatCode, bool? includeMarkets = false)
         {
-            var client = new HttpClient();
-            string json = await client.GetStringAsync(url);
-            return JObject.Parse(json);
+            /* Set APi parameters*/
+            string url = SetApi(cryptoCode, fiatCode, defaultFiatCode, includeMarkets ?? false);
+
+            /* Call Api*/
+            var results = GetJsonSync(url);
+
+            /* Process json result*/
+            return ProcessApiResult(results, includeMarkets ?? false);
         }
 
-        public  async Task<PriceTickerBM> GetPriceTicker(string cryptoCode, string fiatCode , bool? includeMarkets = false)
+        public async Task<PriceTickerBM> GetPriceTickerAsync(string cryptoCode, string fiatCode, string defaultFiatCode, bool? includeMarkets = false)
+        {
+            /* Set APi parameters*/
+            string url = SetApi(cryptoCode, fiatCode, defaultFiatCode, includeMarkets ?? false);
+
+            /* Call Api*/
+            var results = await GetJsonAsync(url);
+
+            /* Process json result*/
+            return ProcessApiResult(results, includeMarkets ?? false);
+        }
+
+        #region _Async Methods_
+
+        #endregion
+
+        #region _Sync Methods_
+
+        #endregion
+
+        private string SetApi(string cryptoCode, string fiatCode, string defaultFiatCode, bool includeMarkets)
         {
             if (string.IsNullOrWhiteSpace(fiatCode))
             {
-                fiatCode = Configuration["PriceService:DefaultFiatCurrency"];
+                fiatCode = defaultFiatCode;
             }
 
             /*Lookup prices from Cyptonator.com*/
-            var priceTicker = new PriceTickerBM();
             string callString = "";
-            if (includeMarkets ?? false)
+            if (includeMarkets)
             {
                 callString = "full";
             }
@@ -53,15 +73,12 @@ namespace CPM.Business.Currency
             }
             var encodedCryptoCode = WebUtility.UrlEncode(cryptoCode);
             var encodedFiatCode = WebUtility.UrlEncode(fiatCode);
-            var url = $"https://www.cryptonator.com/api/{callString}/{encodedCryptoCode}-{encodedFiatCode}";
+            return  $"https://www.cryptonator.com/api/{callString}/{encodedCryptoCode}-{encodedFiatCode}";
+        }
 
-            /* Call Api*/
-            var client = new HttpClient();
-            string json = await client.GetStringAsync(url);
-            var results = JObject.Parse(json);
-            
-
-            /* Process json result*/
+        private PriceTickerBM ProcessApiResult(JObject results, bool includeMarkets)
+        {
+            var priceTicker = new PriceTickerBM();
             if (results == null)
             {
                 priceTicker.Success = (bool)results["success"];
@@ -86,11 +103,13 @@ namespace CPM.Business.Currency
                 priceTicker.CryptoCode = (string)innerResult_1["base"];
                 priceTicker.FiatCode = (string)innerResult_1["target"];
                 priceTicker.Price = (decimal)innerResult_1["price"];
-                priceTicker.Volume = (decimal)innerResult_1["volume"];
-                priceTicker.Change = (decimal)innerResult_1["change"];              
+                if (string.IsNullOrWhiteSpace((string)innerResult_1["volume"])) { priceTicker.Volume = 0.0m; }
+                else
+                { priceTicker.Volume = (decimal)innerResult_1["volume"]; }
+                priceTicker.Change = (decimal)innerResult_1["change"];
 
-                if (includeMarkets ?? false)
-                {                             
+                if (includeMarkets)
+                {
                     var inner_2 = JsonConvert.SerializeObject(innerResult_1["markets"]);
 
                     foreach (var item in JArray.Parse(inner_2))
@@ -98,24 +117,19 @@ namespace CPM.Business.Currency
                         var inner_3 = JsonConvert.SerializeObject(item);
                         var innerResult_3 = JObject.Parse(inner_3);
 
-                        PriceMarketBM priceMarket = new Currency.PriceMarketBM();
-                        priceMarket.Market = (string)innerResult_3["market"];
-                        priceMarket.Price = (decimal)innerResult_3["price"];
-                        priceMarket.Volume = (decimal)innerResult_3["volume"];
-                        priceTicker.Markets.Add(priceMarket);
-                        //priceTicker.Markets.Add(new PriceMarketBM()
-                        //{
-                        //    Market = (string)innerResult_3["market"],
-                        //    Price = (decimal)innerResult_3["price"],
-                        //    Volume = (decimal)innerResult_3["volume"]
-                        //});
+                        priceTicker.Markets.Add(new PriceMarketBM()
+                        {
+                            Market = (string)innerResult_3["market"],
+                            Price = (decimal)innerResult_3["price"],
+                            Volume = (decimal)innerResult_3["volume"]
+                        });
                     }
                 }
 
                 return priceTicker;
             }
-
         }
+
         
 
         private async Task<JObject> GetJsonAsync(string url)

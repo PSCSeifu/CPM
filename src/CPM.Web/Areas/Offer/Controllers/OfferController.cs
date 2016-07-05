@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace CPM.Web.Areas.Offer.Controllers
 {
     [Area("Offer")]
-    [Authorize]
+   
     public class OfferController : Controller
     {
         private  IOfferService _service;

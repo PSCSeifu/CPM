@@ -12,8 +12,8 @@ namespace CPM.Business.Currency
         public string Name { get; set; }
         public string Code { get; set; }
         public decimal? MarketCap { get; set; }
-        public string Description { get; set; } 
-        public List<PriceTickerBM> Prices { get; set; }      
+        public string Description { get; set; }
+        public List<PriceTickerBM> Prices { get; set; } = new List<PriceTickerBM>();      
         public bool IsNew { get; set; }
     }
 
@@ -33,7 +33,7 @@ namespace CPM.Business.Currency
         public decimal Change { get; set; }
         public int UnitTimeStamp { get; set; }
         public DateTime DateTime { get; set; }
-        public List<PriceMarketBM> Markets { get; set; }
+        public List<PriceMarketBM> Markets { get; set; } = new List<PriceMarketBM>();
         public bool Success { get; set; }
         public string Error { get; set; }
     }
