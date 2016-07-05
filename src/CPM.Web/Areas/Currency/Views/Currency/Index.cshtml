@@ -6,13 +6,14 @@
 <div>
 
 
-    <table class="table table-bordered table-condensed">
+    <table class="table table-condensed table-striped">
         <thead>
             <tr>
                 <td></td>
                 <td>Name</td>
                 <td>Code</td>
-                <td></td>
+                <td>Price</td>
+                <td>Timestamp</td>
                 <td></td>
             </tr>
         </thead>
@@ -22,7 +23,16 @@
                 <td></td>
                 <td>@item.Name</td>
                 <td>@item.Code</td>
-                <td></td>
+                @if (item.PriceTickerInfo.Price != 0.0m)
+                {
+                    <td>@item.PriceTickerInfo.Price @item.PriceTickerInfo.FiatCode</td>
+                }
+                else
+                {
+                    <td></td>
+                }
+
+                <td>@item.PriceTickerInfo.UnixTimeStamp</td>
                 <td><a asp-route-area="Currency" asp-controller="Currency" asp-action="Detail" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a></td>
             </tr>
         }

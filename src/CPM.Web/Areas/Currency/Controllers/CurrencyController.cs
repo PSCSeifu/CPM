@@ -32,11 +32,20 @@ namespace CPM.Web.Areas.Currency.Controllers
         public IActionResult Index()
         {
             var viewModel = new CurrencyListVM();
+            string defaultFiatCode = "usd"; // Get from session or profile settings.
+
             var result = _service.GetList();
 
-            if (result.Result == GetResultEnum.Success)
+            if (result != null &&  result.Result == GetResultEnum.Success)
             {
+                foreach (var currencyInfo in result.List)
+                {
+                    var priceTickerInfo = _priceService.GetPriceTickerInfoSync(currencyInfo.Code, "", defaultFiatCode);
+                    currencyInfo.PriceTickers.Add(priceTickerInfo);
+                }
+
                 var vmList = AutoMapper.Mapper.Map<List<CurrencyInfoVM>>(result.List);
+
                 viewModel.Currencies = vmList;
                 return View(viewModel);
             }
@@ -48,13 +57,11 @@ namespace CPM.Web.Areas.Currency.Controllers
 
         public IActionResult Grid_Read([DataSourceRequest] DataSourceRequest request)
         {
-            GetListResult<CurrencyInfoBM> result;
-
+            GetListResult<CurrencyInfoBM> result;  
             result = _service.GetList();
 
             if(result.Result == GetResultEnum.Success)
             {
-                //ModelMappings.Configure(); 
                 var viewmodel = Mapper.Map<List<CurrencyInfoVM>>(result.List);
                 return Json(viewmodel.ToDataSourceResult(request));
             }

@@ -12,52 +12,100 @@
             <input type="checkbox" id="gbpCheckbox" value="gbp"> GBP
         </label>
         <label class="checkbox-inline">
-            <input type="checkbox" id="eurCheckbox" value="eur"> EUR            
+            <input type="checkbox" id="eurCheckbox" value="eur"> EUR
         </label>
     </div>
 
-    <div class="smta-CurrencyBlock">
-        <p>@Model.Code</p>
-        <p>@Model.Name</p>
-        <p>@Model.Description</p>
-        @if (@Model.Prices != null)
-        {
-            <ul class="smta-CurrencyBlock smta-currencydetail">
-                @foreach (var item in @Model.Prices)
-                {
-                    <li>@item.FiatCode</li>
-                    <li>@item.CryptoCode</li>
-                    <li>@item.Price  @item.FiatCode</li>
-                    @*@if (@item.Price < 1.0m)
-                        {
-                            <li>@item.FiatCode : @( 1 / @item.Price)</li>
-                        }
-                        else
-                        {
-                            <li>@item.FiatCode :  @item.Price</li>
-                        }*@
+    @*<div class="smta-CurrencyBlock">
+            <p>@Model.Code</p>
+            <p>@Model.Name</p>
+            <p>@Model.Description</p>
+            @if (@Model.Prices != null)
+            {
+                <ul class="smta-CurrencyBlock smta-currencydetail">
+                    @foreach (var item in @Model.Prices)
+                    {
+                        <li>@item.FiatCode</li>
+                        <li>@item.CryptoCode</li>
+                        <li>@item.Price  @item.FiatCode</li>
+                        <li>HOUR VOLUME : @item.Volume</li>
+                        <li>HOUR CHANGE: @item.Change</li>
+                        <li>
+                            @foreach (var market in @item.Markets)
+                            {
+                                <ul class="smta-currencydetail smta-currencymarket">
+                                    <li>@market.Market</li>
+                                    <li>@market.Price</li>
+                                    <li>@market.Volume</li>
+                                </ul>
+                            }
+                        </li>
+                    }
+                </ul>
+            }
+        </div>*@
 
-                    <li>HOUR VOLUME : @item.Volume</li>
-                    <li>HOUR CHANGE: @item.Change</li>
-                    <li>
-                        @foreach (var market in @item.Markets)
-                        {
-                            <ul class="smta-currencydetail smta-currencymarket">
-                                <li>@market.Market</li>
-                                <li>@market.Price</li>
-                                <li>@market.Volume</li>
-                            </ul>
-                        }
-                    </li>
+    <div>
+        <div style="font-size:xx-large">@Model.Code</div>
+        <ul class="nav nav-pills" role="tablist">
+            @foreach (var fiat in @Model.Prices)
+            {
+                var classType = "";
+                @if (@fiat.FiatCode.ToUpper() == "USD") { classType = "active"; }
+                <li role="presentation" class="@classType"><a href="#@fiat.FiatCode.ToUpper()" role="tab" data-toggle="tab">@fiat.FiatCode.ToUpper()</a></li>
+
+                @*@if (@fiat.FiatCode.ToUpper() == "USD")
+                {
+                    <li role="presentation" class="active"><a href="#@fiat.FiatCode.ToUpper()" role="tab" data-toggle="tab">@fiat.FiatCode.ToUpper()</a></li>
                 }
-            </ul>
-        }
-    </div>    
-</div>
-<script>
-    $(function show(elem) {
-        console.log("hi");
-        var id = document.getElementById("#eurCheckbox");
-        console.log(document.getElementById("#eurCheckbox").onactivate());
-    });
-</script>
+                else
+                {
+                    <li role="presentation"><a href="#@fiat.FiatCode.ToUpper()" role="tab" data-toggle="tab">@fiat.FiatCode.ToUpper()</a></li>
+                }*@
+            }
+        </ul>
+        <div class="tab-content" style="border:none;">            
+            @if (@Model.Prices != null)
+            {               
+                @foreach (var fiat in @Model.Prices)
+                {
+                    var classValue = "";
+                    @if (@fiat.FiatCode.ToUpper() == "USD") { classValue = "active"; }
+                            
+                    <div role="tabpanel" class="tab-pane @classValue" id=@fiat.FiatCode.ToUpper()>
+                        <div class="smta-CurrencyBlock">                           
+                                <ul class="smta-CurrencyBlock smta-currencydetail">
+                                    <li>@fiat.FiatCode</li>
+                                    <li>@fiat.CryptoCode</li>
+                                    <li>@fiat.Price  @fiat.FiatCode</li>
+                                    <li>HOUR VOLUME : @fiat.Volume</li>
+                                    <li>HOUR CHANGE: @fiat.Change</li>
+                                    <li>
+                                        @foreach (var market in @fiat.Markets)
+                                        {                                            
+                                            <ul class="smta-currencydetail smta-currencymarket">
+                                                <li>@market.Market</li>
+                                                <li>@market.Price</li>
+                                                <li>@market.Volume</li>
+                                            </ul>
+                                        }
+                                    </li>
+                                </ul>
+                           
+                        </div>
+                    </div>
+                    }
+                }
+        </div>
+    </div>
+    </div>
+
+
+
+    <script>
+        $(function show(elem) {
+            console.log("hi");
+            var id = document.getElementById("#eurCheckbox");
+            console.log(document.getElementById("#eurCheckbox").onactivate());
+        });
+    </script>

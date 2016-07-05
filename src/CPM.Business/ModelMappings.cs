@@ -34,6 +34,7 @@ namespace CPM.Business
 
             CreateMap<CurrencyDM, CurrencyBM>();
             CreateMap<CurrencyInfoDM, CurrencyInfoBM>();
+            CreateMap<PriceTickerBM, PriceTickerInfoBM >();
 
         }
 

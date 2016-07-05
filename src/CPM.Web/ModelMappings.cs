@@ -34,11 +34,13 @@ namespace CPM.Web
             CreateMap<OfferBM, OfferVM>();
             #endregion
 
-            #region " Currency "
-            CreateMap<CurrencyInfoBM, CurrencyInfoVM>();
+            #region " Currency "         
             CreateMap<CurrencyBM, CurrencyVM>();
             CreateMap<PriceMarketBM, PriceMarketVM>();
             CreateMap<PriceTickerBM, PriceTickerVM>();
+
+            CreateMap<CurrencyInfoBM, CurrencyInfoVM>();
+            CreateMap<PriceTickerInfoBM, PriceTickerInfoVM>();
             #endregion
 
             #region Global
