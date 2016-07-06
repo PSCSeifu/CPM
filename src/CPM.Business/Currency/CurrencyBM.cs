@@ -1,3 +1,4 @@
+using CpmLib.Business.Core.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +25,11 @@ namespace CPM.Business.Currency
         public decimal Price { get; set; }
         public decimal Volume { get; set; }
         public decimal Change { get; set; }
-        public int UnitTimeStamp { get; set; }
+        public long UnixTimeStamp { get; set; }
         public DateTime DateTime { get; set; }
         public List<PriceMarketBM> Markets { get; set; } = new List<PriceMarketBM>();
         public bool Success { get; set; }
-        public string Error { get; set; }
+        public string Error { get; set; }      
     }
 
     public class PriceMarketBM
@@ -53,7 +54,7 @@ namespace CPM.Business.Currency
         public decimal Price { get; set; }
         public decimal Volume { get; set; }
         public decimal Change { get; set; }
-        public int UnixTimeStamp { get; set; }
+        public long UnixTimeStamp { get; set; }
         public DateTime DateTime { get; set; }
         public bool Success { get; set; }
         public string Error { get; set; }

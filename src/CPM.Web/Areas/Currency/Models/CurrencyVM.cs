@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CPM.Web.Areas.Currency.Models
 {
@@ -25,8 +22,7 @@ namespace CPM.Web.Areas.Currency.Models
         public string FiatCode { get; set; }
         public decimal Price { get; set; }
         public decimal Volume { get; set; }
-        public decimal Change { get; set; }
-        public int UnixTimeStamp { get; set; }
+        public decimal Change { get; set; }       
         public DateTime DateTime { get; set; }
         public List<PriceMarketVM> Markets { get; set; } = new List<PriceMarketVM>();
         public bool Success { get; set; }

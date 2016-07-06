@@ -52,16 +52,7 @@
             {
                 var classType = "";
                 @if (@fiat.FiatCode.ToUpper() == "USD") { classType = "active"; }
-                <li role="presentation" class="@classType"><a href="#@fiat.FiatCode.ToUpper()" role="tab" data-toggle="tab">@fiat.FiatCode.ToUpper()</a></li>
-
-                @*@if (@fiat.FiatCode.ToUpper() == "USD")
-                {
-                    <li role="presentation" class="active"><a href="#@fiat.FiatCode.ToUpper()" role="tab" data-toggle="tab">@fiat.FiatCode.ToUpper()</a></li>
-                }
-                else
-                {
-                    <li role="presentation"><a href="#@fiat.FiatCode.ToUpper()" role="tab" data-toggle="tab">@fiat.FiatCode.ToUpper()</a></li>
-                }*@
+                <li role="presentation" class="@classType"><a href="#@fiat.FiatCode.ToUpper()" role="tab" data-toggle="tab">@fiat.FiatCode.ToUpper()</a></li>            
             }
         </ul>
         <div class="tab-content" style="border:none;">            
@@ -74,23 +65,36 @@
                             
                     <div role="tabpanel" class="tab-pane @classValue" id=@fiat.FiatCode.ToUpper()>
                         <div class="smta-CurrencyBlock">                           
-                                <ul class="smta-CurrencyBlock smta-currencydetail">
-                                    <li>@fiat.FiatCode</li>
-                                    <li>@fiat.CryptoCode</li>
-                                    <li>@fiat.Price  @fiat.FiatCode</li>
-                                    <li>HOUR VOLUME : @fiat.Volume</li>
-                                    <li>HOUR CHANGE: @fiat.Change</li>
-                                    <li>
-                                        @foreach (var market in @fiat.Markets)
-                                        {                                            
-                                            <ul class="smta-currencydetail smta-currencymarket">
-                                                <li>@market.Market</li>
-                                                <li>@market.Price</li>
-                                                <li>@market.Volume</li>
-                                            </ul>
-                                        }
-                                    </li>
-                                </ul>
+                            <ul class="smta-CurrencyBlock smta-currencydetail">
+
+                                <li>@fiat.Price <strong> @fiat.FiatCode</strong></li>
+                                <li>@fiat.DateTime.ToString()</li>
+                                <li>HOUR VOLUME : @fiat.Volume.ToString("0.###")</li>
+                                <li>HOUR CHANGE:
+                                    @if (@fiat.Change < 0)
+                                    {
+                                        <div style="color: red"><i class="fa fa-chevron-down"></i> &nbsp; @fiat.Change.ToString("0.###")</div>
+                                    }
+                                    else
+                                    {
+                                        <div style="color: blue"> <i class="fa fa-chevron-up"></i> &nbsp; @fiat.Change.ToString("0.###")</div>
+                                    }
+                                    
+                                </li>
+                                <li>@fiat.DateTime.ToString()</li>
+                                <li>
+                                    @foreach (var market in @fiat.Markets)
+                                    {
+                                        <ul class="smta-currencydetail smta-currencymarket">
+                                            <li>@market.Market</li>
+                                            <li>@market.Price</li>
+                                            <li>@market.Volume</li>
+                                        </ul>
+                                    }
+                                </li>
+                            </ul>
+
+
                            
                         </div>
                     </div>

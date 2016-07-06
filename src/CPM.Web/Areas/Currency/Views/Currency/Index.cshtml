@@ -13,6 +13,7 @@
                 <td>Name</td>
                 <td>Code</td>
                 <td>Price</td>
+                <td>1hr Change</td>
                 <td>Timestamp</td>
                 <td></td>
             </tr>
@@ -23,6 +24,17 @@
                 <td></td>
                 <td>@item.Name</td>
                 <td>@item.Code</td>
+                <td>
+                     @if (@item.PriceTickerInfo.Change < 0)
+                    {
+                        <div style="color: red"><i class="fa fa-chevron-down"></i> &nbsp; @item.PriceTickerInfo.Change.ToString("0.###")</div>
+                    }
+                    else
+                    {
+                        <div style="color: blue"> <i class="fa fa-chevron-up"></i> &nbsp; @item.PriceTickerInfo.Change.ToString("0.###")</div>
+                    }
+                </td>
+                
                 @if (item.PriceTickerInfo.Price != 0.0m)
                 {
                     @if (item.PriceTickerInfo.Price > 1.0m)
@@ -33,14 +45,13 @@
                     {
                         <td>@item.PriceTickerInfo.Price @item.PriceTickerInfo.FiatCode</td>
                     }
-
                 }
                 else
                 {
                     <td>N/A</td>
                 }
 
-                <td>@item.PriceTickerInfo.UnixTimeStamp</td>
+                <td>@item.PriceTickerInfo.DateTime.ToString()</td>
                 <td><a asp-route-area="Currency" asp-controller="Currency" asp-action="Detail" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a></td>
             </tr>
         }

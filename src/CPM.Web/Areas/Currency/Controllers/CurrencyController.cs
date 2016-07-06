@@ -40,8 +40,7 @@ namespace CPM.Web.Areas.Currency.Controllers
             {
                 foreach (var currencyInfo in result.List)
                 {
-                    var priceTickerInfo = _priceService.GetPriceTickerInfoSync(currencyInfo.Code, "", defaultFiatCode);                  
-                    //Mapper.Map<CurrencyInfoVM>(currencyInfo).PriceTickerInfo = (Mapper.Map<PriceTickerInfoVM>(priceTickerInfo));
+                    var priceTickerInfo = _priceService.GetPriceTickerInfoSync(currencyInfo.Code, "", defaultFiatCode);                                     
 
                     currencyInfo.PriceTicker= priceTickerInfo;
                     var vm = Mapper.Map<CurrencyInfoVM>(currencyInfo);
@@ -49,10 +48,7 @@ namespace CPM.Web.Areas.Currency.Controllers
 
                     viewModel.Currencies.Add(vm);
                 }
-
-                //TODO:Sort mapping issue here.
-               // viewModel.Currencies = Mapper.Map<List<CurrencyInfoVM>>(result.List);
-
+                
                 return View(viewModel);
             }
             else

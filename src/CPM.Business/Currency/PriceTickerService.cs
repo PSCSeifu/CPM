@@ -1,4 +1,5 @@
 using AutoMapper;
+using CpmLib.Business.Core.Util;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -115,14 +116,16 @@ namespace CPM.Business.Currency
             {
                 priceTicker.Success = (bool)results["success"];
                 priceTicker.Error = (string)results["error"];
-                priceTicker.UnitTimeStamp = 0;
+                priceTicker.UnixTimeStamp = 0;
+                priceTicker.DateTime = GetDateTime(priceTicker.UnixTimeStamp);
                 return priceTicker;
             }
             else
             {
                 priceTicker.Success = (bool)results["success"];
                 priceTicker.Error = (string)results["error"];
-                priceTicker.UnitTimeStamp = (int)results["timestamp"];
+                priceTicker.UnixTimeStamp = (long)results["timestamp"];
+                priceTicker.DateTime = GetDateTime(priceTicker.UnixTimeStamp);
                 var inner_1 = JsonConvert.SerializeObject(results["ticker"]);
                 var innerResult_1 = JObject.Parse(inner_1);
 
@@ -173,6 +176,12 @@ namespace CPM.Business.Currency
             return results;
         }
 
+        private DateTime GetDateTime(long unixTimeStamp)
+        {
+            var result = DateUtil.GetUtcDateTimeDateFromUnixTimeStamp(unixTimeStamp);
+
+            return (result == null ? new DateTime() : (DateTime)result);
+        }
         #endregion
     }
 }
