@@ -25,11 +25,19 @@
                 <td>@item.Code</td>
                 @if (item.PriceTickerInfo.Price != 0.0m)
                 {
-                    <td>@item.PriceTickerInfo.Price @item.PriceTickerInfo.FiatCode</td>
+                    @if (item.PriceTickerInfo.Price > 1.0m)
+                    {
+                        <td>@item.PriceTickerInfo.Price.ToString("0.##") @item.PriceTickerInfo.FiatCode</td>
+                    }
+                    else
+                    {
+                        <td>@item.PriceTickerInfo.Price @item.PriceTickerInfo.FiatCode</td>
+                    }
+
                 }
                 else
                 {
-                    <td></td>
+                    <td>N/A</td>
                 }
 
                 <td>@item.PriceTickerInfo.UnixTimeStamp</td>

@@ -43,7 +43,7 @@ namespace CPM.Business.Currency
         public int Id { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
-        public List<PriceTickerInfoBM> PriceTickers { get; set; } = new List<PriceTickerInfoBM>();
+        public PriceTickerInfoBM PriceTicker { get; set; } 
     }
 
     public class PriceTickerInfoBM
@@ -54,7 +54,7 @@ namespace CPM.Business.Currency
         public decimal Volume { get; set; }
         public decimal Change { get; set; }
         public int UnixTimeStamp { get; set; }
-        public DateTime DateTime { get; set; }       
+        public DateTime DateTime { get; set; }
         public bool Success { get; set; }
         public string Error { get; set; }
     }

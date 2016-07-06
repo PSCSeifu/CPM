@@ -7,7 +7,7 @@ namespace CPM.Web.Areas.Currency.Models
 {
     public class CurrencyListVM
     {
-        public List<CurrencyInfoVM> Currencies { get; set; }
+        public List<CurrencyInfoVM> Currencies { get; set; } = new List<CurrencyInfoVM>();
         public string SearchTerm { get; set; }
     }
 }

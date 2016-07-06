@@ -10,7 +10,7 @@ namespace CPM.Web.Areas.Currency.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
-        public PriceTickerInfoVM PriceTickerInfo { get; set; }
+        public PriceTickerInfoVM PriceTickerInfo { get; set; } 
     }
 
     public class PriceTickerInfoVM
