@@ -172,4 +172,12 @@ margin-bottom:8px;
 .table .fa-lock {
     color: red;
 }
+
+.smta-changedown {
+    color: red;    
+}
+.smta-changeup {
+    color: green;    
+}
+
 /*END FONT AWESOME OVERLOADS*/
