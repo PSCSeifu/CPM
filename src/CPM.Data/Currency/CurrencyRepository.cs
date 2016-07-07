@@ -67,6 +67,7 @@ namespace CPM.Data.Currency
                               Id = currency.Id,
                               Code = currency.Code,
                               Name = currency.Name,
+                              MarketCap = currency.MarketCap,
                               Description = currency.Description
                           });
 

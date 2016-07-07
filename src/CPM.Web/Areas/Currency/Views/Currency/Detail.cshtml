@@ -3,113 +3,110 @@
 @{ ViewBag.Title = Model.Name;}
 
 
-<div class="container-fluid">
-    <div>
-        <label class="checkbox-inline">
-            <input type="checkbox" id="usdCheckbox" value="usd"> USD
-        </label>
-        <label class="checkbox-inline">
-            <input type="checkbox" id="gbpCheckbox" value="gbp"> GBP
-        </label>
-        <label class="checkbox-inline">
-            <input type="checkbox" id="eurCheckbox" value="eur"> EUR
-        </label>
+<div class="container-fluid">  
+    <div class="smta-currencybanner">
+        <div>
+            <span>@Model.Name</span>
+            <span>@Model.Code</span>
+        </div>
+        
     </div>
 
-    @*<div class="smta-CurrencyBlock">
-            <p>@Model.Code</p>
-            <p>@Model.Name</p>
-            <p>@Model.Description</p>
-            @if (@Model.Prices != null)
-            {
-                <ul class="smta-CurrencyBlock smta-currencydetail">
-                    @foreach (var item in @Model.Prices)
-                    {
-                        <li>@item.FiatCode</li>
-                        <li>@item.CryptoCode</li>
-                        <li>@item.Price  @item.FiatCode</li>
-                        <li>HOUR VOLUME : @item.Volume</li>
-                        <li>HOUR CHANGE: @item.Change</li>
-                        <li>
-                            @foreach (var market in @item.Markets)
-                            {
-                                <ul class="smta-currencydetail smta-currencymarket">
-                                    <li>@market.Market</li>
-                                    <li>@market.Price</li>
-                                    <li>@market.Volume</li>
-                                </ul>
-                            }
-                        </li>
-                    }
-                </ul>
-            }
-        </div>*@
-
-    <div>
-        <div style="font-size:xx-large">@Model.Code</div>
+    <div>        
         <ul class="nav nav-pills" role="tablist">
             @foreach (var fiat in @Model.Prices)
             {
                 var classType = "";
-                @if (@fiat.FiatCode.ToUpper() == "USD") { classType = "active"; }
-                <li role="presentation" class="@classType"><a href="#@fiat.FiatCode.ToUpper()" role="tab" data-toggle="tab">@fiat.FiatCode.ToUpper()</a></li>            
+            @if (@fiat.FiatCode.ToUpper() == "USD") { classType = "active"; }
+            <li role="presentation" class="@classType"><a href="#@fiat.FiatCode.ToUpper()" role="tab" data-toggle="tab">@fiat.FiatCode.ToUpper()</a></li>
             }
         </ul>
-        <div class="tab-content" style="border:none;">            
+
+        <div class="tab-content" style="border:none;">
             @if (@Model.Prices != null)
-            {               
+            {
                 @foreach (var fiat in @Model.Prices)
                 {
                     var classValue = "";
                     @if (@fiat.FiatCode.ToUpper() == "USD") { classValue = "active"; }
-                            
+
                     <div role="tabpanel" class="tab-pane @classValue" id=@fiat.FiatCode.ToUpper()>
-                        <div class="smta-CurrencyBlock">                           
-                            <ul class="smta-CurrencyBlock smta-currencydetail">
-
-                                <li>@fiat.Price <strong> @fiat.FiatCode</strong></li>
-                                <li>@fiat.DateTime.ToString()</li>
-                                <li>HOUR VOLUME : @fiat.Volume.ToString("0.###")</li>
-                                <li>HOUR CHANGE:
-                                    @if (@fiat.Change < 0)
-                                    {
-                                        <div style="color: red"><i class="fa fa-chevron-down"></i> &nbsp; @fiat.Change.ToString("0.###")</div>
-                                    }
-                                    else
-                                    {
-                                        <div style="color: blue"> <i class="fa fa-chevron-up"></i> &nbsp; @fiat.Change.ToString("0.###")</div>
-                                    }
-                                    
-                                </li>
-                                <li>@fiat.DateTime.ToString()</li>
-                                <li>
-                                    @foreach (var market in @fiat.Markets)
-                                    {
-                                        <ul class="smta-currencydetail smta-currencymarket">
-                                            <li>@market.Market</li>
-                                            <li>@market.Price</li>
-                                            <li>@market.Volume</li>
-                                        </ul>
-                                    }
-                                </li>
-                            </ul>
-
-
-                           
+                        <div class="smta-CurrencyBlock">
+                            <hr />
+                            <div class="smta-pricechange"> @fiat.Price @fiat.FiatCode</div>                           
+                            <div class="smta-pricechange">                                                               
+                                @if (@fiat.Change < 0)
+                                {
+                                    <div style="color: red"><i class="fa fa-chevron-down"></i> &nbsp; @fiat.Change.ToString("0.###")</div>
+                                }
+                                else
+                                {
+                                    <div style="color: blue"> <i class="fa fa-chevron-up"></i> &nbsp; @fiat.Change.ToString("0.###")</div>
+                                }                               
+                            </div>
+                            <hr />
+                            <div>Volume <i class="fa fa-cube"></i> &nbsp; @fiat.Volume.ToString("0.###")</div>
+                            <div><i class="fa fa-clock-o"></i>&nbsp; @fiat.DateTime.ToShortTimeString() @fiat.DateTime.Kind</div>
+                        </div>                      
+                        @*START OF MARKETS*@
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h2 class="panel-title"><strong>MARKETS</strong> </h2>
+                                <span class="pull-right clickable"><i class="fa fa-chevron-up"></i></span>
+                            </div>
+                            <div class="panel-body">
+                                @foreach (var market in @fiat.Markets)
+                                {
+                                    <ul class="smta-currencydetail smta-currencymarket">
+                                        <li class="smta-marketname">@market.Market</li>
+                                        <li><span class="smta-marketprice" onfocus=@fiat.FiatCode.ToUpper()>@market.Price.ToString("0.##")</span></li>
+                                        <li><span class="smta-marketvolume">Volume : <i class="fa fa-cube"></i>@market.Volume.ToString("0.##")</span></li>
+                                    </ul>
+                                }
+                            </div>
                         </div>
+                        @*END OF MARKETS*@
                     </div>
-                    }
                 }
+            }
+        </div>
+
+    </div>
+
+    <div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title"><strong>@Model.Code</strong> </h2>
+                <span class="pull-right clickable"><i class="fa fa-chevron-up"></i></span>
+            </div>
+            <div class="panel-body">
+                <div>Market cap ($) : @Model.MarketCap.ToString()</div>
+                <hr />
+                <div style="text-justify;">@Model.Description</div>
+
+            </div>
         </div>
     </div>
-    </div>
+</div>
 
 
 
-    <script>
-        $(function show(elem) {
-            console.log("hi");
-            var id = document.getElementById("#eurCheckbox");
-            console.log(document.getElementById("#eurCheckbox").onactivate());
-        });
-    </script>
+<script>
+    //$(function show(elem) {
+    //    console.log("hi");
+    //    var id = document.getElementById("#eurCheckbox");
+    //    console.log(document.getElementById("#eurCheckbox").onactivate());
+    //});
+    $(document).on('click', '.panel-heading span.clickable', function (e) {
+        var $this = $(this);
+        if (!$this.hasClass('panel-collapsed')) {
+            $this.parents('.panel').find('.panel-body').slideUp();
+            $this.addClass('panel-collapsed');
+            $this.find('i').removeClass('fa fa-chevron-up').addClass('fa fa-chevron-down');
+        } else {
+            $this.parents('.panel').find('.panel-body').slideDown();
+            $this.removeClass('panel-collapsed');
+            $this.find('i').removeClass('fa fa-chevron-down').addClass('fa fa-chevron-up');
+        }
+    })
+</script>

@@ -81,7 +81,7 @@ namespace CPM.Web.Areas.Currency.Controllers
             {
                 List<string> fiatList = new List<string>()
                 {
-                    "usd","gbp","eur","aud","rub"
+                    "usd","gbp","eur","aud","rub","cny","jpy","chf"
                 };
                 foreach (var item in fiatList)
                 {

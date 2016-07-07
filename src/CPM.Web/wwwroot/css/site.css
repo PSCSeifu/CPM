@@ -101,7 +101,12 @@
         }
 /*End of Summary block Themes */
 
-
+/* START OF BOOTSTARP OVERLOADS*/
+.panel-heading span {
+	margin-top: -20px;
+	font-size: 15px;
+}
+/* END OF BOOTSTARP OVERLOADS*/
 
 .smta-display{
     padding: 5px;
@@ -128,7 +133,12 @@
         font-weight:700
     }
 
-
+    .smta-currencybanner{
+        font-size:xx-large;   
+        padding: 5px;
+        margin:8px;     
+        font-family:'Times New Roman', Times, serif';'
+    }
 .smta-currency-lg{
     font-size:x-large;
     color:#40522f;
@@ -138,10 +148,11 @@
 }
 .smta-CurrencyBlock{
 margin-bottom:8px;
+display: inline-block;
 }
 
 .smta-currencydetail{
-    background-color: #83b671;
+    background-color: #f7f3f8;
     border-color:#080909;
     padding: 5px;
     margin:8px;
@@ -153,8 +164,9 @@ margin-bottom:8px;
 }
 
 .smta-currencydetail.smta-currencymarket{
-   background-color: #9278a8;
-    border-color:#3964bd;
+   background-color: #e9f4f6;
+    border-radius:3px;
+    border-color:black;
     padding: 5px;
     margin: 4px 4px;
     font-weight:500;
@@ -163,6 +175,29 @@ margin-bottom:8px;
     list-style:none;
     list-style-type:none;
 }
+
+    .smta-pricechange{
+        font-size:x-large;
+    }
+    .smta-price{
+        font-size:xx-large;
+    }
+    .smta-marketname{
+        font-size:medium;
+        font-weight:400;
+        font-stretch:expanded;
+        font-style:normal;
+        font-weight:bold;
+    }
+
+    .smta-marketvolume{
+        font-size:small;
+    }
+
+    .smta-marketprice{
+        font-size:x-large;
+        font-weight:bold;
+    }
 
 /*START FONT AWESOME OVERLOADS */
 .table .fa-unlock {
@@ -181,3 +216,7 @@ margin-bottom:8px;
 }
 
 /*END FONT AWESOME OVERLOADS*/
+
+.clickable{
+    cursoe:pointer;
+}
