@@ -20,7 +20,7 @@
         {
             <tr>
                 <td></td>
-                <td>@item.Name</td>
+                <td><a asp-route-area="Currency" asp-controller="Currency" asp-action="Detail" asp-route-id="@item.Id">@item.Name</a></td>
                 <td>@item.Code</td>
                 <td id="tickerChange">                    
                     @if (Math.Sign(@item.PriceTickerInfo.Change) < 0)
@@ -48,8 +48,8 @@
                     <td>N/A</td>
                 }
 
-                <td>@item.PriceTickerInfo.DateTime.ToString()</td>
-                <td><a asp-route-area="Currency" asp-controller="Currency" asp-action="Detail" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a></td>
+                <td><span data-toggle="tooltip"  title="@item.PriceTickerInfo.DateTime.ToUniversalTime()">@item.PriceTickerInfo.DateTime.ToShortTimeString()</span></td>
+                <td><a asp-route-area="Currency" asp-controller="Currency" asp-action="Detail" asp-route-id="@item.Id"><i class="fa fa-eye"></i></a></td>
             </tr>
         }
     </table>
@@ -60,6 +60,10 @@
     </div>
 </div>
 <script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
     $('#tickerdiv').addClass('smta-changedown');
     //var tchange = $(document).getElementById('tickerdiv');
     //tchange.onclick(console.log("Happening"));

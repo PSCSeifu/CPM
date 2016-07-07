@@ -9,5 +9,6 @@ namespace CPM.Web.Areas.Currency.Models
     {
         public List<CurrencyInfoVM> Currencies { get; set; } = new List<CurrencyInfoVM>();
         public string SearchTerm { get; set; }
+        public string DefaultFiatCode { get; set; }
     }
 }

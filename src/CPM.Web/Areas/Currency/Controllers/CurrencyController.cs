@@ -32,6 +32,7 @@ namespace CPM.Web.Areas.Currency.Controllers
         public async Task<IActionResult> Index()
         {
             var viewModel = new CurrencyListVM();
+            viewModel.DefaultFiatCode = "usd"; /*  Get from session or profile settings. */
 
             var result = _service.GetList();
 
@@ -39,14 +40,8 @@ namespace CPM.Web.Areas.Currency.Controllers
             {
                 foreach (var currencyInfo in result.List)
                 {
-                    currencyInfo.DefaultFiatCode = "usd"; /*  Get from session or profile settings. */
-                    var priceTickerInfo = await _priceService.GetPriceTickerInfoAsync(currencyInfo.Code, currencyInfo.DefaultFiatCode);                                     
-
-                    currencyInfo.PriceTicker= priceTickerInfo;
-                    var vm = Mapper.Map<CurrencyInfoVM>(currencyInfo);
-                    vm.PriceTickerInfo = Mapper.Map<PriceTickerInfoVM>(priceTickerInfo);
-
-                    viewModel.Currencies.Add(vm);
+                    currencyInfo.PriceTickerInfo = await _priceService.GetPriceTickerInfoAsync(currencyInfo.Code, viewModel.DefaultFiatCode);                  
+                    viewModel.Currencies.Add(Mapper.Map<CurrencyInfoVM>(currencyInfo));
                 }
                 
                 return View(viewModel);

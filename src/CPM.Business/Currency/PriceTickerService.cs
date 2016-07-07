@@ -16,7 +16,7 @@ namespace CPM.Business.Currency
     public interface IPriceTickerService
     {
         PriceTickerInfoBM GetPriceTickerInfoSync(string cryptoCode, string fiatCode, string defaultFiatCode);
-        Task<PriceTickerInfoBM> GetPriceTickerInfoAsync(string cryptoCode, string defaultFiatCode)
+        Task<PriceTickerInfoBM> GetPriceTickerInfoAsync(string cryptoCode, string defaultFiatCode);
         PriceTickerBM GetPriceTickerSync(string cryptoCode, string fiatCode, string defaultFiatCode, bool? includeMarkets = false);
         Task<PriceTickerBM> GetPriceTickerAsync(string cryptoCode, string fiatCode, string defaultFiatCode, bool? includeMarkets = false);
     }

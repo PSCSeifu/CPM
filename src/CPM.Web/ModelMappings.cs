@@ -35,7 +35,8 @@ namespace CPM.Web
             #endregion
 
             #region " Currency "         
-            CreateMap<CurrencyInfoBM, CurrencyInfoVM>();
+            CreateMap<CurrencyInfoBM, CurrencyInfoVM>()
+                .ForMember(dest => dest.PriceTickerInfo, opt => opt.MapFrom(src => src.PriceTickerInfo));
             CreateMap<CurrencyBM, CurrencyVM>();
 
             CreateMap<PriceMarketBM, PriceMarketVM>();
@@ -49,28 +50,5 @@ namespace CPM.Web
 
             #endregion
         }
-        //public static void Configure()
-        //{
-        //    Mapper.Initialize(config =>
-        //  {
-        //      #region " Wallets "
-        //      config.CreateMap<WalletTypeBM, WalletTypeVM>();              
-        //      config.CreateMap<WalletInfoBM, WalletInfoVM>();
-        //      config.CreateMap<WalletBM, WalletVM>();
-        //      #endregion
-
-        //      #region " Offers "
-        //      config.CreateMap<OfferInfoBM, OfferInfoVM>();
-        //      #endregion
-
-        //      #region " Currency "
-        //      config.CreateMap<CurrencyInfoBM, CurrencyInfoVM>();
-        //      #endregion
-
-        //      #region Global
-
-        //      #endregion
-        //  });
-        //}
     }
 }

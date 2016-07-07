@@ -45,9 +45,8 @@ namespace CPM.Business.Currency
         public int Id { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
-        public PriceTickerInfoBM PriceTicker { get; set; }
-        public string DefaultFiatCode { get; set; }
-    }
+        public PriceTickerInfoBM PriceTickerInfo { get; set; }
+           }
 
     public class PriceTickerInfoBM
     {

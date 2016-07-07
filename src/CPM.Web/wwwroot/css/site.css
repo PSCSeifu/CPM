@@ -39,8 +39,8 @@
     .smta-summary-block .smta-summary-footer {
         position:absolute;
         width:100%;      
-        right:0em;
-        bottom:0em;
+        right:0;
+        bottom:0;
         padding:0.5em;
         font-weight:300;
         text-transform: uppercase;
@@ -184,7 +184,6 @@ display: inline-block;
     }
     .smta-marketname{
         font-size:medium;
-        font-weight:400;
         font-stretch:expanded;
         font-style:normal;
         font-weight:bold;
@@ -218,5 +217,5 @@ display: inline-block;
 /*END FONT AWESOME OVERLOADS*/
 
 .clickable{
-    cursoe:pointer;
+    cursor:pointer;
 }
