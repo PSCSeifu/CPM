@@ -14,7 +14,7 @@ namespace CPM.Web.Areas.Currency.Models
         public bool IsNew { get; set; }
 
         public List<FiatVM> FiatList { get; set; }
-        public List<string> FiatCodes { get; set; }
+        public string DefaultFiatCurrency { get; set; }
     }
 
     public class PriceTickerVM

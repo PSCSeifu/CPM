@@ -67,31 +67,7 @@ namespace CPM.Web.Areas.Currency.Controllers
                 return RedirectToAction("Error", "Home", new { Area = "Global" });
             }
         }
-
-        //public async Task<IActionResult> Detail(int id)
-        //{
-        //    var result = _service.GetItem(id);
-
-        //    if (result != null && result.Result == GetResultEnum.Success)
-        //    {
-        //        //List<string> fiatList = new List<string>()
-        //        //{
-        //        //    "usd","gbp","eur","aud","rub","cny","jpy","chf"
-                
-        //        foreach (var item in result.Item.FiatList)
-        //        {
-        //            var priceticker = await   _priceService.GetPriceTickerAsync(result.Item.Code, item.Code, "usd", true);
-        //            result.Item.Prices.Add(priceticker);
-        //        }
-
-        //        return View("Detail", Mapper.Map<CurrencyVM>(result.Item));
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Error", "Home", new { Area = "Global" });
-        //    }
-        //}
-
+        
         public async Task<IActionResult> Detail(int id)
         {
             var result = _service.GetItem(id);
@@ -103,8 +79,11 @@ namespace CPM.Web.Areas.Currency.Controllers
                     var priceticker = await _priceService.GetPriceTickerAsync(result.Item.Code, item.Code, "usd", true);
                     result.Item.Prices.Add(priceticker);
                 }
+                
+                var viewModel = Mapper.Map<CurrencyVM>(result.Item);
+                viewModel.DefaultFiatCurrency = "USD";/* Get default Fiat Currency from session/other config*/
 
-                return View("Detail", Mapper.Map<CurrencyVM>(result.Item));
+                return View("Detail", viewModel);
             }
             else
             {

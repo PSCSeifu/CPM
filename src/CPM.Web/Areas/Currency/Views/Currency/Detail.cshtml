@@ -11,24 +11,12 @@
         </div>
     </div>
 
-    @*<div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary">
-            <input type="checkbox" autocomplete="off" />          
-            @foreach (var fiat in @Model.FiatList)
-            {
-                <span title="@fiat.Description">
-                    @fiat.Symbol &nbsp; @fiat.DisplayName
-                </span>
-            }
-        </label>
-    </div>*@
-
     <div>
         <ul class="nav nav-pills" role="tablist">
             @foreach (var fiat in @Model.Prices)
             {
                 var classType = "";
-                @if (@fiat.FiatCode.ToUpper() == "USD") { classType = "active"; }
+                @if (@fiat.FiatCode.ToUpper() == Model.DefaultFiatCurrency.ToUpper()) { classType = "active"; }
                 <li role="presentation" class="@classType"><a href="#@fiat.FiatCode.ToUpper()" role="tab" data-toggle="tab">@fiat.FiatCode.ToUpper()</a></li>
             }
         </ul>
@@ -39,7 +27,7 @@
                 @foreach (var price in @Model.Prices)
                 {
                     var classValue = "";
-                    @if (@price.FiatCode.ToUpper() == "USD") { classValue = "active"; } @*replace with session default*@
+                    @if (@price.FiatCode.ToUpper() == Model.DefaultFiatCurrency.ToUpper()) { classValue = "active"; } 
 
                     <div role="tabpanel" class="tab-pane @classValue" id=@price.FiatCode.ToUpper()>
                         <div class="smta-CurrencyBlock">
@@ -85,29 +73,21 @@
 
     <div>
         <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h2 class="panel-title"><strong>@Model.Code</strong> </h2>
+            <div class="panel-heading panel-collapse">
+                <h2 class="panel-title "><strong>@Model.Code</strong> </h2>
                 <span class="pull-right clickable"><i class="fa fa-chevron-up"></i></span>
             </div>
-            <div class="panel-body">
-                <div>Market cap ($) : @Model.MarketCap.ToString()</div>
+            <div class="panel-body panel-collapse">
+                <span><strong>Market cap ($) : @Model.MarketCap.ToString()</strong></span>
                 <hr />
-                <div style="text-justify:auto">@Model.Description</div>
+                <span style="text-justify:auto">@Model.Description</span>
 
             </div>
         </div>
     </div>
 </div>
 
-
-
 <script>
-    //$(function show(elem) {
-    //    console.log("hi");
-    //    var id = document.getElementById("#eurCheckbox");
-    //    console.log(document.getElementById("#eurCheckbox").onactivate());
-    //});
-
     /*Tool tip*/
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
@@ -115,7 +95,7 @@
 
     /* Panel collpase Toggle */
     $(document).on('click', '.panel-heading span.clickable', function (e) {
-        
+
         var $this = $(this);
         if (!$this.hasClass('panel-collapsed')) {
             $this.parents('.panel').find('.panel-body').slideUp();
@@ -126,5 +106,12 @@
             $this.removeClass('panel-collapsed');
             $this.find('i').removeClass('fa fa-chevron-down').addClass('fa fa-chevron-up');
         }
-    })
+    });
+
+    //$(function show(elem) {
+    //    console.log("hi");
+    //    var id = document.getElementById("#eurCheckbox");
+    //    console.log(document.getElementById("#eurCheckbox").onactivate());
+    //});
+
 </script>
