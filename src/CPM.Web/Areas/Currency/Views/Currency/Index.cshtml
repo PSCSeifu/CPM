@@ -4,6 +4,11 @@
 @{ ViewBag.Title = "CPM Currencies";}
 
 <div>
+    <div id="Grid" class="col-sm-12">
+        <h5>Here ought to be a grid view</h5>
+        @Html.Partial("Grid")
+    </div>
+
     <table class="table table-condensed table-striped">
         <thead>
             <tr>
@@ -54,10 +59,7 @@
         }
     </table>
 
-    <div id="Grid" class="col-sm-12">
-        <h5>Here ought to be a grid view</h5>
-        @Html.Partial("Grid")
-    </div>
+    
 </div>
 <script>
     $(document).ready(function () {

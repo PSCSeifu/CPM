@@ -2,26 +2,22 @@
 @*@{ Layout = "/Views/Shared/Currency/_CurrencyLayout.cshtml"; }*@
 
 
-@Html.Kendo().Editor()
-        
-
-
  @(Html.Kendo().Grid<CPM.Web.Areas.Currency.Models.CurrencyInfoVM>()
     .Name("grid")
-     .DataSource(data => data
-        .Ajax()
-        .Read(read => read.Action("Grid_Read", "Currency", new { area = "Currency" }))
-    )
     .Columns(c =>
     {
-        c.Bound(b => b.Name)
-          .Title("Name");
-        c.Bound(b => b.Code)
-          .Title("Code");
-        c.Bound(b => b.Id)
-          .Title("ID");
+        c.Bound(b => b.Name).Title("Name");
+        c.Bound(b => b.Code).Title("Code");
+        c.Bound(b => b.Id).Title("ID");
+        c.Bound(b => b.PriceTickerInfo.Price).Title("Price").ToString();
+        c.Bound(b => b.PriceTickerInfo.Change).Title("Change").ToString();
     }
     )
-    .Pageable(p => p.PageSizes(new int[] { 8, 10, 20 }))
-
-        )
+    .Sortable()
+    .Pageable(p => p.PageSizes(new int[] { 5, 10, 20 }))
+     .DataSource(data => data
+        .Ajax()
+        .ServerOperation(true)
+        .Read(read => read.Action("Grid_Read", "Currency", new { Area = "Currency" }))
+    )
+  )

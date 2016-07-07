@@ -52,20 +52,36 @@ namespace CPM.Web.Areas.Currency.Controllers
             }
         }
 
-        public IActionResult Grid_Read([DataSourceRequest] DataSourceRequest request)
+        public async Task<IActionResult> Grid_Read([DataSourceRequest] DataSourceRequest request)
         {
-            GetListResult<CurrencyInfoBM> result;  
-            result = _service.GetList();
+            GetListResult<CurrencyInfoBM> result;
+            var viewModel = new CurrencyListVM();
+            //TODO: Get default fiat currency code from session/Config
+            viewModel.DefaultFiatCode = "USD"; 
+
+           result = _service.GetList();
 
             if(result.Result == GetResultEnum.Success)
             {
-                var viewmodel = Mapper.Map<List<CurrencyInfoVM>>(result.List);
-                return Json(viewmodel.ToDataSourceResult(request));
+                
+                foreach (var currencyInfo in result.List)
+                {
+                    currencyInfo.PriceTickerInfo = await _priceService.GetPriceTickerInfoAsync(currencyInfo.Code, viewModel.DefaultFiatCode);
+                    //viewModel.Currencies.Add(Mapper.Map<CurrencyInfoVM>(currencyInfo));
+                }
+
+                viewModel.Currencies =  Mapper.Map<List<CurrencyInfoVM>>(result.List);
+                return Json(viewModel.Currencies.ToDataSourceResult(request));
             }
             else
             {
                 return RedirectToAction("Error", "Home", new { Area = "Global" });
             }
+        }
+
+        public IActionResult Kendo()
+        {
+            return View();
         }
         
         public async Task<IActionResult> Detail(int id)
