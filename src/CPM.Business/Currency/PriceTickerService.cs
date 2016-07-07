@@ -16,7 +16,7 @@ namespace CPM.Business.Currency
     public interface IPriceTickerService
     {
         PriceTickerInfoBM GetPriceTickerInfoSync(string cryptoCode, string fiatCode, string defaultFiatCode);
-        Task<PriceTickerInfoBM> GetPriceTickerInfoAsync(string cryptoCode, string fiatCode, string defaultFiatCode);
+        Task<PriceTickerInfoBM> GetPriceTickerInfoAsync(string cryptoCode, string defaultFiatCode)
         PriceTickerBM GetPriceTickerSync(string cryptoCode, string fiatCode, string defaultFiatCode, bool? includeMarkets = false);
         Task<PriceTickerBM> GetPriceTickerAsync(string cryptoCode, string fiatCode, string defaultFiatCode, bool? includeMarkets = false);
     }
@@ -37,10 +37,10 @@ namespace CPM.Business.Currency
             return ProcessPriceTickerResult(results, includeMarkets ?? false);
         }
         
-        public async Task<PriceTickerInfoBM> GetPriceTickerInfoAsync(string cryptoCode, string fiatCode, string defaultFiatCode)
+        public async Task<PriceTickerInfoBM> GetPriceTickerInfoAsync(string cryptoCode,  string defaultFiatCode)
         {
             /* Set APi parameters*/
-            string url = SetApi(cryptoCode, fiatCode, defaultFiatCode,false);
+            string url = SetApi(cryptoCode, defaultFiatCode, defaultFiatCode,false);
 
             /* Call Api*/
             var results = await GetJsonAsync(url);
@@ -98,8 +98,8 @@ namespace CPM.Business.Currency
             {
                 callString = "ticker";
             }
-            var encodedCryptoCode = WebUtility.UrlEncode(cryptoCode);
-            var encodedFiatCode = WebUtility.UrlEncode(fiatCode);
+            var encodedCryptoCode = WebUtility.UrlEncode(cryptoCode.ToLower());
+            var encodedFiatCode = WebUtility.UrlEncode(fiatCode.ToLower());
             return  $"https://www.cryptonator.com/api/{callString}/{encodedCryptoCode}-{encodedFiatCode}";
         }
 

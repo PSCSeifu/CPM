@@ -13,6 +13,7 @@ namespace CPM.Data.Currency
     public interface ICurrencyContext :IDbContextBase
     {
         DbSet<CurrencyEntity> Currency { get; set; }
+        DbSet<FiatEntity> Fiat { get; set; }
     }
 
     public class CurrencyContext : DbContextBase, ICurrencyContext
@@ -25,6 +26,7 @@ namespace CPM.Data.Currency
         }
 
         public DbSet<CurrencyEntity> Currency {get;set;}
+        public DbSet<FiatEntity> Fiat { get; set; }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{

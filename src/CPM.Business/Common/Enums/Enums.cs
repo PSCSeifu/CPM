@@ -58,4 +58,11 @@ namespace CPM.Business.Common.Enums
         Escrow
     }
 
+    public enum CurrencyType
+    {
+        Crypto,
+        Fiat,
+        Token
+    }
+
 }

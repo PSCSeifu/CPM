@@ -13,9 +13,10 @@ namespace CPM.Web.Areas.Currency.Models
         public List<PriceTickerVM> Prices { get; set; } = new List<PriceTickerVM>();
         public bool IsNew { get; set; }
 
+        public List<FiatVM> FiatList { get; set; }
         public List<string> FiatCodes { get; set; }
     }
-    
+
     public class PriceTickerVM
     {
         public string CryptoCode { get; set; }
@@ -29,12 +30,23 @@ namespace CPM.Web.Areas.Currency.Models
         public string Error { get; set; }
     }
 
-   
-
     public class PriceMarketVM
     {
         public string Market { get; set; }
         public decimal Price { get; set; }
         public decimal Volume { get; set; }
     }
+
+    public class FiatVM
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string DisplayName { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+        public string Symbol { get; set; }
+        public int ImageId { get; set; }
+        public int FlagId { get; set; }
+    }
+
 }

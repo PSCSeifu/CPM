@@ -73,9 +73,8 @@ namespace CPM.Web
             UseMvc(app);
             app.UseKendo(env);
 
-            // UseSeedDataWriter(@"C:\Projects\CPM\src\CPM.Data\Resources");
+            /*UseSeedDataWriter(@"C:\Projects\CPM\src\CPM.Data\Resources");*/
             UseSeedData(@"C:\Projects\CPM\src\CPM.Data\Resources");
-            
         }
 
         #region " Add Services "
@@ -191,9 +190,10 @@ namespace CPM.Web
         {
             if (!string.IsNullOrWhiteSpace(folderPath) && Directory.Exists(folderPath))
             {                
-                SeedTemplateJsonWriter seeWriter = new SeedTemplateJsonWriter();                
-                seeWriter.CreateWallet(Path.Combine(folderPath,"wallets.json"));
+                SeedTemplateJsonWriter seeWriter = new SeedTemplateJsonWriter();
+                seeWriter.CreateWallet(Path.Combine(folderPath, "wallets.json"));
                 seeWriter.CreateOffer(Path.Combine(folderPath, "offers.json"));
+                seeWriter.CreateFiat(Path.Combine(folderPath, "fiat.json"));
             }
         }
 
@@ -207,6 +207,7 @@ namespace CPM.Web
                 seeder.EnsureSeedOfferData(Path.Combine(folderPath, "offers.json"));
                 seeder.EnsureSeedClientData(Path.Combine(folderPath, "clients.json"));
                 seeder.EnsureSeedCurrencyData(Path.Combine(folderPath, "currency.json"));
+                seeder.EnsurFiatSeedData(Path.Combine(folderPath, "fiat.json"));                
             }
         }
         

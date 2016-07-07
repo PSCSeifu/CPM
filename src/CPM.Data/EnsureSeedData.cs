@@ -46,6 +46,33 @@ namespace CPM.Data
             }
         }
 
+        public void EnsurFiatSeedData(string filePath)
+        {
+            CurrencyContext currencyContext = new CurrencyContext();
+            if(!currencyContext.Fiat.Any())
+            {
+                dynamic jsonData = ReadJsonFile(filePath);
+                if (jsonData != null)
+                {
+                    foreach (dynamic d in jsonData)
+                    {
+                        currencyContext.Fiat.Add(new FiatEntity()
+                        {
+                            Id = d.Id,
+                            Code = d.Code,
+                            Description = d.Description,                            
+                            Name = d.Name,
+                            Symbol =d.Symbol,
+                            DisplayName = d.DisplayName,
+                            FlagId = d.FlagId,
+                            ImageId  = d.ImageId
+                        });
+                    }
+                    currencyContext.SaveChanges();
+                }
+            }
+        }
+
         public void EnsureSeedOfferData(string filePath)
         {
             OfferContext offerContext = new OfferContext();

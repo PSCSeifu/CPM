@@ -29,10 +29,9 @@ namespace CPM.Web.Areas.Currency.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var viewModel = new CurrencyListVM();
-            string defaultFiatCode = "usd"; // Get from session or profile settings.
 
             var result = _service.GetList();
 
@@ -40,7 +39,8 @@ namespace CPM.Web.Areas.Currency.Controllers
             {
                 foreach (var currencyInfo in result.List)
                 {
-                    var priceTickerInfo = _priceService.GetPriceTickerInfoSync(currencyInfo.Code, "", defaultFiatCode);                                     
+                    currencyInfo.DefaultFiatCode = "usd"; /*  Get from session or profile settings. */
+                    var priceTickerInfo = await _priceService.GetPriceTickerInfoAsync(currencyInfo.Code, currencyInfo.DefaultFiatCode);                                     
 
                     currencyInfo.PriceTicker= priceTickerInfo;
                     var vm = Mapper.Map<CurrencyInfoVM>(currencyInfo);
@@ -73,22 +73,42 @@ namespace CPM.Web.Areas.Currency.Controllers
             }
         }
 
-        public  IActionResult Detail(int id)
+        //public async Task<IActionResult> Detail(int id)
+        //{
+        //    var result = _service.GetItem(id);
+
+        //    if (result != null && result.Result == GetResultEnum.Success)
+        //    {
+        //        //List<string> fiatList = new List<string>()
+        //        //{
+        //        //    "usd","gbp","eur","aud","rub","cny","jpy","chf"
+                
+        //        foreach (var item in result.Item.FiatList)
+        //        {
+        //            var priceticker = await   _priceService.GetPriceTickerAsync(result.Item.Code, item.Code, "usd", true);
+        //            result.Item.Prices.Add(priceticker);
+        //        }
+
+        //        return View("Detail", Mapper.Map<CurrencyVM>(result.Item));
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Error", "Home", new { Area = "Global" });
+        //    }
+        //}
+
+        public async Task<IActionResult> Detail(int id)
         {
             var result = _service.GetItem(id);
 
             if (result != null && result.Result == GetResultEnum.Success)
-            {
-                List<string> fiatList = new List<string>()
+            {  
+                foreach (var item in result.Item.FiatList)
                 {
-                    "usd","gbp","eur","aud","rub","cny","jpy","chf"
-                };
-                foreach (var item in fiatList)
-                {
-                    var priceticker = _priceService.GetPriceTickerSync(result.Item.Code, item, "usd", true);
+                    var priceticker = await _priceService.GetPriceTickerAsync(result.Item.Code, item.Code, "usd", true);
                     result.Item.Prices.Add(priceticker);
                 }
-                
+
                 return View("Detail", Mapper.Map<CurrencyVM>(result.Item));
             }
             else

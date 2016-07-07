@@ -20,41 +20,28 @@ namespace CPM.Business
     {
         public BusinessModelMappings()
         {
+            #region _User_
             CreateMap<CPMUserDM, CPMUserBM>();
             CreateMap<CPMUserEntity, CPMUserBM>().ReverseMap();
+            #endregion
 
+            #region _Wallet_
             CreateMap<WalletDM, WalletBM>();
             CreateMap<WalletInfoDM, WalletInfoBM>();
             CreateMap<WalletTypeDM, WalletTypeBM>();
+            #endregion
 
-
+            #region _Offer_
             CreateMap<OfferDM, OfferBM>();
             CreateMap<OfferInfoDM, OfferInfoBM>();
+            #endregion
 
-
+            #region _Currency_
             CreateMap<CurrencyDM, CurrencyBM>();
             CreateMap<CurrencyInfoDM, CurrencyInfoBM>();
             CreateMap<PriceTickerBM, PriceTickerInfoBM >();
-
+            CreateMap<FiatDM, FiatBM>();
+            #endregion
         }
-
-        //public static void Configure()
-        //{
-        //    Mapper.Initialize(config =>
-        //   {
-        //       config.CreateMap<WalletDM, WalletBM>();
-        //       config.CreateMap<WalletInfoDM, WalletInfoBM>();
-        //       config.CreateMap<WalletTypeDM, WalletTypeBM>();
-
-
-        //       config.CreateMap<OfferDM, OfferBM>();               
-        //       config.CreateMap<OfferInfoDM, OfferInfoBM>();
-
-
-        //       config.CreateMap<CurrencyDM, CurrencyBM>();
-        //       config.CreateMap<CurrencyInfoDM, CurrencyInfoBM>();               
-        //   });
-
-        //}
     }
 }

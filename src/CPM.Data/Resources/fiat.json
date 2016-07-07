@@ -1,0 +1,82 @@
+[
+  {
+    "Id": 0,
+    "Name": "US Dollar",
+    "DisplayName": "Dollars",
+    "Code": "USD",
+    "Description": "United States of America Fedral Reserve Notes",
+    "Symbol": "$",
+    "ImageId": 0,
+    "FlagId": 0
+  },
+  {
+    "Id": 0,
+    "Name": "British Pound",
+    "DisplayName": "Pound Sterling",
+    "Code": "GBP",
+    "Description": "United Kingdom Bank of England Notes",
+    "Symbol": "£",
+    "ImageId": 0,
+    "FlagId": 0
+  },
+  {
+    "Id": 0,
+    "Name": "Euro",
+    "DisplayName": "Euro",
+    "Code": "EUR",
+    "Description": "European Union Common Currency",
+    "Symbol": "€",
+    "ImageId": 0,
+    "FlagId": 0
+  },
+  {
+    "Id": 0,
+    "Name": "Yuan Renminbi",
+    "DisplayName": "Yuan Renminbi",
+    "Code": "CNY",
+    "Description": "Peoples's Republic of China Yuan Renminbi ",
+    "Symbol": "¥",
+    "ImageId": 0,
+    "FlagId": 0
+  },
+  {
+    "Id": 0,
+    "Name": "Australian Dollar",
+    "DisplayName": "Australian Dollar",
+    "Code": "AUD",
+    "Description": "Australian Dollar",
+    "Symbol": "$",
+    "ImageId": 0,
+    "FlagId": 0
+  },
+  {
+    "Id": 0,
+    "Name": "Russian Ruble",
+    "DisplayName": "Ruble",
+    "Code": "RUB",
+    "Description": "Russian Federation Ruble",
+    "Symbol": "???",
+    "ImageId": 0,
+    "FlagId": 0
+  },
+  {
+    "Id": 0,
+    "Name": "Japanese Yen",
+    "DisplayName": "Yen",
+    "Code": "JPY",
+    "Description": "Japanese yen",
+    "Symbol": "¥",
+    "ImageId": 0,
+    "FlagId": 0
+  },
+  {
+    "Id": 0,
+    "Name": "Swiss Franc",
+    "DisplayName": "Swiss Franc",
+    "Code": "CHF",
+    "Description": "Swiss Franc legal tender of Switzerland and Liechtenstein",
+    "Symbol": "CHF",
+    "ImageId": 0,
+    "FlagId": 0
+  }
+]

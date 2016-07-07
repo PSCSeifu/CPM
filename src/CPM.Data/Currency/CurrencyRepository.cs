@@ -28,7 +28,7 @@ namespace CPM.Data.Currency
             _context = context;
         }
 
-
+        
         //CRUD 
 
         public override List<CurrencyInfoDM> GetList()
@@ -68,7 +68,19 @@ namespace CPM.Data.Currency
                               Code = currency.Code,
                               Name = currency.Name,
                               MarketCap = currency.MarketCap,
-                              Description = currency.Description
+                              Description = currency.Description,
+                              FiatList = (from fiat in _context.Fiat
+                                          select new FiatDM
+                                          {
+                                              Id = fiat.Id,
+                                              Name = fiat.Name,
+                                              DisplayName = fiat.DisplayName,
+                                              Code = fiat.Code,
+                                              Description = fiat.Description,
+                                              Symbol = fiat.Symbol,
+                                              ImageId = fiat.ImageId,
+                                              FlagId = fiat.FlagId
+                                          }).ToList()
                           });
 
             return entity.SingleOrDefault();

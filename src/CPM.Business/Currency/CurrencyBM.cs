@@ -14,7 +14,8 @@ namespace CPM.Business.Currency
         public string Code { get; set; }
         public decimal? MarketCap { get; set; }
         public string Description { get; set; }
-        public List<PriceTickerBM> Prices { get; set; } = new List<PriceTickerBM>();      
+        public List<PriceTickerBM> Prices { get; set; } = new List<PriceTickerBM>();
+        public List<FiatBM> FiatList { get; set; }
         public bool IsNew { get; set; }
     }
 
@@ -44,7 +45,8 @@ namespace CPM.Business.Currency
         public int Id { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
-        public PriceTickerInfoBM PriceTicker { get; set; } 
+        public PriceTickerInfoBM PriceTicker { get; set; }
+        public string DefaultFiatCode { get; set; }
     }
 
     public class PriceTickerInfoBM
@@ -58,6 +60,18 @@ namespace CPM.Business.Currency
         public DateTime DateTime { get; set; }
         public bool Success { get; set; }
         public string Error { get; set; }
+    }
+
+    public class FiatBM
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string DisplayName { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+        public string Symbol { get; set; }
+        public int ImageId { get; set; }
+        public int FlagId { get; set; }
     }
 
    

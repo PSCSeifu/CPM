@@ -15,31 +15,27 @@ namespace CPM.Data
     {
         public DataModelMappings()
         {
+            #region _User_
             CreateMap<CPMUserEntity, CPMUserDM>();
+            #endregion
 
+            #region _Wallet_
             CreateMap<WalletEntity, WalletDM>();
             CreateMap<WalletTypeEntity, WalletTypeDM>();
+            #endregion
 
+
+            #region _Offer_        
             CreateMap<OfferEntity, OfferDM>();
             CreateMap<OfferDM, OfferInfoDM>();
+            #endregion
 
+
+            #region  _Currency 
             CreateMap<CurrencyEntity, CurrencyDM>();
             CreateMap<CurrencyDM, CurrencyInfoDM>();
+            CreateMap<FiatEntity, FiatDM>();            
+            #endregion            
         }
-
-        //public static void Configure()
-        //{
-        //    Mapper.Initialize(Configure =>
-        //   {
-        //       Configure.CreateMap<WalletEntity, WalletDM>();
-        //       Configure.CreateMap<WalletTypeEntity, WalletTypeDM>();
-               
-        //       Configure.CreateMap<OfferEntity, OfferDM>();
-        //       Configure.CreateMap<OfferDM, OfferInfoDM>();
-
-        //       Configure.CreateMap<CurrencyEntity, CurrencyDM>();
-        //       Configure.CreateMap<CurrencyDM, CurrencyInfoDM>();
-        //   });
-        //}
     }
 }

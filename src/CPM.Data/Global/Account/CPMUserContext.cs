@@ -20,6 +20,7 @@ namespace CPM.Data.Global.Account
         DbSet<WalletTypeEntity> WalletTypes { get; set; }
         DbSet<OfferEntity> Offers { get; set; }
         DbSet<CurrencyEntity> Currency { get; set; }
+        DbSet<FiatEntity> Fiat { get; set; }
     }
 
     public class CPMUserContext : DbContextBase, IUserContext
@@ -36,6 +37,7 @@ namespace CPM.Data.Global.Account
         public DbSet<WalletTypeEntity> WalletTypes { get; set; }
         public DbSet<OfferEntity> Offers { get; set; }        
         public DbSet<CurrencyEntity> Currency { get; set; }
+        public DbSet<FiatEntity> Fiat { get; set; }
 
     }
 }

@@ -51,6 +51,24 @@ namespace CPM.Data
         }
 
 
+        public void CreateFiat(string filePath)
+        {
+            List<FiatEntity> fiats = new List<Entities.FiatEntity>();
+            fiats.Add(new Entities.FiatEntity()
+            {
+                Id = 0,
+                Code ="USD",
+                Description = "United States of America Fedral Reserve Notes",
+                DisplayName = "Dollars",
+                Name = "US Dollar",
+                Symbol = "$",
+                ImageId=0,
+                FlagId=0                
+            });
+
+            Writer(filePath, fiats);
+        }
+
         public void CreateOffer(string filePath)
         {
             List<OfferEntity> offers = new List<OfferEntity>();
