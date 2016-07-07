@@ -37,7 +37,7 @@ namespace CPM.Data
                             Id = d.Id,
                             Code = d.Code,
                             Description = d.Description,
-                            MarketCap = d.Description,
+                            MarketCap = d.MarketCap,
                             Name = d.Name
                         });
                     }

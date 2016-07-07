@@ -24,6 +24,7 @@ using CPM.Data.Offer;
 using Newtonsoft.Json.Serialization;
 using CPM.Business;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using CPM.Data.Currency;
 
 namespace CPM.Web
 {
@@ -104,6 +105,8 @@ namespace CPM.Web
             services.AddDbContext<CPMUserContext>(options =>
                      options.UseSqlServer(Configuration["Data:CPMConnection"], b => b.MigrationsAssembly("CPM.Web")));
             services.AddDbContext<OfferContext>(options =>
+                     options.UseSqlServer(Configuration["Data:CPMConnection"], b => b.MigrationsAssembly("CPM.Web")));
+            services.AddDbContext<CurrencyContext>(options =>
                      options.UseSqlServer(Configuration["Data:CPMConnection"], b => b.MigrationsAssembly("CPM.Web")));
         }
 

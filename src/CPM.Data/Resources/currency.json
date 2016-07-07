@@ -4,7 +4,7 @@
     "Name": "BitCoin",
     "Code": "BTC",
     "MarketCap": 123456.15,
-    "Description": null
+    "Description": "Bitcoin is a digital asset and a payment system invented by Satoshi Nakamoto. Nakamoto unveiled the idea in 2008 to an obscure internet mailing list,] and released it as open-source software in 2009. There have been several high profile claims to the identity of Satoshi Nakamoto; however, none of them have provided proof beyond doubt that back up their claims.The system is peer-to-peer and transactions take place between users directly, without an intermediary. These transactions are verified by network nodes and recorded in a public distributed ledger called the blockchain, which uses bitcoin as its unit of account. Since the system works without a central repository or single administrator, the U.S. Treasury categorizes bitcoin as a decentralized virtual currency. Bitcoin is often called the first cryptocurrency, although prior systems existed and it is more correctly described as the first decentralized digital currency. Bitcoin is the largest of its kind in terms of total market value"
 
   },
   {
@@ -12,25 +12,25 @@
     "Name": "Ethereum",
     "Code": "ETH",
     "MarketCap": 2266226622,
-    "Description": null
+    "Description": "Ethereum is a public blockchain-based platform, featuring smart contract functionality.It provides a decentralized virtual machine, the Ethereum Virtual Machine (EVM), that can execute peer-to-peer contracts using a cryptocurrency called ether. Ethereum was initially proposed in late 2013 by Vitalik Buterin, a cryptocurrency researcher and programmer. Development was funded by an online crowd sale during July–August 2014. The Ethereum platform was officially launched at July 30, 2015, and is still in active development."
   },
   {
     "Id": 0,
     "Name": "Dash",
     "Code": "DASH",
     "MarketCap": 65236963.15,
-    "Description": null
+    "Description": "Dash (formerly known as Darkcoin and XCoin) is an open source peer-to-peer cryptocurrency that offers instant transactions (InstantSend),private transactions (PrivateSend) and token fungibility. It was rebranded from 'Darkcoin' to 'Dash' on March 25, 2015, a portmanteau of 'Digital Cash'"
   },
   {
     "Id": 0,
     "Name": "Ripple",
     "Code": "XRP",
     "MarketCap": 123456.15,
-    "Description": null
+    "Description": "Ripple is a real-time gross settlement system (RTGS), currency exchange  and remittance network by Ripple. Also called the Ripple Transaction Protocol (RTXP)  or Ripple protocol, it is built upon a distributed open source Internet protocol,  consensus ledger and native currency called XRP (ripples). Released in 2012, Ripple purports to enable secure instant and ,    'nearly' 'free', global financial, transactions of, any size, with no, chargebacks. It supports tokens representing fiat currency, cryptocurrency, commodity or any other unit of value such as frequent flier miles  or mobile minutes. At its core, Ripple is based around a shared, public database  or ledger, which uses a consensus process that allows for payments, exchanges and remittance in a distributed process.[7] In 2014, Ripple defended the security of its  consensus algorithm against a rival company.[8][9] As of 2016, Ripple is the third-largest  cryptocurrency by market capitalization, after bitcoin and ethereum. Currently implemented by companies such as UniCredit, UBS or Santander, the Ripple protocol has been increasingly adopted by banks and payment networks as settlement infrastructure  technology, with American Banker explaining that from banks' perspective, distributed  ledgers like the Ripple system have a number of advantages over cryptocurrencies like bitcoin, including price and security."
   },
   {
     "Id": 0,
-    "Name": "Dodge",
+    "Name": "DodgeCoin",
     "Code": "DOGE",
     "MarketCap": 111123456.15,
     "Description": null
@@ -39,13 +39,6 @@
     "Id": 0,
     "Name": "MaidSafeCoin",
     "Code": "MAID",
-    "MarketCap": 123456.15,
-    "Description": null
-  },
-  {
-    "Id": 0,
-    "Name": "DarkCoin",
-    "Code": "DARK",
     "MarketCap": 123456.15,
     "Description": null
   },
@@ -70,12 +63,102 @@
     "MarketCap": 168337217.15,
     "Description": null
   },
-
   {
     "Id": 0,
-    "Name": "Lisk",
-    "Code": "LSK",
-    "MarketCap": 35889800,
+    "Name": "Waves",
+    "Code": "WAVES",
+    "MarketCap": 23282400,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "Monero",
+    "Code": "XMR",
+    "MarketCap": 23063993,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "Synero",
+    "Code": "AMP",
+    "MarketCap": 19079491,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "DigixDAO",
+    "Code": "DGD",
+    "MarketCap": 18060720,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "Emercoin",
+    "Code": "EMC",
+    "MarketCap": 17740243,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "Steem",
+    "Code": "STEEM",
+    "MarketCap": 0,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "Nxt",
+    "Code": "NXT",
+    "MarketCap": 17510372,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "Factom",
+    "Code": "FCT",
+    "MarketCap": 12073052,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "Siacoin",
+    "Code": "SC",
+    "MarketCap": 10801156,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "BitShares",
+    "Code": "BTS",
+    "MarketCap": 10444013,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "Stellar",
+    "Code": "XLM",
+    "MarketCap": 9441129,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "Bytecoin",
+    "Code": "BCN",
+    "MarketCap": 9147777,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "Peercoin",
+    "Code": "PPC",
+    "MarketCap": 8913512,
+    "Description": null
+  },
+  {
+    "Id": 0,
+    "Name": "Counterparty",
+    "Code": "XCP",
+    "MarketCap": 6813544,
     "Description": null
   }
 ]
