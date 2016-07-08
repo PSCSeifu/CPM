@@ -11,6 +11,7 @@ namespace CPM.Web.Areas.Wallet.Models
     public class WalletInfoVM
     {
         public decimal Balance { get; set; }
+        public int CurrencyId { get; set; }
         public int ClientId { get; set; }
         public string Currency { get; set; }
         public DateTime DateCreated { get; set; }

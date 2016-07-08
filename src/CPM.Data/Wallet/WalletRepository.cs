@@ -78,6 +78,9 @@ namespace CPM.Data.Wallet
                               Id = wallet.Id,
                               Balance = wallet.Balance,
                               Currency = wallet.Currency,
+                              CurrencyId = ((from currency in _context.Currency
+                                            where currency.Code.ToLower() == wallet.Currency.ToLower()
+                                            select currency.Id).SingleOrDefault()),
                               DateModified = wallet.DateModified,
                               Name = wallet.Name,
                               IsLocked = wallet.IsLocked,
@@ -97,6 +100,10 @@ namespace CPM.Data.Wallet
                              Id = wallet.Id,
                              Balance = wallet.Balance,
                              ClientId = wallet.ClientId,
+                             CurrencyId = ((from currency in _context.Currency
+                                           where currency.Code.ToLower() == wallet.Currency.ToLower()
+                                           select currency.Id).SingleOrDefault()
+                                           ),
                              Currency = wallet.Currency,
                              DateCreated = wallet.DateCreated,
                              DateModified = wallet.DateModified,

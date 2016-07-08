@@ -6,9 +6,11 @@
     <title>@ViewBag.Title</title>
     <environment names="Development">
         <link href="~/css/site.css" rel="stylesheet" />
+        <link href="~/css/smta-summary.css" rel="stylesheet" />
+
         <link href="~/lib/css/kendo.common-bootstrap.min.css" rel="stylesheet" />
         <link href="~/lib/css/kendo.mobile.all.min.css" rel="stylesheet" />
-        <link href="~/lib/css/kendo.bootstrap.min.css" rel="styleshee" />
+        <link href="~/lib/css/kendo.bootstrap.min.css" rel="styleshee" />                
 
         <link href="~/lib/css/Bootstrap/bootstrap.min.css" rel="stylesheet" />
         <link href="~/lib/css/bootswatch/spacelab/bootstrap.min.css" rel="stylesheet" />
@@ -44,14 +46,14 @@
             <div class="collpase navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
                     @*@await Component.InvokeAsync("NavbarMenu")*@
-                    <li id="currencyMenu" class="dropdown">                       
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <li id="currencyMenu" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" >
                             <span class="nav-title"><i class="fa fa-money"></i>&nbsp;CURRENCY</span>
                         </a>
                         <ul class="dropdown-menu dropdown-caret">
                             <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Kendo">All</a></li>
                             <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Index">Table View</a></li>
-                            <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Index">My Favourites</a></li>
+                            <li><a asp-route-area="Currency" asp-controller="Currency" asp-action="Index">Top 10</a></li>
                         </ul>
                     </li>
                     <li class="dropdown" id="Offermenu">
@@ -64,7 +66,7 @@
                             <li><a asp-route-area="Offer" asp-controller="Offer" asp-action="Create">Create</a></li>
 
                             <li><a asp-route-area="Offer" asp-controller="Offer" asp-action="Detail">DetailTest</a></li>
-                        </ul>                      
+                        </ul>
                     </li>
                     <li id="walletmenu">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -74,7 +76,7 @@
                             <li><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Grid">All</a></li>
                             <li><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Index">My Wallets</a></li>
                             <li><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Create">Create</a></li>
-                        </ul>                       
+                        </ul>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

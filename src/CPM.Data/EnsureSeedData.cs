@@ -154,7 +154,17 @@ namespace CPM.Data
                             Currency = d.Currency,
                             DateCreated = d.DateCreated,
                             DateModified = d.DateModified,
-                            WalletTypeId = 1
+                            WalletTypeId = d.WalletTypeId,
+                            LockOnNotificationLimit = d.LockOnNotificationLimit,
+                            LockOnSpendLimit = d.LockOnSpendLimit,
+                            LockOnWithdrawLimit = d.LockOnWithdrawLimit,
+                            SpendLimit  = d.SpendLimit,
+                            WithdrawLimit = d.WithdrawLimit,
+                            NotificationLimit = d.NotificationLimit,
+                            IsDeleted = d.IsDeleted,
+                            DeleteDate = d.DeleteDate,
+                            ImageId =d.ImageId
+
                         });
                     }
                     walletContext.SaveChanges();

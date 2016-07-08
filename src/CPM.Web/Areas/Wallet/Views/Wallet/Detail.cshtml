@@ -2,40 +2,177 @@
 @{ Layout = "/Views/Shared/Wallet/_WalletLayout.cshtml";}
 @{ ViewBag.Title = Model.Name;}
 <div>
-    <div class="panel">
-        <div class="panel panel-heading panel-info">
-            <div>
-                <span  class="smta-wallet-balance">@Model.Balance</span>
-                &nbsp; <span class="smta-currency-lg">@Model.Currency</span>
-            </div>           
-        </div>
-        <div class="panel panel-body panel-group">
-            <div class="smta-display">
-                <div claas="smta-display detail">
-                    <div>ClientID: @Model.ClientId</div>
-                    <div>@Model.Name</div>
-                    <div>IsLocked : @Model.IsLocked</div>
-                    <div>Name : @Model.Name</div>
-                    <div>Name : @Model.IsNew</div>
+    @*<div class="panel">
+            <div class="panel panel-heading panel-info">
+                <div>
+                    <span class="smta-wallet-balance">@Model.Balance</span>
+                    &nbsp; <span class="smta-currency-lg">
+                        <a asp-route-area="Currency" asp-controller="Currency" asp-action="Detail" asp-route-id="@Model.CurrencyId">@Model.Currency</a>
+                    </span>
                 </div>
-                <div class="smta-display settings">
-                    <div>SpendLimit : @Model.SpendLimit</div>
-                    <div>NotificationLimit : @Model.NotificationLimit</div>
-                    <div>WithdrawLimit : @Model.WithdrawLimit</div>
-                    <div>LockOnSpendLimit : @Model.LockOnSpendLimit</div>
-                    <div>LockOnNotificationLimit : @Model.LockOnNotificationLimit</div>
-                    <div>LockOnWithdrawLimit : @Model.LockOnWithdrawLimit</div>
+            </div>
+
+            <div class="panel panel-body panel-group">
+                <div class="smta-display">
+                    <div claas="smta-display detail">
+                        <div>ClientID: @Model.ClientId</div>
+                        <div>@Model.Name</div>
+                        <div>
+                            @if (@Model.IsLocked)
+                            {
+                                <i class="fa fa-lock fa-lg"></i>;
+                            }
+                            else
+                            {
+                                <i class="fa fa-unlock fa-lg"></i>;
+                            }
+                        </div>
+                        <div>Name : @Model.Name</div>
+                        <div>Name : @Model.IsNew</div>
+                    </div>
+                    <div class="smta-display settings">
+                        <div>SpendLimit : @Model.SpendLimit</div>
+                        <div>NotificationLimit : @Model.NotificationLimit</div>
+                        <div>WithdrawLimit : @Model.WithdrawLimit</div>
+                        <div>LockOnSpendLimit : @Model.LockOnSpendLimit</div>
+                        <div>LockOnNotificationLimit : @Model.LockOnNotificationLimit</div>
+                        <div>LockOnWithdrawLimit : @Model.LockOnWithdrawLimit</div>
+                    </div>
+
                 </div>
-                
+
+                <div class="btn-group" style="width:40%; border:solid">
+                    <button class="btn  btn-success" asp-route-area="Wallet" asp-controller="wallet" asp-action="Create" asp-route-id="@Model.Id">Add &nbsp;<i class="fa fa-plus"></i></button>
+                    <button class="btn  btn-info" asp-route-area="Wallet" asp-controller="wallet" asp-action="Edit" asp-route-id="@Model.Id">Edit &nbsp;<i class="fa fa-edit"></i></button>
+                    <button class="btn  btn-danger" asp-route-area="Wallet" asp-controller="wallet" asp-action="Delte" asp-route-id="@Model.Id">Delete &nbsp;<i class="fa fa-remove"></i></button>
+                </div>
+            </div>
+
+            <div class="panel panel-footer">
+                @DateTime.Now.ToString("d MMM yy")
+            </div>
+        </div>*@
+    <div id="testid"></div>
+
+    <div>
+        <ul class="nav nav-pills" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#summary-tab" data-toggle="tab">Summary</a>
+            </li>
+            <li role="presentation" href="#settings-tab">
+                <a href="#settings-tab" data-toggle="tab">Settings</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+
+            <div role="tabpanel" class="tab-pane active" id="summary-tab">
+                <div style="font-size:xx-large">@Model.Name</div>
+                <div>
+                    @if (@Model.IsLocked)
+                    {
+                        <i class="fa fa-lock fa-lg"></i>;
+                    }
+                    else
+                    {
+                        <i class="fa fa-unlock fa-lg"></i>;
+                    }
+                </div>
+                <div><span>Balance</span> <span>@Model.Balance</span></div>
+                <div style="width:50px; height:50px;">Conversion</div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="settings-tab">
+                <div class="wallet-settting-wrapper">
+                    <hr />
+                    <div class="wallet-settting-limits">
+                        <div style="width:50%;">
+                            <label>Spend Limit</label>
+                            <span class="pull-right fa-lg">@Model.SpendLimit.ToString()</span>
+                        </div>
+                        <div style="width:50%;">
+                            <label>Notification Limit</label>
+                            <span  class="pull-right fa-lg">@Model.NotificationLimit.ToString()</span>
+                        </div>
+                        <div style="width:50%;">
+                            <label>Withdraw Limit</label>
+                            <span  class="pull-right fa-lg">@Model.WithdrawLimit.ToString()</span>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="wallet-settting-locks">
+                        <label><string>Lock Wallet on Limits</string></label>
+                        <br />
+                        <div style="display:inline;">
+                            <label for="lockstate-spend">Spend</label>
+                            <div class="lockstate" id="lockstate-spend">
+                                @if (@Model.LockOnSpendLimit)
+                                {
+                                    <i class="fa fa-lock fa-lg"></i>;
+                                }
+                                else
+                                {
+                                    <i class="fa fa-unlock fa-lg"></i>;
+                                }
+                            </div>
+                        </div>
+                        <div style="display:inline;">
+                            <label for="lockstate-notify">Notification</label>
+                            <div class="lockstate" id="lockstate-notify">
+                                @if (@Model.LockOnNotificationLimit)
+                                {
+                                    <i class="fa fa-lock fa-lg"></i>;
+                                }
+                                else
+                                {
+                                    <i class="fa fa-unlock fa-lg"></i>;
+                                }
+                            </div>
+                        </div>
+                        <div style="display:inline;">
+                            <label for="lockstate-withdraw">Withdraw</label>
+                            <div class="lockstate" id="lockstate-withdraw">
+                                @if (@Model.LockOnWithdrawLimit)
+                                {
+                                    <i class="fa fa-lock fa-lg"></i>;
+                                }
+                                else
+                                {
+                                    <i class="fa fa-unlock fa-lg"></i>;
+                                }
+                            </div>
+                        </div>
+
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div>
-            <button class="btn  btn-success btn-xs" asp-route-area="Wallet" asp-controller="wallet" asp-action="Create" asp-route-id="@Model.Id">Add &nbsp;<i class="fa fa-plus"></i></button>
-            <button class="btn  btn-info btn-xs" asp-route-area="Wallet" asp-controller="wallet" asp-action="Edit" asp-route-id="@Model.Id">Edit &nbsp;<i class="fa fa-edit"></i></button>
-        </div>
-        <div class="panel panel-footer">
-            @DateTime.Now.ToString("d MMM yy")
-        </div>
+
     </div>
-</div>
+    <script>
+        @*$(document).ready(function() {
+        if (true) {
+            $("#spend-lock-state").html('<span class="lockedstate"> <i class="fa fa-lock fa-lg"></i></span>');
+            console.log("condition : "   );
+            }
+            else {
+                $("#spend-lock-state").html('<span class="lockedstate"> <i class="fa fa-lock fa-lg"></i></span>');
+
+                console.log("stuff happened");
+                console.log("condition : "  +@Model.LockOnSpendLimit);
+        };
+
+
+    });
+
+    function Showlockstate(condition){
+        if(condition){
+            $(this).html('<span class="lockedstate"> <i class="fa fa-lock fa-lg"></i></span>');}
+        else{
+            $(this).html('<span class="lockedstate"> <i class="fa fa-unlock fa-lg"></i></span>');
+        }
+        console.log("stuff happened");
+    };*@
+    </script>

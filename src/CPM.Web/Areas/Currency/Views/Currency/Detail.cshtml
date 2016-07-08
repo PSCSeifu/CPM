@@ -17,7 +17,15 @@
             {
                 var classType = "";
                 @if (@fiat.FiatCode.ToUpper() == Model.DefaultFiatCurrency.ToUpper()) { classType = "active"; }
-                <li role="presentation" class="@classType"><a href="#@fiat.FiatCode.ToUpper()" role="tab" data-toggle="tab">@fiat.FiatCode.ToUpper()</a></li>
+                <li role="presentation" class="@classType">
+                    <a href="#@fiat.FiatCode.ToUpper()" role="tab" data-toggle="tab">
+                        <span data-toggle="tooltip" title="@Model.FiatList.Where(x => x.Code.ToUpper() == @fiat.FiatCode.ToUpper()).Select(y => y.DisplayName).SingleOrDefault()">
+                            @fiat.FiatCode.ToUpper()
+                        </span>
+                    </a>
+                </li>
+                //@Model.FiatList.Where(x => x.Code.ToUpper() == @fiat.FiatCode.ToUpper()).Select(y => y.DisplayName).SingleOrDefault()
+
             }
         </ul>
 
@@ -56,11 +64,13 @@
                             <div class="panel-body">
                                 @foreach (var market in @price.Markets)
                                 {
-                                    <ul class="smta-currencydetail smta-currencymarket">
-                                        <li class="smta-marketname">@market.Market</li>
-                                        <li><span class="smta-marketprice" onfocus=@price.FiatCode.ToUpper()>@market.Price.ToString("0.##")</span></li>
-                                        <li><span class="smta-marketvolume">Volume : <i class="fa fa-cube"></i>@market.Volume.ToString("0.##")</span></li>
-                                    </ul>
+                                    <div class="smta-market-wrapper">
+                                        <div class="smta-market">
+                                            <div id="smta-marketname">@market.Market</div>
+                                            <div id="smta-marketprice"><span  onfocus=@price.FiatCode.ToUpper()>@market.Price.ToString("0.##")</span></div>
+                                            <div id="smta-marketvolume"><span data-toggle="tooltip" title="1 Hour Volume"><i class="fa fa-cube"></i>@market.Volume.ToString("0.##")</span></div>
+                                        </div>
+                                    </div>
                                 }
                             </div>
                         </div>

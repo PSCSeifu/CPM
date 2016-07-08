@@ -21,14 +21,13 @@
         }
     </div>*@
 
-    <div id="Grid" class="col-sm-12">
+    @*<div id="Grid" class="col-sm-12">
         <h6>Here ought to be a Wallet grid html Partial</h6>
         @Html.Partial("Grid")
-    </div>
+    </div>*@
     <table class="table table-condensed table-striped col-sm-5">
         <thead>
-            <tr>
-                <td></td>
+            <tr>                
                 <td>Name</td>
                 <td>Locked</td>
                 <td>Balance</td>
@@ -38,8 +37,8 @@
         @foreach (var wallet in Model.Wallets.ToList())
         {
             <tr>
-                <td><a href="#" class="btn btn-danger btn-xs"> <i class="fa fa-remove"></i></a></td>               
-                <td>@wallet.Name</td>
+                @*<td><a href="#" class="btn btn-danger btn-xs"> <i class="fa fa-remove"></i></a></td>*@               
+                <td><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Detail" asp-route-id="@wallet.Id">@wallet.Name</a></td>
                 <td>                    
                         @if (@wallet.IsLocked)
                         {
@@ -50,8 +49,11 @@
                             <i class="fa fa-unlock blue"></i>;
                         }  
                 </td>
-                <td>@wallet.Currency &nbsp; @wallet.Balance</td>
-                <td><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Detail" asp-route-id="@wallet.Id"><i class="fa fa-edit"></i></a></td>
+                <td>
+                    <a asp-route-area="Currency" asp-controller="Currency" asp-action="Detail" asp-route-id="@wallet.CurrencyId">@wallet.Currency </a>
+                    &nbsp; @wallet.Balance
+                </td>
+                <td><a asp-route-area="Wallet" asp-controller="Wallet" asp-action="Detail" asp-route-id="@wallet.Id"><i class="fa fa-eye fa-lg"></i></a></td>
             </tr>
         }
         

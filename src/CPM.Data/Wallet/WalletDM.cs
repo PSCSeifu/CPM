@@ -12,6 +12,7 @@ namespace CPM.Data.Wallet
     {
         public decimal Balance { get; set; }
         public int ClientId { get; set; }
+        public int CurrencyId { get; set; }
         public string Currency { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
@@ -35,6 +36,7 @@ namespace CPM.Data.Wallet
     public class WalletInfoDM
     {
         public decimal Balance { get; set; }
+        public int CurrencyId { get; set; }
         public string Currency { get; set; }
         public DateTime DateModified { get; set; }
         public int Id { get; set; }

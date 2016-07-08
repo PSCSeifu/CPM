@@ -2,104 +2,7 @@
     list-style:none;
 }
 
-/*Start of Summary block*/
-.container{
-    width: 100%;
-}
 
-.smta-summary-block{
-    position:relative;
-    width:100%;
-    margin:0.3em;
-    padding:1em;
-    min-height:15em;
-}
-
-   .smta-summary-block  .smta-summary-background i,
-   .smta-summary-block  .smta-summary-background div{
-       margin-left:-0.4em;
-       margin-top:0.1em;
-       font-size:8em;
-       opacity:0.3;
-    }
-
-    .smta-summary-block .smta-summary-body{
-        position:absolute;
-        top:1.3em;
-        right:0.8em;
-    }
-    .smta-summary-block .summary-line1{
-        text-align : right;
-        font-size:xx-large;            
-        }
-        .smta-summary-block .summary-line2{
-            text-align : right;
-        font-size:medium;
-        }
-    .smta-summary-block .smta-summary-footer {
-        position:absolute;
-        width:100%;      
-        right:0;
-        bottom:0;
-        padding:0.5em;
-        font-weight:300;
-        text-transform: uppercase;
-        font-size:small;
-        opacity: 0.6;
-    }
-        .smta-summary-block .smta-summary-footer a {
-            text-decoration:none;           
-        }
-            .smta-summary-block .smta-summary-footer:hover {
-                opacity:1.0;
-                cursor:pointer;
-            }
-/*End of summary block*/
-/*Start of Summary block Themes*/
-.smta-summary-block-primary {
-    background-color:#3964bd;
-    color:#fff;
-}
-    .smta-summary-block-primary .smta-summary-footer {
-          background-color:blue;
-    }
-        .smta-summary-block-primary .smta-summary-footer a {
-              color:white;
-        }
-
-.smta-summary-block-success {
-    background-color:#3c763d;
-    color:#fff;
-}
-    .smta-summary-block-success .smta-summary-footer {
-          background-color:green;
-    }
-        .smta-summary-block-success .smta-summary-footer a {
-              color:white;
-        }
-
-.smta-summary-block-info {
-    background-color:#0e394a;
-    color:#fff;
-}
-    .smta-summary-block-info .smta-summary-footer {
-          background-color:teal;
-    }
-        .smta-summary-block-info .smta-summary-footer a {
-              color:white;
-        }
-
-.smta-summary-block-danger {
-    background-color:#a94442;
-    color:#fff;
-}
-    .smta-summary-block-success .smta-summary-danger {
-          background-color:red;
-    }
-        .smta-summary-block-danger .smta-summary-footer a {
-              color:white;
-        }
-/*End of Summary block Themes */
 
 /* START OF BOOTSTARP OVERLOADS*/
 .panel-heading span {
@@ -173,7 +76,6 @@ display: inline-block;
     font-size:medium; 
     position: relative;  
     list-style:none;
-    list-style-type:none;
 }
 
     .smta-pricechange{
@@ -182,31 +84,64 @@ display: inline-block;
     .smta-price{
         font-size:xx-large;
     }
-    .smta-marketname{
-        font-size:medium;
-        font-stretch:expanded;
-        font-style:normal;
-        font-weight:bold;
+
+    .smta-market-wrapper{
+        position:relative;
+        display:inline-block;
+    }
+    .smta-market{
+        border:ridge;
+        border-color:#f3e0e0;
+        list-style:none;
+        margin:3px;
+        padding:8px;
+        position:relative;
+        display: inline-block;
+        
+    }
+        #smta-marketname{
+            font-size:medium;
+            font-stretch:expanded;
+            font-style:normal;
+            font-weight:bold;
+            position:center;
+            width:100%;
+        }
+
+        #smta-marketvolume{
+            font-size:small;
+            width:100%;
+        }
+
+        #smta-marketprice{
+            font-size:x-large;
+            font-weight:bold;
+            width:100%;
+        }
+
+    .lockedstae{
+    content :'<i class="fa fa-lock fa-lg"></i>';
     }
 
-    .smta-marketvolume{
-        font-size:small;
-    }
-
-    .smta-marketprice{
-        font-size:x-large;
-        font-weight:bold;
+    .wallet-settting-locks{
+        display:inline;
     }
 
 /*START FONT AWESOME OVERLOADS */
-.table .fa-unlock {
+ .table  .fa-unlock {
     color: green;
 }
 
-.table .fa-lock {
+.table  .fa-lock {
     color: red;
 }
+.lockstate  .fa-unlock {
+    color: green;
+}
 
+.lockstate  .fa-lock {
+    color: red;
+}
 .smta-changedown {
     color: red;    
 }
@@ -219,3 +154,10 @@ display: inline-block;
 .clickable{
     cursor:pointer;
 }
+
+/*Kendo grid header*/
+.k-grid-header th.k-header, .k-filter-row th {
+    font-weight:bold !important;
+}
+
+
